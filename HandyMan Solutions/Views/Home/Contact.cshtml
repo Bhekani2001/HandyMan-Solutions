@@ -1,0 +1,141 @@
+﻿@model HandyMan_Solutions.Models.Contact
+@{
+    ViewBag.Title = "Contact";
+}
+
+<div class="container mt-5">
+      <div class="jumbotron mx-auto shadow" style="max-width: 950px;">
+            <div class="jumbotron-header text-center">
+                <h1 class="display-6 shadow"> What your story?</h1>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { id = "contactForm" }))
+                {
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="firstname">Fullname(s)</label>
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control required", @id = "firstname" })
+                            @Html.ValidationMessageFor(m => m.FirstName)
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastname">Surname</label>
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control required", @id = "lastname" })
+                                @Html.ValidationMessageFor(m => m.LastName)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="email">Email</label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control required", @id = "email" })
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control required", @id = "phone" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.PhoneNumber)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="reason">Reason</label>
+                            @Html.DropDownListFor(
+                                m => m.Reason,
+                                (IEnumerable<SelectListItem>)ViewBag.ReasonOptions,
+                                "Select Reason",
+                                new { @class = "form-control required", @id = "reason" }
+                            )
+                            @Html.ValidationMessageFor(m => m.Reason)
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="service">Service</label>
+                                @Html.DropDownListFor(
+                                    m => m.Service,
+                                    (IEnumerable<SelectListItem>)ViewBag.ServiceOptions,
+                                    "Select Service",
+                                    new { @class = "form-control required", @id = "service" }
+                                )
+                                @Html.ValidationMessageFor(m => m.Service)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        <label for="message">Message</label>
+                        @Html.TextAreaFor(m => m.Message, new { @class = "form-control required", @id = "message", rows = 6, style = "width: 100%;" })
+                        @Html.ValidationMessageFor(m => m.Message)
+                    </div>
+                    <br />
+                    <div class="row mt-4">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-outline-primary">
+                                <i class="fas fa-paper-plane"></i> Submit
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+   
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#contactForm').on('submit', function (event) {
+            event.preventDefault();
+
+            var isValid = true;
+
+            $('.required').each(function () {
+                if ($(this).val() === '') {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please fill out all required fields!',
+                });
+                return;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function () {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Submitted!',
+                        text: 'Your message has been sent successfully.',
+                    }).then(() => {
+
+                        $('#contactForm')[0].reset();
+                    });
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'There was a problem with your submission.',
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
