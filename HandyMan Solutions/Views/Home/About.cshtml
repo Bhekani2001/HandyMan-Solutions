@@ -1,9 +1,25 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+﻿@model HandyMan_Solutions.Models.EmployeeOnBoarding
 
-    <p>Use this area to provide additional information.</p>
-</main>
+@{
+    ViewBag.Title = "Employee Registration";
+}
+
+<h2>Employee Registration</h2>
+
+@using (Html.BeginForm("Register", "Employee", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.EFirstName)
+        @Html.TextBoxFor(m => m.EFirstName, new { @class = "form-control" })
+    </div>
+    <!-- Other fields here -->
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.RoleId, "Role")
+        @Html.DropDownListFor(m => m.RoleId, new SelectList(ViewBag.Roles, "Id", "Name"), "Select Role", new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+}

@@ -22,6 +22,10 @@ namespace Tassc.Controllers
         {
             return View();
         }
+        public ActionResult About()
+        {
+            return View();
+        }
         public ActionResult Services()
         {
             return View();
