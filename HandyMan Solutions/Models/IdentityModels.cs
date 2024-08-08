@@ -34,5 +34,6 @@ namespace HandyMan_Solutions.Models
         }
 
         public virtual DbSet<Contact > Contacts { get; set; }
+        public virtual DbSet<QoutationRequest> QoutationRequests { get; set; }
     }
 }
