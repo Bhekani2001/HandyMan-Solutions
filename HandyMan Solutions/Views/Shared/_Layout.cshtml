@@ -126,7 +126,7 @@
                         @Html.Partial("_LoginPartial")
                     </div>
                 }
-                else if (User.IsInRole("Employee"))
+                else if (User.IsInRole("Appliance Repair Technician") || User.IsInRole("Carpenter")|| User.IsInRole("Electrician")|| User.IsInRole("General Home Maintenance")|| User.IsInRole("HVAC Technician")|| User.IsInRole("Plumber"))
                 {
                     @Html.ActionLink("HandyMan Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navbar-brand-custom" })
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -134,8 +134,23 @@
                     </button>
                     <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
-                            <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li>@Html.ActionLink("Hi", "OnMap", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Activities</a>
+                                <div class="dropdown-menu bg-light">
+                                    <a href="@Url.Action("UserSubscriptions","UploadContents")" class="dropdown-item">OutStanding Task</a>
+                                    <a href="@Url.Action("Index","DeviceBookings")" class="dropdown-item">Task History</a>
+                                    <a href="@Url.Action("Index","InterLibraryLoanApplications")" class="dropdown-item">Task In-Process</a>
+                                </div>
+                            </div>
+                            
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Qoutations</a>
+                                <div class="dropdown-menu bg-light">
+                                    <a href="@Url.Action("UserSubscriptions","UploadContents")" class="dropdown-item">OutStanding Task</a>
+                                    <a href="@Url.Action("Index","DeviceBookings")" class="dropdown-item">Task History</a>
+                                    <a href="@Url.Action("Index","InterLibraryLoanApplications")" class="dropdown-item">Task In-Process</a>
+                                </div>
+                            </div>
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>
@@ -167,7 +182,7 @@
     <div class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i> Employees</a>
         <div class="dropdown-menu bg-dark">
-            <a class="dropdown-item" href="@Url.Action("RegisterNewEmployee", "Employee")">
+            <a class="dropdown-item" href="@Url.Action("OnboardNewEmployee", "EmployeeOnBoardings")">
                 <i class="bi bi-person-plus"></i> Register New Employee
             </a>
             <a class="dropdown-item" href="@Url.Action("ExistingEmployees", "Employee")">

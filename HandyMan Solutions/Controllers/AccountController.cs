@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HandyMan_Solutions.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace HandyMan_Solutions.Controllers
 {
@@ -137,8 +139,6 @@ namespace HandyMan_Solutions.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -146,29 +146,65 @@ namespace HandyMan_Solutions.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    FamilyName = model.FamilyName,
+                    Contact=model.Contact,
+                    Address = model.Address,
+                    PhoneNumber = model.Contact,
+                    Balance = 0
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+                    var subject = "HandyMan Solutions Account Creation";
+                    var body = $"Dear {user.FirstName} {user.LastName} {user.FamilyName},<br/><br/>" +
+                               $"On {DateTime.Now.ToString("MMMM dd, yyyy")}, you registered for a HandyMan Solutions account.<br/>" +
+                               $"If it wasn't you please ignore this email. It was intended for {user.FirstName} {user.LastName} {user.FamilyName} with email {user.Email} <br/><br/>" +
+                               $"Please confirm your account by clicking <a href=\"{callbackUrl}\">here</a>.<br/><br/>" +
+                               "Thank you,<br/>HandyMan Solutions Team";
+
+                    SendEmail(user.Email, subject, body);
+
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        //
-        // GET: /Account/ConfirmEmail
+        private void SendEmail(string email, string subject, string body)
+        {
+            using (var message = new MailMessage())
+            {
+                message.To.Add(new MailAddress(email));
+                message.From = new MailAddress("towandile461@gmail.com");
+                message.Subject = subject;
+                message.Body = body;
+                message.IsBodyHtml = true;
+
+                using (var smtp = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential("towandile461@gmail.com", "cxtyldjbvwwgckig");
+                    smtp.EnableSsl = true;
+                    smtp.Send(message);
+                }
+            }
+        }
+
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
@@ -179,6 +215,7 @@ namespace HandyMan_Solutions.Controllers
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
+
 
         //
         // GET: /Account/ForgotPassword

@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace HandyMan_Solutions.Models
 {
@@ -17,11 +14,24 @@ namespace HandyMan_Solutions.Models
         public string ELastName { get; set; }
         public string EFamilyName { get; set; }
         public string EIdentityNumber { get; set; }
-        public DateTime EDateofBirth { get; set; }
         public string EContact { get; set; }
+        public string ESecondContact { get; set; }
         public string EEmailAddress { get; set; }
+        public string EAddress { get; set; }
         public int EYearsofExperience { get; set; }
+
+        [Required]
         public string RoleId { get; set; }
+        [ForeignKey("RoleId")]
         public virtual IdentityRole Role { get; set; }
+
+        [NotMapped]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [NotMapped]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
     }
 }
