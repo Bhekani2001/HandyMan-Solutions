@@ -69,6 +69,7 @@ namespace HandyMan_Solutions.Models
         public string FamilyName { get; set; }
         public string Address { get; set; }
         public string Contact { get; set; }
+        public decimal Balance { get; set; } = 0;
 
         [Required]
         [EmailAddress]

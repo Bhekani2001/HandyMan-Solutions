@@ -8,6 +8,15 @@ namespace HandyMan_Solutions.App_Start
 {
     public class UserFirstName
     {
+        public static decimal GetBalance(string userId)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var user = context.Users.FirstOrDefault(u => u.Id == userId);
+                return user?.Balance ?? 0;
+            }
+        }
+
         public static string GetFirstName(string userId)
         {
             using (ApplicationDbContext context = new ApplicationDbContext())

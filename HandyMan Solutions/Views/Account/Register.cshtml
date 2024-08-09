@@ -3,41 +3,96 @@
     ViewBag.Title = "Register";
 }
 
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
 
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        <h4>Create a new account.</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="row">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            </div>
+
+<main aria-labelledby="title" class="d-flex justify-content-center align-items-center vh-80">
+    <div class="card w-50">
+        <div class="card-header text-center">
+            <h2 class="shadow">Create a new account</h4>
         </div>
-        <div class="row">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="row">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="offset-md-2 col-md-10">
-                <input type="submit" value="Register" class="btn btn-outline-dark" />
-            </div>
-        </div>
-    }
+        <div class="card-body">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form", @id = "registerForm" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="firstname">Firstname</label>
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control required", @id = "firstname" })
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lastname">Lastname</label>
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control required", @id = "lastname" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label for="surname">Surname</label>
+                        @Html.TextBoxFor(m => m.FamilyName, new { @class = "form-control required", @id = "surname" })
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email">Email</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control required", @id = "email" })
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label for="contact">Contact</label>
+                        @Html.TextBoxFor(m => m.Contact, new { @class = "form-control required", @id = "contact" })
+                    </div>
+                    <div class="col-md-6">
+                        <label for="password">Address</label>
+                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control required", @id = "Address" })
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label for="password">Password</label>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control required", @id = "password" })
+                    </div>
+                    <div class="col-md-6">
+                        <label for="confirmPassword">Confirm Password</label>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control required", @id = "confirmPassword" })
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-12 text-center">
+                        <input type="submit" value="Register" class="btn btn-outline-dark" />
+                    </div>
+                </div>
+            }
+
+          
+    </div>
 </main>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $('#registerForm').submit(function (event) {
+            var isValid = true;
+            $('#registerForm input').each(function () {
+                if ($(this).val() === '') {
+                    isValid = false;
+                    return false;
+                }
+            });
+
+            if (!isValid) {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'All fields are required!'
+                });
+            }
+        });
+    </script>
 }
