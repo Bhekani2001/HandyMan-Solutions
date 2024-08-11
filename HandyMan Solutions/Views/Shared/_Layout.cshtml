@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Office Management</title>
+    <title>HandyMan Solutions</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
@@ -35,19 +35,19 @@
 
             .sidebar a {
                 padding: 10px 15px;
-                text-decoration: none; /* Remove underline */
+                text-decoration: none; 
                 font-size: 18px;
                 color: #818181;
                 display: block;
                 transition: 0.3s;
-                border: 1px solid transparent; /* Initial border to handle border-radius */
-                border-radius: 5px; /* Apply border-radius */
+                border: 1px solid transparent;
+                border-radius: 5px; 
             }
 
                 .sidebar a:hover {
                     color: #f1f1f1;
-                    border: 1px solid #575757; /* Border color on hover */
-                    background-color: #222; /* Background color on hover for better visibility */
+                    border: 1px solid #575757; 
+                    background-color: #222;
                 }
 
             .sidebar .closebtn {
@@ -81,7 +81,7 @@
 
         .sidebar .dropdown-menu {
             display: none;
-            padding-left: 0; /* Remove default padding */
+            padding-left: 0;
         }
 
             .sidebar .dropdown-menu.show {
@@ -89,15 +89,15 @@
             }
 
         .sidebar .dropdown-item {
-            text-decoration: none; /* Remove underline */
-            color: #f1f1f1; /* Set color */
+            text-decoration: none; 
+            color: #f1f1f1; 
             display: block;
-            padding: 10px 15px; /* Adjust padding */
-            border-radius: 5px; /* Apply border-radius */
+            padding: 10px 15px;
+            border-radius: 5px;
         }
 
             .sidebar .dropdown-item:hover {
-                background-color: #575757; /* Background color on hover */
+                background-color: #575757;
             }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
@@ -185,7 +185,7 @@
             <a class="dropdown-item" href="@Url.Action("OnboardNewEmployee", "EmployeeOnBoardings")">
                 <i class="bi bi-person-plus"></i> Register New Employee
             </a>
-            <a class="dropdown-item" href="@Url.Action("ExistingEmployees", "Employee")">
+            <a class="dropdown-item" href="@Url.Action("ExistingEmployees", "EmployeeOnBoardings")">
                 <i class="bi bi-person"></i> Existing Employees
             </a>
             <a class="dropdown-item" href="@Url.Action("EmployeesActivityHistory", "Employee")">

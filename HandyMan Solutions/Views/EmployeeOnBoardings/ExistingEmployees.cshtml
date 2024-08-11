@@ -1,0 +1,78 @@
+﻿@model IEnumerable<HandyMan_Solutions.Models.EmployeeOnBoarding>
+
+@{
+    ViewBag.Title = "Existing Employees";
+}
+
+<div class="card">
+    <div class="card-headern shadow">
+        <h2>Existing Employees</h2>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Full Name</th>
+                    <th style="width: 15%;">Family Name</th>
+                    <th style="width: 15%;">Identity Number</th>
+                    <th style="width: 15%;">Contact</th>
+                    <th style="width: 15%;">Email Address</th>
+                    <th style="width: 10%;">Years of Experience</th>
+                    <th style="width: 10%;">Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var employee in Model)
+                {
+                    <tr>
+                        <td>@(employee.EFirstName + " " + employee.ELastName)</td>
+                        <td>@employee.EFamilyName</td>
+                        <td>@employee.EIdentityNumber</td>
+                        <td>@employee.EContact</td>
+                        <td>
+                            <span class="email-text" data-toggle="modal" data-target="#emailModal_@employee.EmployeeKey" title="@employee.EEmailAddress">
+                                @(employee.EEmailAddress.Length > 12 ? employee.EEmailAddress.Substring(0, 12) + "..." : employee.EEmailAddress)
+                            </span>
+                        </td>
+                        <td>@employee.EYearsofExperience</td>
+                        <td>@employee.Role.Name</td>
+                    </tr>
+
+                    <div class="modal fade" id="emailModal_@employee.EmployeeKey" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel_@employee.EmployeeKey" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="emailModalLabel_@employee.EmployeeKey">Full Email Address</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    @employee.EEmailAddress
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .email-text {
+        cursor: pointer;
+        display: inline-block;
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<!-- Ensure these scripts are included in your view -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>

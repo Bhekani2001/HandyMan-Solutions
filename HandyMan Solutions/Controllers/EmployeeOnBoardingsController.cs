@@ -9,12 +9,22 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net.Mail;
 using System.Net;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
+
 
 namespace HandyMan_Solutions.Controllers
 {
     public class EmployeeOnBoardingsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        public ActionResult ExistingEmployees()
+        {
+            var employees = db.EmployeeOnBoardings.ToList();
+            return View(employees);
+        }
 
         public ActionResult OnboardNewEmployee()
         {
@@ -40,7 +50,7 @@ namespace HandyMan_Solutions.Controllers
             {
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var password = string.IsNullOrEmpty(model.Employee.Password)
-                    ? userManager.PasswordHasher.HashPassword(Guid.NewGuid().ToString("n").Substring(0, 8))
+                    ? Guid.NewGuid().ToString("n").Substring(0, 8)
                     : model.Employee.Password;
 
                 var user = new ApplicationUser
@@ -50,26 +60,52 @@ namespace HandyMan_Solutions.Controllers
                     FirstName = model.Employee.EFirstName,
                     LastName = model.Employee.ELastName,
                     FamilyName = model.Employee.EFamilyName,
-                    Contact = model.Employee.EContact,
-                    PhoneNumber = model.Employee.ESecondContact,
+                    Address = model.Employee.EAddress,
+                    SecondContact = model.Employee.ESecondContact,
+                    PhoneNumber = model.Employee.EContact,
                     Experience = model.Employee.EYearsofExperience,
-                    IDNo = model.Employee.EIdentityNumber
+                    IDNo = model.Employee.EIdentityNumber,
+                    RegisteredDate = DateTime.Now,
                 };
 
                 var result = await userManager.CreateAsync(user, password);
 
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(user.Id, db.Roles.Find(model.Employee.RoleId).Name);
+                    var role = db.Roles.Find(model.Employee.RoleId).Name;
+                    await userManager.AddToRoleAsync(user.Id, role);
 
+                    var employeeOnBoarding = new EmployeeOnBoarding
+                    {
+                        EFirstName = model.Employee.EFirstName,
+                        ELastName = model.Employee.ELastName,
+                        EFamilyName = model.Employee.EFamilyName,
+                        EIdentityNumber = model.Employee.EIdentityNumber,
+                        EContact = model.Employee.EContact,
+                        ESecondContact = model.Employee.ESecondContact,
+                        EAddress = model.Employee.EAddress,
+                        EEmailAddress = model.Employee.EEmailAddress,
+                        EYearsofExperience = model.Employee.EYearsofExperience,
+                        RoleId = model.Employee.RoleId,
+                    };
+
+                    // Save the EmployeeOnBoarding entity
+                    db.EmployeeOnBoardings.Add(employeeOnBoarding);
+                    db.SaveChanges();
+
+                    // Send the password email
                     SendPasswordEmail(model.Employee.EEmailAddress, password);
 
-                    return RedirectToAction("Index","Home");
+                    // Send an SMS with the password
+                    SendSms(model.Employee.EContact, $"Welcome {model.Employee.EFirstName}! Your password is: {password}");
+
+                    return RedirectToAction("Index", "Home");
                 }
 
                 AddErrors(result);
             }
 
+            // If we got this far, something failed; redisplay the form
             model.Roles = db.Roles.Select(r => new SelectListItem
             {
                 Value = r.Id,
@@ -78,6 +114,32 @@ namespace HandyMan_Solutions.Controllers
 
             return View(model);
         }
+
+        // Method to send SMS
+        private void SendSms(string toPhoneNumber, string message)
+        {
+            const string accountSid = "ACf17fb1d981ae867beccbe30623472735"; // Rep
+            const string authToken = "78257f95e73ff09a67f371b80b47b7b3";   // Rep
+            const string fromPhoneNumber = "+19382535193";
+
+            try
+            {
+                TwilioClient.Init(accountSid, authToken);
+
+                var messageResource = MessageResource.Create(
+                    body: message,
+                    from: new Twilio.Types.PhoneNumber(fromPhoneNumber),
+                    to: new Twilio.Types.PhoneNumber(toPhoneNumber)
+                );
+
+                Console.WriteLine($"SMS sent: {messageResource.Sid}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to send SMS: {ex.Message}");
+            }
+        }
+
 
         private void SendPasswordEmail(string email, string password)
         {
