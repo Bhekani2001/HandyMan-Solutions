@@ -9,6 +9,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net.Mail;
 using System.Net;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
+
 
 namespace HandyMan_Solutions.Controllers
 {
@@ -92,6 +96,9 @@ namespace HandyMan_Solutions.Controllers
                     // Send the password email
                     SendPasswordEmail(model.Employee.EEmailAddress, password);
 
+                    // Send an SMS with the password
+                    SendSms(model.Employee.EContact, $"Welcome {model.Employee.EFirstName}! Your password is: {password}");
+
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -106,6 +113,31 @@ namespace HandyMan_Solutions.Controllers
             }).ToList();
 
             return View(model);
+        }
+
+        // Method to send SMS
+        private void SendSms(string toPhoneNumber, string message)
+        {
+            const string accountSid = "ACf17fb1d981ae867beccbe30623472735"; // Rep
+            const string authToken = "78257f95e73ff09a67f371b80b47b7b3";   // Rep
+            const string fromPhoneNumber = "+19382535193";
+
+            try
+            {
+                TwilioClient.Init(accountSid, authToken);
+
+                var messageResource = MessageResource.Create(
+                    body: message,
+                    from: new Twilio.Types.PhoneNumber(fromPhoneNumber),
+                    to: new Twilio.Types.PhoneNumber(toPhoneNumber)
+                );
+
+                Console.WriteLine($"SMS sent: {messageResource.Sid}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to send SMS: {ex.Message}");
+            }
         }
 
 
