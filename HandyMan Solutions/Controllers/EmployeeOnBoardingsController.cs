@@ -118,8 +118,8 @@ namespace HandyMan_Solutions.Controllers
         // Method to send SMS
         private void SendSms(string toPhoneNumber, string message)
         {
-            const string accountSid = "ACf17fb1d981ae867beccbe30623472735"; // Rep
-            const string authToken = "78257f95e73ff09a67f371b80b47b7b3";   // Rep
+            const string accountSid = "ACf17fb1d981ae867beccbe30623472735"; 
+            const string authToken = "78257f95e73ff09a67f371b80b47b7b3"; 
             const string fromPhoneNumber = "+19382535193";
 
             try
