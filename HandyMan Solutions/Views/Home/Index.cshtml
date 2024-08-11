@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@model HandyMan_Solutions.Models.WeeklyUserRegistrationsViewModel
+@using Newtonsoft.Json
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,19 +9,25 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <main class="container mt-5">
+    <main class="container mt-1">
         <section class="jumbotron text-center bg-light shadow">
             <div class="card border-0">
                 <div class="card-body">
                     <h1 class="display-4">Welcome to HandyMan Solutions</h1>
                     <br />
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.IsInRole("Admin"))
                     {
-                        <h3>Welcome Back</h3>
+                        <section class="text-center mt-5">
+                            <h2>Existing Users since 2024</h2>
+                            <div style="width: 50%; margin: auto;">
+                                <canvas id="barChart"></canvas>
+                            </div>
+                        </section>
                     }
-                    else
+                    else if (!User.Identity.IsAuthenticated)
                     {
                         <a href="@Url.Action("Login", "Account")" class="btn btn-outline-secondary">
                             <i class="fas fa-sign-in-alt"></i> Log in
@@ -29,11 +38,42 @@
                             <img src="@Url.Action("GenerateQRCode", "Home", new { url = Url.Action("Login", "Account", null, Request.Url.Scheme) })" alt="QR Code" class="img-fluid" style="max-width: 200px;height:190px" />
                         </div>
                     }
-
                 </div>
             </div>
         </section>
     </main>
+
+    <script>
+        var weeks = @Html.Raw(JsonConvert.SerializeObject(Model.Weeks ?? new List<string>()));
+        var userCounts = @Html.Raw(JsonConvert.SerializeObject(Model.UserCounts ?? new List<int>()));
+
+        var ctxBar = document.getElementById('barChart').getContext('2d');
+        new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: weeks,
+                datasets: [{
+                    label: 'User Registrations',
+                    data: userCounts,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>

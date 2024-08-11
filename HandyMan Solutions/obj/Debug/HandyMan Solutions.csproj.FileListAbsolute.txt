@@ -109,3 +109,4 @@ C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Microsof
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan.D3C18C43.Up2Date
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.dll
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.pdb
+C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan_Solutions.Migrations.AddRegisteredDateToApplicationUser.resources

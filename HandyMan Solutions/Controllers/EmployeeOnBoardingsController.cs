@@ -16,6 +16,12 @@ namespace HandyMan_Solutions.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public ActionResult ExistingEmployees()
+        {
+            var employees = db.EmployeeOnBoardings.ToList();
+            return View(employees);
+        }
+
         public ActionResult OnboardNewEmployee()
         {
             var roles = db.Roles.Select(r => new SelectListItem
@@ -40,7 +46,7 @@ namespace HandyMan_Solutions.Controllers
             {
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var password = string.IsNullOrEmpty(model.Employee.Password)
-                    ? userManager.PasswordHasher.HashPassword(Guid.NewGuid().ToString("n").Substring(0, 8))
+                    ? Guid.NewGuid().ToString("n").Substring(0, 8)
                     : model.Employee.Password;
 
                 var user = new ApplicationUser
@@ -50,26 +56,49 @@ namespace HandyMan_Solutions.Controllers
                     FirstName = model.Employee.EFirstName,
                     LastName = model.Employee.ELastName,
                     FamilyName = model.Employee.EFamilyName,
-                    Contact = model.Employee.EContact,
-                    PhoneNumber = model.Employee.ESecondContact,
+                    Address = model.Employee.EAddress,
+                    SecondContact = model.Employee.ESecondContact,
+                    PhoneNumber = model.Employee.EContact,
                     Experience = model.Employee.EYearsofExperience,
-                    IDNo = model.Employee.EIdentityNumber
+                    IDNo = model.Employee.EIdentityNumber,
+                    RegisteredDate = DateTime.Now,
                 };
 
                 var result = await userManager.CreateAsync(user, password);
 
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(user.Id, db.Roles.Find(model.Employee.RoleId).Name);
+                    var role = db.Roles.Find(model.Employee.RoleId).Name;
+                    await userManager.AddToRoleAsync(user.Id, role);
 
+                    var employeeOnBoarding = new EmployeeOnBoarding
+                    {
+                        EFirstName = model.Employee.EFirstName,
+                        ELastName = model.Employee.ELastName,
+                        EFamilyName = model.Employee.EFamilyName,
+                        EIdentityNumber = model.Employee.EIdentityNumber,
+                        EContact = model.Employee.EContact,
+                        ESecondContact = model.Employee.ESecondContact,
+                        EAddress = model.Employee.EAddress,
+                        EEmailAddress = model.Employee.EEmailAddress,
+                        EYearsofExperience = model.Employee.EYearsofExperience,
+                        RoleId = model.Employee.RoleId,
+                    };
+
+                    // Save the EmployeeOnBoarding entity
+                    db.EmployeeOnBoardings.Add(employeeOnBoarding);
+                    db.SaveChanges();
+
+                    // Send the password email
                     SendPasswordEmail(model.Employee.EEmailAddress, password);
 
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Index", "Home");
                 }
 
                 AddErrors(result);
             }
 
+            // If we got this far, something failed; redisplay the form
             model.Roles = db.Roles.Select(r => new SelectListItem
             {
                 Value = r.Id,
@@ -78,6 +107,7 @@ namespace HandyMan_Solutions.Controllers
 
             return View(model);
         }
+
 
         private void SendPasswordEmail(string email, string password)
         {

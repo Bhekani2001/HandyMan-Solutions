@@ -153,10 +153,11 @@ namespace HandyMan_Solutions.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     FamilyName = model.FamilyName,
-                    Contact=model.Contact,
+                    Contact = model.Contact,
                     Address = model.Address,
                     PhoneNumber = model.Contact,
-                    Balance = 0
+                    Balance = 0,
+                    RegisteredDate = DateTime.Now
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -184,6 +185,7 @@ namespace HandyMan_Solutions.Controllers
 
             return View(model);
         }
+
 
         private void SendEmail(string email, string subject, string body)
         {

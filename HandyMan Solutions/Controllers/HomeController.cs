@@ -6,6 +6,9 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Web.Mvc;
 using HandyMan_Solutions.Models;
+using System.Linq;
+using System.Data.Entity.SqlServer;
+
 
 namespace Tassc.Controllers
 {
@@ -14,8 +17,28 @@ namespace Tassc.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            return View();
+            var registrations = db.Users
+                .GroupBy(u => new { Year = SqlFunctions.DatePart("year", u.RegisteredDate), Week = SqlFunctions.DatePart("wk", u.RegisteredDate) })
+                .Select(g => new
+                {
+                    Week = g.Key.Week.ToString(),
+                    Year = g.Key.Year.ToString(),
+                    Count = g.Count()
+                })
+                .OrderBy(g => g.Year)
+                .ThenBy(g => g.Week)
+                .ToList();
+
+            var model = new WeeklyUserRegistrationsViewModel
+            {
+                Weeks = registrations.Select(r => $"{r.Year}-W{r.Week}").ToList(),
+                UserCounts = registrations.Select(r => r.Count).ToList()
+            };
+
+            return View(model);
         }
+
+
 
 
         public ActionResult FAQs()
@@ -98,5 +121,29 @@ namespace Tassc.Controllers
             ViewBag.QRCodeUrl = Url.Action("GenerateQRCode", "Home", new { url = urlToEncode });
             return View();
         }
+
+        public ActionResult WeeklyUserRegistrations()
+        {
+            var registrations = db.Users
+                .GroupBy(u => new { Year = u.RegisteredDate.Year, Week = SqlFunctions.DatePart("wk", u.RegisteredDate) })
+                .Select(g => new
+                {
+                    Week = g.Key.Week.ToString(),
+                    Year = g.Key.Year.ToString(),
+                    Count = g.Count()
+                })
+                .OrderBy(g => g.Year)
+                .ThenBy(g => g.Week)
+                .ToList();
+
+            var model = new WeeklyUserRegistrationsViewModel
+            {
+                Weeks = registrations.Select(r => $"{r.Year}-W{r.Week}").ToList(),
+                UserCounts = registrations.Select(r => r.Count).ToList()
+            };
+
+            return View(model);
+        }
+
     }
 }
