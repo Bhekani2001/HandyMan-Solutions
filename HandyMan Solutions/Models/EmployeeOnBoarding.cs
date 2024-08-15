@@ -18,6 +18,7 @@ namespace HandyMan_Solutions.Models
         public string ESecondContact { get; set; }
         public string EEmailAddress { get; set; }
         public string EAddress { get; set; }
+        public string EStatus{ get; set; }
         public int EYearsofExperience { get; set; }
 
         [Required]

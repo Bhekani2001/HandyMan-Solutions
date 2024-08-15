@@ -61,6 +61,7 @@ namespace HandyMan_Solutions.Controllers
                     LastName = model.Employee.ELastName,
                     FamilyName = model.Employee.EFamilyName,
                     Address = model.Employee.EAddress,
+                    Status = "Available",
                     SecondContact = model.Employee.ESecondContact,
                     PhoneNumber = model.Employee.EContact,
                     Experience = model.Employee.EYearsofExperience,
@@ -84,19 +85,17 @@ namespace HandyMan_Solutions.Controllers
                         EContact = model.Employee.EContact,
                         ESecondContact = model.Employee.ESecondContact,
                         EAddress = model.Employee.EAddress,
+                        EStatus ="Available",
                         EEmailAddress = model.Employee.EEmailAddress,
                         EYearsofExperience = model.Employee.EYearsofExperience,
                         RoleId = model.Employee.RoleId,
                     };
 
-                    // Save the EmployeeOnBoarding entity
                     db.EmployeeOnBoardings.Add(employeeOnBoarding);
                     db.SaveChanges();
 
-                    // Send the password email
                     SendPasswordEmail(model.Employee.EEmailAddress, password);
 
-                    // Send an SMS with the password
                     SendSms(model.Employee.EContact, $"Welcome {model.Employee.EFirstName}! Your password is: {password}");
 
                     return RedirectToAction("Index", "Home");
@@ -104,8 +103,6 @@ namespace HandyMan_Solutions.Controllers
 
                 AddErrors(result);
             }
-
-            // If we got this far, something failed; redisplay the form
             model.Roles = db.Roles.Select(r => new SelectListItem
             {
                 Value = r.Id,
@@ -115,7 +112,6 @@ namespace HandyMan_Solutions.Controllers
             return View(model);
         }
 
-        // Method to send SMS
         private void SendSms(string toPhoneNumber, string message)
         {
             const string accountSid = "ACf17fb1d981ae867beccbe30623472735"; 

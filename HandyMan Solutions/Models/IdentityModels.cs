@@ -13,6 +13,7 @@ namespace HandyMan_Solutions.Models
         public string LastName { get; set; }
         public string FamilyName { get; set; }
         public string Address { get; set; }
+        public string Status { get; set; }
         public string Contact { get; set; }
         public string SecondContact { get; set; }
         public int Experience { get; set; }
@@ -40,8 +41,8 @@ namespace HandyMan_Solutions.Models
         }
 
         public virtual DbSet<Contact> Contacts { get; set; }
-        public virtual DbSet<QoutationRequest> QoutationRequests { get; set; }
-        public virtual DbSet<RequestQoutation>  RequestQoutations { get; set; }
+        public virtual DbSet<Qoutation> QoutationRequests { get; set; }
         public virtual DbSet<EmployeeOnBoarding> EmployeeOnBoardings { get; set; }
+        public virtual DbSet<CarOnboarding> CarOnboardings { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace HandyMan_Solutions.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202408061717244_InitialCreate"; }
+            get { return "202408131847556_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

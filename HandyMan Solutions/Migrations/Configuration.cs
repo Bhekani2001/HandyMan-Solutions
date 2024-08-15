@@ -11,7 +11,6 @@
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
-            ContextKey = "HandyMan_Solutions.Models.ApplicationDbContext";
         }
 
         protected override void Seed(HandyMan_Solutions.Models.ApplicationDbContext context)
