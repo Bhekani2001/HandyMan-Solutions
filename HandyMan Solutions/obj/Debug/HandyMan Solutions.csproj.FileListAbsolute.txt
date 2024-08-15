@@ -137,5 +137,3 @@ C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\System.T
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\System.ValueTuple.xml
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Twilio.xml
-C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan_Solutions.Migrations.InitialCreate.resources
-C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.csproj.GenerateResource.cache

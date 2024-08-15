@@ -29,10 +29,10 @@
                         <th>Service</th>
                         <th>Desc.</th>
                         <th>Image</th>
-                        <th>Notes</th>
                         <th>Paid</th>
                         <th>Technician</th>
                         <th>Cost</th>
+                        <th>Dated</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -44,15 +44,16 @@
                             <td>@Html.DisplayFor(modelItem => item.UserName)</td>
                             <td>@Html.DisplayFor(modelItem => item.ServiceType)</td>
                             <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Images)</td>
-                            <td>@Html.DisplayFor(modelItem => item.AdditionalNotes)</td>
+                            <td>
+                                <img src="@item.ImageUrl" style="width: 70px; height: 50px; object-fit: cover;" alt="Product Image" />
+                            </td>
                             <td>@Html.DisplayFor(modelItem => item.Paid)</td>
                             <td>@Html.DisplayFor(modelItem => item.TechnicianAssigned)</td>
                             <td>@Html.DisplayFor(modelItem => item.EstimatedCost)</td>
                             <td>@String.Format("{0:yyyy-MM-dd}", item.RequestedDate)</td>
                             <td>@Html.DisplayFor(modelItem => item.Status)</td>
                             <td>
-                                <a href="#" class="btn btn-outline-danger btn-sm delete-task" data-task-id="@item.qoutationKey">Trash</a>
+                                <a href="#" class="btn btn-outline-danger btn-sm delete-task" data-task-id="@item.Id">Trash</a>
                             </td>
                         </tr>
                     }
