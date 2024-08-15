@@ -37,7 +37,7 @@ namespace HandyMan_Solutions.Controllers
         
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult RequestQuotation(QoutationRequest qoutationRequest)
+        public ActionResult RequestQuotation(Qoutation qoutationRequest)
         {
             return View();
         }

@@ -1,6 +1,4 @@
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.csproj.AssemblyReference.cache
-C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan_Solutions.Migrations.InitialCreate.resources
-C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.csproj.GenerateResource.cache
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.csproj.CoreCompileInputs.cache
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\HandyMan Solutions.dll.config
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\HandyMan Solutions.dll
@@ -109,7 +107,6 @@ C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Microsof
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan.D3C18C43.Up2Date
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.dll
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.pdb
-C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan_Solutions.Migrations.AddRegisteredDateToApplicationUser.resources
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Microsoft.IdentityModel.JsonWebTokens.dll
@@ -140,3 +137,5 @@ C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\System.T
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\System.ValueTuple.xml
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Twilio.xml
+C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan_Solutions.Migrations.InitialCreate.resources
+C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.csproj.GenerateResource.cache

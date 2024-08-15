@@ -228,31 +228,28 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\User_Firstname.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CarOnboardingsController.cs" />
     <Compile Include="Controllers\EmployeeOnBoardingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QoutationRequestsController.cs" />
-    <Compile Include="Controllers\RequestQoutationsController.cs" />
+    <Compile Include="Controllers\QoutationsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202408061717244_InitialCreate.cs" />
-    <Compile Include="Migrations\202408061717244_InitialCreate.Designer.cs">
-      <DependentUpon>202408061717244_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202408111605368_AddRegisteredDateToApplicationUser.cs" />
-    <Compile Include="Migrations\202408111605368_AddRegisteredDateToApplicationUser.Designer.cs">
-      <DependentUpon>202408111605368_AddRegisteredDateToApplicationUser.cs</DependentUpon>
+    <Compile Include="Migrations\202408131847556_InitialCreate.cs" />
+    <Compile Include="Migrations\202408131847556_InitialCreate.Designer.cs">
+      <DependentUpon>202408131847556_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AssetsManagement.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\EmployeeOnBoarding.cs" />
     <Compile Include="Models\EmployeeOnBoardingViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\QoutationRequest.cs" />
-    <Compile Include="Models\RequestQoutation.cs" />
+    <Compile Include="Models\Qoutation.cs" />
     <Compile Include="Models\WeeklyUserRegistrationsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -333,10 +330,13 @@
     <Content Include="Views\EmployeeOnBoardings\OnboardNewEmployee.cshtml" />
     <Content Include="Views\Home\WeeklyUserRegistrations.cshtml" />
     <Content Include="Views\EmployeeOnBoardings\ExistingEmployees.cshtml" />
+    <Content Include="Views\CarOnboardings\CarOnboarding.cshtml" />
+    <Content Include="Views\CarOnboardings\Cars.cshtml" />
+    <Content Include="Views\Qoutations\MyQoutations.cshtml" />
+    <Content Include="Views\Qoutations\AllQuotations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\RequestQoutations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -366,11 +366,8 @@
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202408061717244_InitialCreate.resx">
-      <DependentUpon>202408061717244_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202408111605368_AddRegisteredDateToApplicationUser.resx">
-      <DependentUpon>202408111605368_AddRegisteredDateToApplicationUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202408131847556_InitialCreate.resx">
+      <DependentUpon>202408131847556_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
