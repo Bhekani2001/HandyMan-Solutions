@@ -1,0 +1,136 @@
+﻿@model HandyMan_Solutions.Models.Qoutation
+
+@{
+    ViewBag.Title = "Request Quotation";
+}
+
+<div class="container mt-1">
+    <div class="jumbotron mx-auto shadow" style="max-width: 950px; height: 520px;">
+        <div class="jumbotron-header text-center">
+            <h1 class="display-6 shadow">Request Quotation Form</h1>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("RequestQuotation", "Qoutations", FormMethod.Post, new { id = "QoutationForm", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="service">Service</label>
+                            @Html.DropDownListFor(
+                                m => m.ServiceType,
+                                (SelectList)ViewBag.ServiceOptions,
+                                "Select Service Type",
+                                new { @class = "form-control required", @id = "service" }
+                            )
+                            @Html.ValidationMessageFor(m => m.ServiceType)
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            @Html.TextBoxFor(m => m.Description, new { @class = "form-control required", @id = "descriptions" })
+                            @Html.ValidationMessageFor(m => m.Description)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="imageUpload">Image</label>
+                            <div class="input-group">
+                                <input type="file" id="imageUploads" name="ImageFile" class="form-control" accept="image/*" />
+                            </div>
+                            @Html.ValidationMessageFor(m => m.ImageUrl)
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="additionalNotes">Additional Notes</label>
+                            <div class="input-group">
+                                @Html.TextBoxFor(m => m.AdditionalNotes, new { @class = "form-control", @id = "notes" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.AdditionalNotes)
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <div class="row mt-4">
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="fas fa-paper-plane"></i> Submit
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#QoutationForm').validate({
+            rules: {
+                ServiceType: {
+                    required: true
+                },
+                Description: {
+                    required: true
+                },
+                ImageFile: {
+                    required: true
+                }
+            },
+            messages: {
+                ServiceType: "Please select a service type",
+                Description: "Please enter a description",
+                ImageFile: "Please upload an image"
+            },
+            submitHandler: function (form) {
+                var formData = new FormData(form);
+
+                $.ajax({
+                    type: 'POST',
+                    url: $(form).attr('action'),
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Submitted!',
+                                text: 'Your request has been submitted successfully.',
+                            }).then(() => {
+                                form.reset();
+                            });
+                        } else {
+                            var errorMsg = response.errors ? response.errors.join(', ') : 'Please try again.';
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'There was a problem with your submission. ' + errorMsg,
+                            });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'There was a problem with your submission. ' + error,
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>

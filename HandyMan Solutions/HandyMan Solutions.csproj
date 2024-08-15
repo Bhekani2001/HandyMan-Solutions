@@ -232,14 +232,9 @@
     <Compile Include="Controllers\EmployeeOnBoardingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\QoutationRequestsController.cs" />
     <Compile Include="Controllers\QoutationsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202408131847556_InitialCreate.cs" />
-    <Compile Include="Migrations\202408131847556_InitialCreate.Designer.cs">
-      <DependentUpon>202408131847556_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -334,9 +329,11 @@
     <Content Include="Views\CarOnboardings\Cars.cshtml" />
     <Content Include="Views\Qoutations\MyQoutations.cshtml" />
     <Content Include="Views\Qoutations\AllQuotations.cshtml" />
+    <Content Include="Views\Qoutations\RequestQuotation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Quotations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -364,11 +361,6 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202408131847556_InitialCreate.resx">
-      <DependentUpon>202408131847556_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
