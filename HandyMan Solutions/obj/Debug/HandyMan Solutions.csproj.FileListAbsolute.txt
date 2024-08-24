@@ -137,3 +137,8 @@ C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\System.T
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\System.ValueTuple.xml
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Twilio.xml
+C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Unity.Abstractions.dll
+C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Unity.Container.dll
+C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Unity.Mvc5.dll
+C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Unity.Abstractions.pdb
+C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Unity.Container.pdb
