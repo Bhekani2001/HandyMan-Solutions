@@ -235,14 +235,16 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\User_Firstname.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AssignTasksController.cs" />
     <Compile Include="Controllers\CarOnboardingsController.cs" />
     <Compile Include="Controllers\EmployeeOnBoardingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\QoutationsController.cs" />
+    <Compile Include="Controllers\ServiceProvidesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -256,10 +258,12 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Qoutation.cs" />
+    <Compile Include="Models\SelectedEmployeeName.cs" />
+    <Compile Include="Models\SelectQuotationAndEmployeeViewModel.cs" />
+    <Compile Include="Models\ServiceProvided.cs" />
     <Compile Include="Models\WeeklyUserRegistrationsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailService.cs" />
-    <Compile Include="Services\UnityConfig.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +350,14 @@
     <Content Include="Views\Qoutations\QoutationHistory.cshtml" />
     <Content Include="Views\Qoutations\Review.cshtml" />
     <Content Include="Views\Qoutations\AssignTeam.cshtml" />
+    <Content Include="Views\AssignTasks\SelectQuotationAndEmployee.cshtml" />
+    <Content Include="Views\AssignTasks\QoutationDuties.cshtml" />
+    <Content Include="Views\Qoutations\ProcessQoutation.cshtml" />
+    <Content Include="Views\Qoutations\PaymentCancelled.cshtml" />
+    <Content Include="Views\Qoutations\PaymentSuccess.cshtml" />
+    <Content Include="Views\Payments\PaymentCancelled.cshtml" />
+    <Content Include="Views\Payments\PaymentSuccess.cshtml" />
+    <Content Include="Views\ServiceProvides\PaidOffServices.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

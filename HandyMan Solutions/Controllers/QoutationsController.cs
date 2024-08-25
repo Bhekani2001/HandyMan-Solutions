@@ -1,10 +1,12 @@
 ﻿using HandyMan_Solutions.Models;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Mail;
 using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,6 +15,9 @@ namespace HandyMan_Solutions.Controllers
     public class QoutationsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private const string PayFastUrl = "https://sandbox.payfast.co.za/eng/process?";
+        private const string MerchantId = "10000100";
+        private const string MerchantKey = "46f0cd694581a";
 
         [HttpGet]
         public ActionResult AllRequest()
@@ -36,7 +41,7 @@ namespace HandyMan_Solutions.Controllers
         {
             var userId = User.Identity.GetUserId();
             var myQuotations = db.QoutationRequests
-                                  .Where(q => q.UserId == userId && q.Status == "Approved")
+                                  .Where(q => q.UserId == userId && q.Status == "Inspected")
                                   .ToList();
             return View(myQuotations);
         }
@@ -96,17 +101,17 @@ namespace HandyMan_Solutions.Controllers
 
                 try
                 {
-                    db.QoutationRequests.Add(qoutation);
-                    db.SaveChanges();
+                    // Save the quotation temporarily in session
+                    Session["PendingQuotation"] = qoutation;
 
                     var subject = "HandyMan Service Request";
                     var body = $"Dear {user.FirstName} {user.LastName} {user.FamilyName},<br/><br/>" +
-                               $"On {DateTime.Now.ToString("MMMM dd, yyyy")}, you requested for a HandyMan Service: {qoutation.ServiceType}.<br/>" +
-                               $"If it wasn't you, please ignore this email. It was intended for {user.FirstName} {user.LastName} {user.FamilyName} with email {user.Email} <br/><br/>" +
+                               $"On {DateTime.Now.ToString("MMMM dd, yyyy")}, you requested a HandyMan Service: {qoutation.ServiceType}.<br/>" +
+                               $"If it wasn't you, please ignore this email. It was intended for {user.FirstName} {user.LastName} {user.FamilyName} with email {user.Email}.<br/><br/>" +
                                "Thank you,<br/>HandyMan Service Team";
 
                     SendEmail(user.Email, subject, body);
-                    return Json(new { success = true, message = "Request submitted successfully." });
+                    return Json(new { success = true, message = "Request submitted successfully. Please proceed to payment." });
                 }
                 catch (Exception ex)
                 {
@@ -116,6 +121,86 @@ namespace HandyMan_Solutions.Controllers
             }
 
             return Json(new { success = false, message = "Please correct the errors and try again." });
+        }
+
+        [HttpPost]
+        public ActionResult PayNow()
+        {
+            decimal quotationFee = 250m;
+
+            // Get the pending quotation from session
+            var quotation = Session["PendingQuotation"] as Qoutation;
+
+            if (quotation == null)
+            {
+                return RedirectToAction("SubmitRequest");
+            }
+
+            // Create payment parameters
+            var paymentParams = new Dictionary<string, string>
+            {
+                { "merchant_id", MerchantId },
+                { "merchant_key", MerchantKey },
+                { "return_url", GenerateUrl("PaymentSuccess") },
+                { "cancel_url", GenerateUrl("PaymentCancelled") },
+                { "notify_url", GenerateUrl("PaymentNotify") },
+                { "amount", quotationFee.ToString("0.00") },
+                { "item_name", "Request Payment" },
+                { "email_address", User.Identity.GetUserName() }
+            };
+
+            var queryString = string.Join("&", paymentParams.Select(p => $"{HttpUtility.UrlEncode(p.Key)}={HttpUtility.UrlEncode(p.Value)}"));
+
+            var payFastUrl = PayFastUrl + queryString;
+
+            return Redirect(payFastUrl);
+        }
+
+        public ActionResult PaymentCancelled()
+        {
+            Session.Remove("PendingQuotation");
+
+            ViewBag.Message = "Payment cancelled by user.";
+            return View();
+        }
+
+        public ActionResult PaymentSuccess()
+        {
+            var quotation = Session["PendingQuotation"] as Qoutation;
+
+            if (quotation != null)
+            {
+                quotation.Paid = "Yes";
+                quotation.Status = "Pending...";
+
+                db.QoutationRequests.Add(quotation);
+                db.SaveChanges();
+
+                var subject = "Payment Confirmation - HandyMan Service";
+                var body = $"Dear {quotation.UserName},<br/><br/>" +
+                           $"We have successfully received your payment for the HandyMan Service request: {quotation.ServiceType}.<br/>" +
+                           $"Your quotation request has been approved and is now being processed.<br/><br/>" +
+                           "Thank you for choosing HandyMan Services!<br/>" +
+                           "HandyMan Service Team";
+
+                SendEmail(quotation.UserEmail, subject, body);
+
+                // Clear the session
+                Session.Remove("PendingQuotation");
+
+                ViewBag.Message = "Payment successful!";
+            }
+            else
+            {
+                ViewBag.Message = "No pending quotation found. Payment could not be processed.";
+            }
+
+            return View();
+        }
+
+        private string GenerateUrl(string actionName)
+        {
+            return Url.Action(actionName, "Qoutations", null, Request.Url.Scheme);
         }
 
         private void SendEmail(string email, string subject, string body)
@@ -133,7 +218,7 @@ namespace HandyMan_Solutions.Controllers
                     using (var smtp = new SmtpClient("smtp.gmail.com", 587))
                     {
                         smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new NetworkCredential("developementengineering@gmail.com", "your_password");
+                        smtp.Credentials = new NetworkCredential("developementengineering@gmail.com", "dsuggidyyjvjhhvs");
                         smtp.EnableSsl = true;
                         smtp.Send(message);
                     }
@@ -150,31 +235,82 @@ namespace HandyMan_Solutions.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Qoutation tradeIn = db.QoutationRequests.Find(id);
-            if (tradeIn == null)
+            Qoutation qoutation = db.QoutationRequests.Find(id);
+            if (qoutation == null)
             {
                 return HttpNotFound();
             }
 
-            return View(tradeIn);
+            return View(qoutation);
         }
+
+        public ActionResult ProcessQoutation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Qoutation qoutation = db.QoutationRequests.Find(id);
+            if (qoutation == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(qoutation);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> ProcessQoutation(Qoutation model)
+        {
+            if (ModelState.IsValid)
+            {
+                var quotation = db.QoutationRequests.FirstOrDefault(q => q.Id == model.Id);
+
+                if (quotation != null)
+                {
+                    quotation.EstimatedCost = model.EstimatedCost;
+                    quotation.TechnicianNotes = model.TechnicianNotes;
+                    quotation.Status = "Inspected";
+
+                    // Save changes to the database
+                    await db.SaveChangesAsync();
+
+                    // Redirect URL
+                    string redirectUrl = Url.Action("QoutationDuties", "Qoutations");
+
+                    return Json(new { success = true, message = "Quotation updated successfully.", redirectUrl = redirectUrl });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Quotation not found." });
+                }
+
+            }
+            else
+            {
+                return Json(new { success = false, message = "Invalid data." });
+            }
+        }
+
         public ActionResult Review(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Qoutation tradeIn = db.QoutationRequests.Find(id);
-            if (tradeIn == null)
+            Qoutation qoutation = db.QoutationRequests.Find(id);
+            if (qoutation == null)
             {
                 return HttpNotFound();
             }
 
-            return View(tradeIn);
+            return View(qoutation);
         }
 
         [HttpPost]
@@ -187,7 +323,7 @@ namespace HandyMan_Solutions.Controllers
                 db.SaveChanges();
                 return Json(new { success = true, message = "Qoutation approved successfully!" });
             }
-            return Json(new { success = false, message = "Failed to approve qoutation." });
+            return Json(new { success = false, message = "Qoutation not found or already approved." });
         }
 
         [HttpPost]
@@ -200,7 +336,20 @@ namespace HandyMan_Solutions.Controllers
                 db.SaveChanges();
                 return Json(new { success = true, message = "Qoutation declined successfully!" });
             }
-            return Json(new { success = false, message = "Failed to decline qoutation." });
+            return Json(new { success = false, message = "Qoutation not found or already declined." });
+        }
+
+        [HttpPost]
+        public ActionResult AssignTechnician(int qouteId, string technicianName)
+        {
+            var qoutation = db.QoutationRequests.Find(qouteId);
+            if (qoutation != null && qoutation.Status == "Approved")
+            {
+                qoutation.TechnicianAssigned = technicianName;
+                db.SaveChanges();
+                return Json(new { success = true, message = "Technician assigned successfully!" });
+            }
+            return Json(new { success = false, message = "Qoutation not found or not approved yet." });
         }
     }
 }

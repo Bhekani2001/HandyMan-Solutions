@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HandyMan_Solutions.Models.Qoutation>
+﻿@model IEnumerable<HandyMan_Solutions.Models.ServiceProvided>
 
 @{
     ViewBag.Title = "Index";
@@ -7,28 +7,22 @@
 <div class="mt-4">
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card" style="width:1180px">
                 <div class="card-header text-center">
-                    <h2>All Customers Quotation Requests</h2>
+                    <h2>Paid Off Services</h2>
                 </div>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <a href="@Url.Action("SubmitRequest", "Qoutations")" class="btn btn-outline-secondary">
-                            <i class="bi bi-file-earmark-text me-2"></i>
-                            Quotation Request
-                        </a>
-                    </div>
 
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Customer</th>
-                                <th>Contact</th>
                                 <th>Service</th>
-                                <th>Description</th>
-                                <th>Cost</th>
-                                <th>Photo</th>
-                                <th>Applied</th>
+                                <th>Technical Note</th>
+                                <th>Technical Status</th>
+                                <th>Assigned To</th>
+                                <th>Paid</th>
+                                <th>Paid Date</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -39,28 +33,26 @@
                                 foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@Html.DisplayFor(modelItem => item.UserName)</td>
                                         <td>
-                                            <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#contactModal" data-email="@item.UserEmail" data-address="@item.UserAddress" data-contact="@item.UserContact">
-                                                View Contact
+                                            <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#contactModal" data-username="@item.UserName" data-email="@item.UserEmail" data-address="@item.UserAddress" data-contact="@item.UserContact">
+                                                Customer Information
                                             </button>
                                         </td>
                                         <td>@Html.DisplayFor(modelItem => item.ServiceType)</td>
-                                        <td><small>@Html.DisplayFor(modelItem => item.Description)</small></td>
-                                        <td><small>@String.Format("R {0:N2}", item.EstimatedCost)</small></td>
-                                        <td>
-                                            <img src="data:@(item.ImageData);base64,@Convert.ToBase64String(item.ImageData)" class="img-thumbnail tradein-img" style="width: 60px; height: 50px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" data-img-src="data:@(item.ImageData);base64,@Convert.ToBase64String(item.ImageData)" />
-                                        </td>
-                                        <td><small>@String.Format("{0:yyyy-MM-dd}", item.RequestedDate)</small></td>
+                                        <td><small>@Html.DisplayFor(modelItem => item.TechnicalNotes)</small></td>
+                                        <td><small>@Html.DisplayFor(modelItem => item.TechnicalStatus)</small></td>
+                                        <td><small>@Html.DisplayFor(modelItem => item.TechnicianAssigned)</small></td>
+                                        <td><small>@Html.DisplayFor(modelItem => item.Paid)</small></td>
+                                        <td><small>@String.Format("{0:yyyy-MM-dd}", item.PaymentDate)</small></td>
                                         <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.Status)</td>
                                         <td>
-                                            @if (item.Status == "Pending...")
+                                            @if (item.Status == "Paid")
                                             {
-                                                <a href="@Url.Action("Review", "Qoutations", new { id = item.Id })" class="btn btn-outline-primary btn-sm">Review</a>
+                                                <a href="@Url.Action("StartWorking", "ServiceProvides", new { id = item.Id })" class="btn btn-outline-primary btn-sm">Start Working</a>
                                             }
                                             else
                                             {
-                                                <small class="alert alert-warning">Assign Team</small>
+                                                <small class="alert alert-success">Qoutation Processed</small>
                                             }
                                         </td>
                                     </tr>
@@ -108,13 +100,14 @@
 <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="contactModalLabel">Contact Details</h5>
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title" id="contactModalLabel">Customer Information</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <p><strong>Fullname:</strong> <span id="contactUsername"></span></p>
                 <p><strong>Email:</strong> <span id="contactEmail"></span></p>
                 <p><strong>Address:</strong> <span id="contactAddress"></span></p>
                 <p><strong>Contact:</strong> <span id="contactPhone"></span></p>
@@ -134,12 +127,14 @@
     });
 
     $('#contactModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); 
-        var email = button.data('email'); 
+        var button = $(event.relatedTarget);
+        var username = button.data('username');
+        var email = button.data('email');
         var address = button.data('address');
         var contact = button.data('contact');
 
         var modal = $(this);
+        modal.find('#contactUsername').text(username);
         modal.find('#contactEmail').text(email);
         modal.find('#contactAddress').text(address);
         modal.find('#contactPhone').text(contact);

@@ -4,12 +4,18 @@
     ViewBag.Title = "Index";
 }
 
+<!-- Include SweetAlert2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+<!-- Include SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
 <div class="mt-4">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header text-center">
-                    <h2>My Qoutation Request(s)</h2>
+                    <h2>My Quotation Request(s)</h2>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -42,17 +48,46 @@
                                         <td>@Html.DisplayFor(modelItem => item.ServiceType)</td>
                                         <td><small>@Html.DisplayFor(modelItem => item.Description)</small></td>
                                         <td>@Html.DisplayFor(modelItem => item.AdditionalNotes)</td>
-                                        <td><small>@Html.DisplayFor(modelItem => item.TechnicianAssigned)</small></td>
+                                        <td>
+                                            @if (item.TechnicianAssigned == "None")
+                                            {
+                                                <small>@Html.DisplayFor(modelItem => item.TechnicianAssigned)</small>
+                                            }
+                                            else
+                                            {
+                                                <small class="alert alert-success">Team Assigned</small>
+                                            }
+                                        </td>
                                         <td><small>@String.Format("R {0:N2}", item.EstimatedCost)</small></td>
                                         <td>
                                             <img src="data:@(item.ImageData);base64,@Convert.ToBase64String(item.ImageData)" class="img-thumbnail tradein-img" style="width: 60px; height: 50px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" data-img-src="data:@(item.ImageData);base64,@Convert.ToBase64String(item.ImageData)" />
                                         </td>
                                         <td><small>@String.Format("{0:yyyy-MM-dd}", item.RequestedDate)</small></td>
-                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.Status)</td>
+                                        <td id="status-@item.Id">
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
                                         <td>
                                             @if (item.Status == "Pending...")
                                             {
-                                                <a href="@Url.Action("Review", "TradeIns", new { id = item.Id })" class="btn btn-outline-primary btn-sm">Review</a>
+                                                <a class="btn btn-outline-warning btn-sm" title="Update" onclick="confirmUpdate('@Url.Action("Update", "TradeIns", new { id = item.Id })')">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <a class="btn btn-outline-danger btn-sm" title="Cancel" onclick="confirmCancel('@Url.Action("Cancel", "TradeIns", new { id = item.Id })')">
+                                                    <i class="bi bi-x-circle"></i>
+                                                </a>
+                                            }
+                                            @if (item.EstimatedCost != 0)
+                                            {
+                                                if (item.Status== "Inspected" && item.NewPaid!="Paid")
+                                                {
+                                                    <a class="btn btn-outline-info btn-sm" title="Pay Now" data-bs-toggle="modal" data-bs-target="#paymentModal" data-quotation-id="@item.Id">
+                                                        <i class="bi bi-credit-card"></i> Pay Now
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <small class="alert alert-success">Service Paid Off</small>
+                                                }
                                             }
                                         </td>
                                     </tr>
@@ -61,7 +96,7 @@
                             else
                             {
                                 <tr>
-                                    <td colspan="11">
+                                    <td colspan="9">
                                         <div class="alert alert-danger text-center rounded-0" style="border:solid green" role="alert">
                                             No Records
                                         </div>
@@ -94,11 +129,49 @@
         </div>
     </div>
 </div>
-<script>
-    $('.tradein-img').on('click', function () {
-        var imgSrc = $(this).data('img-src');
-        $('#modalImage').attr('src', imgSrc);
-        $('#imageModal').modal('show');
-    });
-</script>
 
+<!-- Payment Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title" id="paymentModalLabel">Confirm Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Your request has been processed successfully. You have to pay for services now, click the button below.</p>
+            </div>
+            <div class="modal-footer">
+                <form id="paymentForm" method="post" action="@Url.Action("PayNow", "Payments")">
+                    <!-- Hidden input to store quotation ID -->
+                    <input type="hidden" name="quotationId" id="quotationId" value="" />
+                    <button type="submit" class="btn btn-primary">Pay Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Set image source for the image modal
+        $('.tradein-img').on('click', function () {
+            var imgSrc = $(this).data('img-src');
+            $('#modalImage').attr('src', imgSrc);
+            $('#imageModal').modal('show');
+        });
+
+        // Set quotation ID for the payment modal
+        $('#paymentModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var quotationId = button.data('quotation-id'); // Extract info from data-* attributes
+
+            // Update the hidden input field with the quotation ID
+            var form = $(this).find('form');
+            form.find('#quotationId').val(quotationId);
+        });
+    </script>
+}

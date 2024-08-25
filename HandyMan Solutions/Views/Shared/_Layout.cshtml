@@ -1,5 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
+@{
+    var employeeKey = ViewBag.EmployeeKey ?? 0;
+}
 <head>
     <title>HandyMan Services</title>
     @Styles.Render("~/Content/css")
@@ -159,8 +162,11 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Management</a>
                                 <div class="dropdown-menu bg-light shadow">
-                                    <a href="@Url.Action("DueDeliveries", "Transactions")" class="dropdown-item">
+                                    <a href="@Url.Action("SelectQuotationAndEmployee", "AssignTasks")" class="dropdown-item">
                                         <i class="bi bi-calendar-check"></i> Due Quotations
+                                    </a>
+                                    <a href="@Url.Action("PaidOffServices", "ServiceProvides")" class="dropdown-item">
+                                        <i class="bi bi-calendar-check"></i> Due Service Delivery
                                     </a>
                                     <a href="@Url.Action("Enquiries", "Home")" class="dropdown-item">
                                         <i class="bi bi-chat-dots"></i> Enquiries
@@ -170,6 +176,9 @@
                                     </a>
                                     <a href="@Url.Action("AllRequest", "Qoutations")" class="dropdown-item">
                                         <i class="bi bi-file-earmark-text"></i> New Quotations
+                                    </a>
+                                    <a href="@Url.Action("PaidInspection", "Qoutations")" class="dropdown-item">
+                                        <i class="bi bi-file-earmark-text"></i> Paid Inspection
                                     </a>
                                     <a href="@Url.Action("Orders", "Transactions")" class="dropdown-item">
                                         <i class="bi bi-clock"></i> Work In Progress
@@ -194,7 +203,7 @@
                         @Html.Partial("_LoginPartial")
                     </div>
                 }
-                else if (User.IsInRole("Driver"))
+                else if (User.IsInRole("Electrician"))
                 {
                     @Html.ActionLink("HandyMan Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navbar-brand-custom" })
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -202,39 +211,21 @@
                     </button>
                     <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Manage Deliveries</a>
-                                <div class="dropdown-menu bg-light shadow">
-                                    <a href="@Url.Action("ClosedDeliveries", "Transactions")" class="dropdown-item">
-                                        <i class="bi bi-check-circle"></i> Closed Deliveries
-                                    </a>
-                                    <a href="@Url.Action("Orders", "Transactions")" class="dropdown-item">
-                                        <i class="bi bi-hourglass-split"></i> Due Deliveries
-                                    </a>
-                                    <a href="@Url.Action("DeliveryEnquiries", "Sales")" class="dropdown-item">
-                                        <i class="bi bi-envelope"></i> Delivery Enquiries
-                                    </a>
-                                    <a href="@Url.Action("Products", "Products")" class="dropdown-item">
-                                        <i class="bi bi-box"></i> Product List
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">My Services</a>
-                                <div class="dropdown-menu bg-light shadow">
-                                    <a href="@Url.Action("Jobs","Jobs")" class="dropdown-item">
-                                        <i class="bi bi-briefcase"></i> Jobs
-                                    </a>
-                                    <a href="@Url.Action("Jobs","Jobs")" class="dropdown-item">
-                                        <i class="bi bi-file-earmark-person"></i> My Job Applications
-                                    </a>
-                                    <a href="@Url.Action("NewProducts","Products")" class="dropdown-item">
-                                        <i class="bi bi-calendar-event"></i> Leave Application
-                                    </a>
-                                </div>
-                            </div>
-
+                            <li>
+                                @Html.ActionLink("Qoutation Duties", "QoutationDuties", "AssignTasks", new { employeeKey = employeeKey }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Task Duties", "PaidOffServices", "ServiceProvides", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Duties History", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Duties In-Progress", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Forward Duty", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
+                            </li>
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>
@@ -286,9 +277,7 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li>@Html.ActionLink("Auction", "Auction", "Products", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Catalog", "Products", "Products", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Jobs", "Jobs", "Jobs", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Services", "Services", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("FAQs", "FAQs", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>

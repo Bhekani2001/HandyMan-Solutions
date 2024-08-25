@@ -1,4 +1,4 @@
-﻿@model HandyMan_Solutions.Models.Qoutation
+﻿@model HandyMan_Solutions.Models.SelectQuotationAndEmployeeViewModel
 
 @{
     ViewBag.Title = "Review Quotation";
@@ -10,58 +10,26 @@
 
             <h3 class="text-center">Assign Working Team for this Quotation Request</h3>
             <p class="lead text-center">Please review this quotation's details carefully before proceeding.</p>
-
-            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "reviewForm" }))
+            @using (Html.BeginForm("AssignEmployeeToQuotation", "AssignTasks", FormMethod.Post, new { id = "selectForm" }))
             {
-                <!-- Hidden field to hold the quotation ID -->
-                @Html.HiddenFor(m => m.Id)
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        Customer
-                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        Address
-                        @Html.TextBoxFor(m => m.UserAddress, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
+                <div class="form-group">
+                    @Html.Label("Quotation")
+                    @Html.DropDownList("quotationId",
+                        new SelectList(Model.Quotations, "Id", "Description"),
+                        "Select a quotation",
+                        new { @class = "form-control", id = "quotationDropdown" })
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        Email
-                        @Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        Contact
-                        @Html.TextBoxFor(m => m.UserContact, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        @Html.LabelFor(m => m.Description)
-                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        @Html.LabelFor(m => m.AdditionalNotes)
-                        @Html.TextBoxFor(m => m.AdditionalNotes, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        Service
-                        @Html.TextBoxFor(m => m.ServiceType, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        @Html.LabelFor(m => m.Status)
-                        @Html.TextBoxFor(m => m.Status, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
+                <div class="form-group">
+                    @Html.Label("Employee")
+                    @Html.DropDownList("employeeKey",
+                        new SelectList(Model.Employees, "EmployeeKey", "EFirstName"),
+                        "Select an employee",
+                        new { @class = "form-control", id = "employeeDropdown" })
                 </div>
 
                 <div class="d-flex justify-content-center mt-4">
-                    <button type="button" id="assignBtn" class="btn btn-primary btn-sm" data-id="@Model.Id">
+                    <button type="submit" id="assignBtn" class="btn btn-primary btn-sm">
                         <i class="bi bi-person-check"></i> Assign
                     </button>
                 </div>

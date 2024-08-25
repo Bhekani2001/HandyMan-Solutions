@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HandyMan_Solutions.Models
@@ -25,7 +26,11 @@ namespace HandyMan_Solutions.Models
         public string UserEmail { get; set; }
         public string UserContact { get; set; }
         public string TechnicianAssigned { get; set; }
+        public string TechnicianNotes { get; set; }
         public string Paid { get; set; }
+        public string NewPaid { get; set; }
         public decimal EstimatedCost { get; set; }
+
+        public EmployeeOnBoarding Employees { get; set; }
     }
 }

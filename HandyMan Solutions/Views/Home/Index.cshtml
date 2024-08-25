@@ -16,7 +16,11 @@
         <section class="jumbotron text-center bg-light shadow">
             <div class="card border-0">
                 <div class="card-body">
-                    <h1 class="display-4">Welcome to HandyMan Services</h1>
+                    @if (User.IsInRole("Electrician"))
+                    {
+                    <h1 class="display-4">Welcome to Employees Dashboard</h1>
+                    }
+                    else { <h1 class="display-4">Welcome to HandyMan Services</h1>}
                     <br />
                     @if (User.IsInRole("Admin"))
                     {

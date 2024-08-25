@@ -44,5 +44,7 @@ namespace HandyMan_Solutions.Models
         public virtual DbSet<Qoutation> QoutationRequests { get; set; }
         public virtual DbSet<EmployeeOnBoarding> EmployeeOnBoardings { get; set; }
         public virtual DbSet<CarOnboarding> CarOnboardings { get; set; }
+        public virtual DbSet<ServiceProvided> ServiceProvideds { get; set; }
+
     }
 }
