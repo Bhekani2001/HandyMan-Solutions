@@ -36,6 +36,21 @@ namespace HandyMan_Solutions.Controllers
             return View(myQuotations);
         }
 
+        [HttpPost]
+        public JsonResult Cancell(int id)
+        {
+            var quotation = db.QoutationRequests.FirstOrDefault(q => q.Id == id);
+            if (quotation != null)
+            {
+                quotation.Status = "Cancelled";
+                db.SaveChanges();
+                return Json(new { success = true, message = "Quotation cancelled successfully." });
+            }
+
+            return Json(new { success = false, message = "Quotation not found." });
+        }
+
+
         [HttpGet]
         public ActionResult QoutationHistory()
         {
@@ -110,7 +125,7 @@ namespace HandyMan_Solutions.Controllers
                                $"If it wasn't you, please ignore this email. It was intended for {user.FirstName} {user.LastName} {user.FamilyName} with email {user.Email}.<br/><br/>" +
                                "Thank you,<br/>HandyMan Service Team";
 
-                    SendEmail(user.Email, subject, body);
+                   SendEmail(user.Email, subject, body);
                     return Json(new { success = true, message = "Request submitted successfully. Please proceed to payment." });
                 }
                 catch (Exception ex)
@@ -183,7 +198,7 @@ namespace HandyMan_Solutions.Controllers
                            "Thank you for choosing HandyMan Services!<br/>" +
                            "HandyMan Service Team";
 
-                SendEmail(quotation.UserEmail, subject, body);
+               SendEmail(quotation.UserEmail, subject, body);
 
                 // Clear the session
                 Session.Remove("PendingQuotation");
@@ -276,8 +291,6 @@ namespace HandyMan_Solutions.Controllers
                     quotation.EstimatedCost = model.EstimatedCost;
                     quotation.TechnicianNotes = model.TechnicianNotes;
                     quotation.Status = "Inspected";
-
-                    // Save changes to the database
                     await db.SaveChangesAsync();
 
                     // Redirect URL

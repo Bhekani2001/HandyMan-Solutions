@@ -168,16 +168,16 @@
                                     <a href="@Url.Action("PaidOffServices", "ServiceProvides")" class="dropdown-item">
                                         <i class="bi bi-calendar-check"></i> Due Service Delivery
                                     </a>
-                                    <a href="@Url.Action("Enquiries", "Home")" class="dropdown-item">
+                                   <a href="@Url.Action("Enquiries", "Home")" class="dropdown-item">
                                         <i class="bi bi-chat-dots"></i> Enquiries
                                     </a>
-                                    <a href="#" class="dropdown-item">
+                               @*     <a href="#" class="dropdown-item">
                                         <i class="bi bi-megaphone"></i> Marketing
-                                    </a>
+                                    </a>*@
                                     <a href="@Url.Action("AllRequest", "Qoutations")" class="dropdown-item">
                                         <i class="bi bi-file-earmark-text"></i> New Quotations
                                     </a>
-                                    <a href="@Url.Action("PaidInspection", "Qoutations")" class="dropdown-item">
+                                    <a href="@Url.Action("AdminPaidOffServices", "ServiceProvides")" class="dropdown-item">
                                         <i class="bi bi-file-earmark-text"></i> Paid Inspection
                                     </a>
                                     <a href="@Url.Action("Orders", "Transactions")" class="dropdown-item">
@@ -217,7 +217,7 @@
                             <li>
                                 @Html.ActionLink("Task Duties", "PaidOffServices", "ServiceProvides", new { area = "" }, new { @class = "nav-link" })
                             </li>
-                            <li>
+                  @*          <li>
                                 @Html.ActionLink("Duties History", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
                             </li>
                             <li>
@@ -225,7 +225,7 @@
                             </li>
                             <li>
                                 @Html.ActionLink("Forward Duty", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
-                            </li>
+                            </li>*@
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>
@@ -241,23 +241,9 @@
                     <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li>@Html.ActionLink("Qoutation", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li>@Html.ActionLink("Qoutation History", "QoutationHistory", "Qoutations", new { area = "" }, new { @class = "nav-link" })</li>
+                           @* <li>@Html.ActionLink("Qoutation History", "QoutationHistory", "Qoutations", new { area = "" }, new { @class = "nav-link" })</li>
                             <li>@Html.ActionLink("Work In Progress", "QoutationHistory", "Qoutations", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li>@Html.ActionLink("Report Issues", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
-                                <div class="dropdown-menu bg-light shadow">
-                                    <a href="@Url.Action("MyRequest", "Qoutations")" class="dropdown-item">
-                                        <i class="bi bi-clipboard-check"></i> My Requests
-                                    </a>
-                                    <a href="@Url.Action("MyApplications", "Jobs")" class="dropdown-item">
-                                        <i class="bi bi-hourglass-split"></i> In-Progress Services
-                                    </a>
-                                    <a href="@Url.Action("MyApplications", "Jobs")" class="dropdown-item">
-                                        <i class="bi bi-clock-history"></i> Quotation History
-                                    </a>
-                                </div>
-                            </div>
+                           *@ <li>@Html.ActionLink("Report Issues", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
 
                         </ul>
                         @Html.Partial("_LoginPartial")

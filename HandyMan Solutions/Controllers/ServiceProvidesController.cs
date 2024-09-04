@@ -17,5 +17,13 @@ namespace HandyMan_Solutions.Controllers
                                   .ToList();
             return View(service);
         }
+        
+        public ActionResult AdminPaidOffServices()
+        {
+            var service = db.ServiceProvideds
+                                  .Where(sq => sq.Paid =="Yes")
+                                  .ToList();
+            return View(service);
+        }
     }
 }

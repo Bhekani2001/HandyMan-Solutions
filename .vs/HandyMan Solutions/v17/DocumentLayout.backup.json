@@ -3,106 +3,78 @@
   "WorkspaceRootPath": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\models\\qoutation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\models\\qoutation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\qoutations\\myrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|c:\\users\\edgetec\\source\\repos\\handyman solutions\\handyman solutions\\views\\qoutations\\myrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\qoutations\\myrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDb__MSSQLLocalDB/aspnet_HandyMan_Solutions_20240806070317/True/SqlTable/dbo.Contacts.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\controllers\\qoutationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\controllers\\qoutationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDb__MSSQLLocalDB/aspnet_HandyMan_Solutions_20240806070317/True/SqlTable/dbo.ServiceProvideds.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|c:\\users\\edgetec\\source\\repos\\handyman solutions\\handyman solutions\\views\\qoutations\\allrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\qoutations\\allrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDb__MSSQLLocalDB/aspnet_HandyMan_Solutions_20240806070317/True/SqlTable/dbo.Qoutations.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|c:\\users\\edgetec\\source\\repos\\handyman solutions\\handyman solutions\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\controllers\\serviceprovidescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\controllers\\serviceprovidescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\serviceprovides\\paidoffservices.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\serviceprovides\\paidoffservices.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\assigntasks\\qoutationduties.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\assigntasks\\qoutationduties.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\models\\serviceprovided.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\models\\serviceprovided.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\qoutations\\assignteam.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|c:\\users\\edgetec\\source\\repos\\handyman solutions\\handyman solutions\\views\\qoutations\\assignteam.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\qoutations\\assignteam.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\models\\selectquotationandemployeeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\models\\selectquotationandemployeeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|c:\\users\\edgetec\\source\\repos\\handyman solutions\\handyman solutions\\views\\serviceprovides\\paidoffservices.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\serviceprovides\\paidoffservices.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\payments\\paymentcancelled.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\payments\\paymentcancelled.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\qoutations\\submitrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\qoutations\\submitrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\qoutations\\processqoutation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\qoutations\\processqoutation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\controllers\\assigntaskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\controllers\\assigntaskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\qoutations\\allrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\qoutations\\allrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\assigntasks\\selectquotationandemployee.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\assigntasks\\selectquotationandemployee.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\qoutations\\review.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\qoutations\\review.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\models\\employeeonboarding.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\models\\employeeonboarding.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\employeeonboardings\\onboardnewemployee.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\employeeonboardings\\onboardnewemployee.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\employeeonboardings\\existingemployees.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\employeeonboardings\\existingemployees.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\controllers\\employeeonboardingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\controllers\\employeeonboardingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\models\\selectedemployeename.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\models\\selectedemployeename.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\models\\identitymodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\models\\identitymodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\serviceprovides\\adminpaidoffservices.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\serviceprovides\\adminpaidoffservices.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\controllers\\serviceprovidescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\controllers\\serviceprovidescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\qoutations\\submitrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\qoutations\\submitrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\views\\home\\services.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\views\\home\\services.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\models\\accountviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|solutionrelative:handyman solutions\\models\\accountviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4D2B7A6F-1B91-47E8-AD85-6E5954747FAB}|HandyMan Solutions\\HandyMan Solutions.csproj|C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\handyman solutions\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -116,11 +88,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 18,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "dbo.Contacts [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDb__MSSQLLocalDB/aspnet_HandyMan_Solutions_20240806070317/True/SqlTable/dbo.Contacts.sql",
+              "ToolTip": "dbo.Contacts [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-09-01T14:52:07.598Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -129,17 +111,98 @@
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDb__MSSQLLocalDB/aspnet_HandyMan_Solutions_20240806070317/True/SqlTable/dbo.Qoutations.sql",
               "ToolTip": "dbo.Qoutations [Data]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-08-25T17:00:52.53Z",
+              "WhenOpened": "2024-09-01T14:35:05.383Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "dbo.ServiceProvideds [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDb__MSSQLLocalDB/aspnet_HandyMan_Solutions_20240806070317/True/SqlTable/dbo.ServiceProvideds.sql",
-              "ToolTip": "dbo.ServiceProvideds [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-08-25T17:00:47.968Z",
+              "Title": "AllRequest.cshtml",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\AllRequest.cshtml",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Qoutations\\AllRequest.cshtml",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\AllRequest.cshtml",
+              "RelativeToolTip": "HandyMan Solutions\\Views\\Qoutations\\AllRequest.cshtml",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAEkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-01T14:25:24.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MyRequest.cshtml",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\MyRequest.cshtml",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Qoutations\\MyRequest.cshtml",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\MyRequest.cshtml",
+              "RelativeToolTip": "HandyMan Solutions\\Views\\Qoutations\\MyRequest.cshtml",
+              "ViewState": "AgIAACkAAAAAAAAAAAAQwEMAAAB0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-01T13:45:32.441Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AssignTeam.cshtml",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\AssignTeam.cshtml",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Qoutations\\AssignTeam.cshtml",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\AssignTeam.cshtml",
+              "RelativeToolTip": "HandyMan Solutions\\Views\\Qoutations\\AssignTeam.cshtml",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAADAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-01T13:42:29.108Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "OnboardNewEmployee.cshtml",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\EmployeeOnBoardings\\OnboardNewEmployee.cshtml",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\EmployeeOnBoardings\\OnboardNewEmployee.cshtml",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\EmployeeOnBoardings\\OnboardNewEmployee.cshtml",
+              "RelativeToolTip": "HandyMan Solutions\\Views\\EmployeeOnBoardings\\OnboardNewEmployee.cshtml",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAYwHkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-30T18:07:23.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "EmployeeOnBoardingsController.cs",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\EmployeeOnBoardingsController.cs",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Controllers\\EmployeeOnBoardingsController.cs",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\EmployeeOnBoardingsController.cs",
+              "RelativeToolTip": "HandyMan Solutions\\Controllers\\EmployeeOnBoardingsController.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAwCcAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-30T17:02:23.592Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IdentityModels.cs",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\IdentityModels.cs",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Models\\IdentityModels.cs",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\IdentityModels.cs",
+              "RelativeToolTip": "HandyMan Solutions\\Models\\IdentityModels.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBJwBMAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-30T16:55:17.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "_LoginPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Shared\\_LoginPartial.cshtml",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeToolTip": "HandyMan Solutions\\Views\\Shared\\_LoginPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-30T16:04:39.954Z",
               "EditorCaption": ""
             },
             {
@@ -150,264 +213,49 @@
               "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\ServiceProvides\\PaidOffServices.cshtml",
               "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\ServiceProvides\\PaidOffServices.cshtml",
               "RelativeToolTip": "HandyMan Solutions\\Views\\ServiceProvides\\PaidOffServices.cshtml",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAADsAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAYwC8AAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-25T15:43:42.36Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ServiceProvidesController.cs",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\ServiceProvidesController.cs",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Controllers\\ServiceProvidesController.cs",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\ServiceProvidesController.cs",
-              "RelativeToolTip": "HandyMan Solutions\\Controllers\\ServiceProvidesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T15:36:14.977Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "PaymentCancelled.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Payments\\PaymentCancelled.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Payments\\PaymentCancelled.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Payments\\PaymentCancelled.cshtml",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\Payments\\PaymentCancelled.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-25T15:09:21.497Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ServiceProvided.cs",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\ServiceProvided.cs",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Models\\ServiceProvided.cs",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\ServiceProvided.cs",
-              "RelativeToolTip": "HandyMan Solutions\\Models\\ServiceProvided.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T14:58:31.221Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Qoutation.cs",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\Qoutation.cs",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Models\\Qoutation.cs",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\Qoutation.cs",
-              "RelativeToolTip": "HandyMan Solutions\\Models\\Qoutation.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAAB4AAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T14:57:21.042Z",
+              "WhenOpened": "2024-08-30T11:43:25.627Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PaymentsController.cs",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\PaymentsController.cs",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Controllers\\PaymentsController.cs",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\PaymentsController.cs",
-              "RelativeToolTip": "HandyMan Solutions\\Controllers\\PaymentsController.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAuwFUAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T10:30:57.299Z",
+              "DocumentIndex": 14,
+              "Title": "AdminPaidOffServices.cshtml",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\ServiceProvides\\AdminPaidOffServices.cshtml",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\ServiceProvides\\AdminPaidOffServices.cshtml",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\ServiceProvides\\AdminPaidOffServices.cshtml",
+              "RelativeToolTip": "HandyMan Solutions\\Views\\ServiceProvides\\AdminPaidOffServices.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwC0AAABwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-30T11:43:20.357Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "ProcessQoutation.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\ProcessQoutation.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Qoutations\\ProcessQoutation.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\ProcessQoutation.cshtml",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\Qoutations\\ProcessQoutation.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGsAAABjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-25T08:18:36.805Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "QoutationDuties.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\AssignTasks\\QoutationDuties.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\AssignTasks\\QoutationDuties.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\AssignTasks\\QoutationDuties.cshtml",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\AssignTasks\\QoutationDuties.cshtml",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAQwI4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-25T07:54:30.578Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "EmployeeOnBoarding.cs",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\EmployeeOnBoarding.cs",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Models\\EmployeeOnBoarding.cs",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\EmployeeOnBoarding.cs",
-              "RelativeToolTip": "HandyMan Solutions\\Models\\EmployeeOnBoarding.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAA1wCYAAAAAAAAAAAAAAA==",
+              "Title": "ServiceProvidesController.cs",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\ServiceProvidesController.cs",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Controllers\\ServiceProvidesController.cs",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\ServiceProvidesController.cs",
+              "RelativeToolTip": "HandyMan Solutions\\Controllers\\ServiceProvidesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T07:50:20.971Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-25T07:43:45.699Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Global.asax.cs",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Global.asax.cs",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Global.asax.cs",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Global.asax.cs",
-              "RelativeToolTip": "HandyMan Solutions\\Global.asax.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T07:33:23.89Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MyRequest.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\MyRequest.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Qoutations\\MyRequest.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\MyRequest.cshtml*",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\Qoutations\\MyRequest.cshtml*",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAQwFAAAABfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-25T07:06:50.65Z",
+              "WhenOpened": "2024-08-30T11:42:46.736Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "OnboardNewEmployee.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\EmployeeOnBoardings\\OnboardNewEmployee.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\EmployeeOnBoardings\\OnboardNewEmployee.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\EmployeeOnBoardings\\OnboardNewEmployee.cshtml",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\EmployeeOnBoardings\\OnboardNewEmployee.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAALAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "HandyMan Solutions\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAG4AAAAAAAAAAEBlwIwAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-25T06:42:04.855Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "ExistingEmployees.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\EmployeeOnBoardings\\ExistingEmployees.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\EmployeeOnBoardings\\ExistingEmployees.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\EmployeeOnBoardings\\ExistingEmployees.cshtml",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\EmployeeOnBoardings\\ExistingEmployees.cshtml",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-25T06:41:59.012Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "SelectQuotationAndEmployeeViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\SelectQuotationAndEmployeeViewModel.cs",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Models\\SelectQuotationAndEmployeeViewModel.cs",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\SelectQuotationAndEmployeeViewModel.cs",
-              "RelativeToolTip": "HandyMan Solutions\\Models\\SelectQuotationAndEmployeeViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA8AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T06:35:39.501Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "SelectQuotationAndEmployee.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\AssignTasks\\SelectQuotationAndEmployee.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\AssignTasks\\SelectQuotationAndEmployee.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\AssignTasks\\SelectQuotationAndEmployee.cshtml",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\AssignTasks\\SelectQuotationAndEmployee.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB0AAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-25T06:23:50.942Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "AssignTasksController.cs",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\AssignTasksController.cs",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Controllers\\AssignTasksController.cs",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\AssignTasksController.cs",
-              "RelativeToolTip": "HandyMan Solutions\\Controllers\\AssignTasksController.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAQwEgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T06:23:10.007Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "SelectedEmployeeName.cs",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\SelectedEmployeeName.cs",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Models\\SelectedEmployeeName.cs",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\SelectedEmployeeName.cs",
-              "RelativeToolTip": "HandyMan Solutions\\Models\\SelectedEmployeeName.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T06:22:14.098Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AssignTeam.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\AssignTeam.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Qoutations\\AssignTeam.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\AssignTeam.cshtml",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\Qoutations\\AssignTeam.cshtml",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAlwBkAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-24T21:04:17.086Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Review.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\Review.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Qoutations\\Review.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\Review.cshtml",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\Qoutations\\Review.cshtml",
-              "ViewState": "AgIAACkAAAAAAAAAAAAmwD0AAABtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-24T19:42:13.028Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "AllRequest.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\AllRequest.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Qoutations\\AllRequest.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\AllRequest.cshtml",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\Qoutations\\AllRequest.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAD4AAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-24T19:10:42.671Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "SubmitRequest.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\SubmitRequest.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Qoutations\\SubmitRequest.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\SubmitRequest.cshtml",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\Qoutations\\SubmitRequest.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAQwDsAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-24T17:29:39.773Z"
+              "WhenOpened": "2024-08-30T11:29:30.219Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -417,34 +265,87 @@
               "RelativeDocumentMoniker": "HandyMan Solutions\\Controllers\\QoutationsController.cs",
               "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\QoutationsController.cs",
               "RelativeToolTip": "HandyMan Solutions\\Controllers\\QoutationsController.cs",
-              "ViewState": "AgIAAJ4AAAAAAAAAAAAcwCsAAABaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T17:25:07.142Z",
+              "WhenOpened": "2024-08-30T10:57:55.652Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 16,
+              "Title": "SubmitRequest.cshtml",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\SubmitRequest.cshtml",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Qoutations\\SubmitRequest.cshtml",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Qoutations\\SubmitRequest.cshtml",
+              "RelativeToolTip": "HandyMan Solutions\\Views\\Qoutations\\SubmitRequest.cshtml",
+              "ViewState": "AgIAAEoAAAAAAAAAAMBdwEQAAABeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-30T10:57:22.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AccountViewModels.cs",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\AccountViewModels.cs",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Models\\AccountViewModels.cs",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Models\\AccountViewModels.cs",
+              "RelativeToolTip": "HandyMan Solutions\\Models\\AccountViewModels.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAASwFQAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-30T10:50:37.256Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Services.cshtml",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Home\\Services.cshtml",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Home\\Services.cshtml",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Home\\Services.cshtml",
+              "RelativeToolTip": "HandyMan Solutions\\Views\\Home\\Services.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAEBVwCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-29T15:41:42.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "HandyMan Solutions\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAswFYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-29T15:41:19.021Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "HandyMan Solutions\\Controllers\\AccountController.cs",
               "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Controllers\\AccountController.cs",
               "RelativeToolTip": "HandyMan Solutions\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAJgAAAAAAAAAAAAUwLAAAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAALIBAAAAAAAAAMBUwLUBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T17:05:46.03Z"
+              "WhenOpened": "2024-08-28T16:16:07.488Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "HandyMan Solutions\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAAAHwAAAAEAAAAAAAAAA==",
+              "Title": "QoutationDuties.cshtml",
+              "DocumentMoniker": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\AssignTasks\\QoutationDuties.cshtml",
+              "RelativeDocumentMoniker": "HandyMan Solutions\\Views\\AssignTasks\\QoutationDuties.cshtml",
+              "ToolTip": "C:\\Users\\EDGETEC\\source\\repos\\HandyMan Solutions\\HandyMan Solutions\\Views\\AssignTasks\\QoutationDuties.cshtml",
+              "RelativeToolTip": "HandyMan Solutions\\Views\\AssignTasks\\QoutationDuties.cshtml",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAmwH8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-13T16:45:16.913Z",
+              "WhenOpened": "2024-08-25T20:13:05.338Z",
               "EditorCaption": ""
             }
           ]

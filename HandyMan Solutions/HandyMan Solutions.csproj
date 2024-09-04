@@ -358,6 +358,9 @@
     <Content Include="Views\Payments\PaymentCancelled.cshtml" />
     <Content Include="Views\Payments\PaymentSuccess.cshtml" />
     <Content Include="Views\ServiceProvides\PaidOffServices.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
+    <Content Include="Views\ServiceProvides\AdminPaidOffServices.cshtml" />
+    <Content Include="Views\Home\Enquiries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -55,8 +55,11 @@
                                             }
                                             else
                                             {
-                                                <small class="alert alert-success">Team Assigned</small>
+                                                <small class="alert alert-success">
+                                                    <i class="bi bi-person"></i> Team Assigned
+                                                </small>
                                             }
+
                                         </td>
                                         <td><small>@String.Format("R {0:N2}", item.EstimatedCost)</small></td>
                                         <td>
@@ -69,26 +72,37 @@
                                         <td>
                                             @if (item.Status == "Pending...")
                                             {
-                                                <a class="btn btn-outline-warning btn-sm" title="Update" onclick="confirmUpdate('@Url.Action("Update", "TradeIns", new { id = item.Id })')">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                                <a class="btn btn-outline-danger btn-sm" title="Cancel" onclick="confirmCancel('@Url.Action("Cancel", "TradeIns", new { id = item.Id })')">
+                                                @*                                                <a class="btn btn-outline-warning btn-sm" title="Update" onclick="confirmUpdate('@Url.Action("Update", "Qoutations", new { id = item.Id })')">
+                <i class="bi bi-pencil"></i>
+            </a>*@
+                                                <a class="btn btn-outline-danger btn-sm" title="Cancel" onclick="confirmCancel('@Url.Action("Cancell", "Qoutations", new { id = item.Id })')">
                                                     <i class="bi bi-x-circle"></i>
                                                 </a>
                                             }
                                             @if (item.EstimatedCost != 0)
                                             {
-                                                if (item.Status== "Inspected" && item.NewPaid!="Paid")
+                                                if (item.Status == "Inspected" && item.NewPaid != "Paid")
                                                 {
                                                     <a class="btn btn-outline-info btn-sm" title="Pay Now" data-bs-toggle="modal" data-bs-target="#paymentModal" data-quotation-id="@item.Id">
                                                         <i class="bi bi-credit-card"></i> Pay Now
                                                     </a>
                                                 }
-                                                else
                                                 {
-                                                    <small class="alert alert-success">Service Paid Off</small>
+                                                    <small class="alert alert-success">
+                                                        <i class="bi bi-person"></i> Service Paid Off
+                                                    </small>
                                                 }
+                                            }@if (item.Status == "Cancelled")
+                                            {
+                                                <small class="alert alert-danger">Cancelled</small>
                                             }
+                                            else if (item.Status == "Approved")
+                                            {
+                                                <small class="alert alert-success">
+                                                    <i class="bi bi-file-earmark-text"></i> Due Inspection
+                                                </small>
+                                            }
+
                                         </td>
                                     </tr>
                                 }
@@ -173,5 +187,46 @@
             var form = $(this).find('form');
             form.find('#quotationId').val(quotationId);
         });
+
+        // SweetAlert2 for cancellation confirmation
+        function confirmCancel(url) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you really want to cancel this quotation request?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, cancel it!',
+                cancelButtonText: 'No, keep it'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Perform the cancellation
+                    $.post(url, function (response) {
+                        if (response.success) {
+                            Swal.fire(
+                                'Cancelled!',
+                                response.message,
+                                'success'
+                            ).then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                response.message,
+                                'error'
+                            );
+                        }
+                    }).fail(function () {
+                        Swal.fire(
+                            'Error!',
+                            'An error occurred while processing your request.',
+                            'error'
+                        );
+                    });
+                }
+            });
+        }
     </script>
 }

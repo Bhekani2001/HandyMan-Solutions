@@ -20,8 +20,8 @@
                     {
                     <h1 class="display-4">Welcome to Employees Dashboard</h1>
                     }
-                    else { <h1 class="display-4">Welcome to HandyMan Services</h1>}
-                    <br />
+                    else if(!User.IsInRole("Admin")) { <h1 class="display-4">Welcome to HandyMan Services</h1>}
+
                     @if (User.IsInRole("Admin"))
                     {
                         <section class="text-center mt-5">

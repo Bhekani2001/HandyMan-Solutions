@@ -57,10 +57,17 @@
                                             @if (item.Status == "Pending...")
                                             {
                                                 <a href="@Url.Action("Review", "Qoutations", new { id = item.Id })" class="btn btn-outline-primary btn-sm">Review</a>
+                                            }else if (item.Status == "Cancelled")
+                                            {
+                                                <small class="alert alert-danger">Cancelled</small>
                                             }
-                                            else
+                                            else if(item.TechnicianAssigned=="None")
                                             {
                                                 <small class="alert alert-warning">Assign Team</small>
+                                            }
+                                            else if(item.TechnicianAssigned!="None")
+                                            {
+                                                <small class="alert alert-success">Team Assigned</small>
                                             }
                                         </td>
                                     </tr>

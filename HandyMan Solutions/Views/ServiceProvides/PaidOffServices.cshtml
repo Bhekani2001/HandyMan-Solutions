@@ -20,9 +20,11 @@
                                 <th>Service</th>
                                 <th>Technical Note</th>
                                 <th>Technical Status</th>
-                                <th>Assigned To</th>
+                                <th>Employee</th>
+                                <th>Started</th>
+                                <th>Ended</th>
                                 <th>Paid</th>
-                                <th>Paid Date</th>
+                                <th>Paid</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -35,24 +37,26 @@
                                     <tr>
                                         <td>
                                             <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#contactModal" data-username="@item.UserName" data-email="@item.UserEmail" data-address="@item.UserAddress" data-contact="@item.UserContact">
-                                                Customer Information
+                                                Cus. Infor
                                             </button>
                                         </td>
                                         <td>@Html.DisplayFor(modelItem => item.ServiceType)</td>
                                         <td><small>@Html.DisplayFor(modelItem => item.TechnicalNotes)</small></td>
                                         <td><small>@Html.DisplayFor(modelItem => item.TechnicalStatus)</small></td>
                                         <td><small>@Html.DisplayFor(modelItem => item.TechnicianAssigned)</small></td>
+                                        <td><small class="alert alert-danger">Due</small></td>
+                                        <td><small class="alert alert-danger">Due</small></td>
                                         <td><small>@Html.DisplayFor(modelItem => item.Paid)</small></td>
                                         <td><small>@String.Format("{0:yyyy-MM-dd}", item.PaymentDate)</small></td>
                                         <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.Status)</td>
                                         <td>
-                                            @if (item.Status == "Paid")
+                                            @if (item.Status != "Paid")
                                             {
                                                 <a href="@Url.Action("StartWorking", "ServiceProvides", new { id = item.Id })" class="btn btn-outline-primary btn-sm">Start Working</a>
                                             }
                                             else
                                             {
-                                                <small class="alert alert-success">Qoutation Processed</small>
+                                                <small class="alert alert-success">Processed</small>
                                             }
                                         </td>
                                     </tr>
