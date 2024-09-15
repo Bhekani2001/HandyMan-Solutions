@@ -7,7 +7,7 @@
 <div class="mt-4">
     <div class="row">
         <div class="col-md-12">
-            <div class="card" style="width:1180px">
+            <div class="card" style="width: 1180px;">
                 <div class="card-header text-center">
                     <h2>Paid Off Services</h2>
                 </div>
@@ -23,8 +23,6 @@
                                 <th>Employee</th>
                                 <th>Started</th>
                                 <th>Ended</th>
-                                <th>Paid</th>
-                                <th>Paid</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -36,23 +34,45 @@
                                 {
                                     <tr>
                                         <td>
-                                            <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#contactModal" data-username="@item.UserName" data-email="@item.UserEmail" data-address="@item.UserAddress" data-contact="@item.UserContact">
+                                            <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#contactModal"
+                                                    data-username="@item.UserName" data-email="@item.UserEmail"
+                                                    data-address="@item.UserAddress" data-contact="@item.UserContact">
                                                 Cus. Infor
                                             </button>
                                         </td>
                                         <td>@Html.DisplayFor(modelItem => item.ServiceType)</td>
                                         <td><small>@Html.DisplayFor(modelItem => item.TechnicalNotes)</small></td>
                                         <td><small>@Html.DisplayFor(modelItem => item.TechnicalStatus)</small></td>
-                                        <td><small>@Html.DisplayFor(modelItem => item.TechnicianAssigned)</small></td>
-                                        <td><small class="alert alert-danger">Due</small></td>
-                                        <td><small class="alert alert-danger">Due</small></td>
-                                        <td><small>@Html.DisplayFor(modelItem => item.Paid)</small></td>
-                                        <td><small>@String.Format("{0:yyyy-MM-dd}", item.PaymentDate)</small></td>
+                                        <td>
+                                            @if (item.TechnicianAssigned != null)
+                                            {
+
+
+                                                <small class="alert alert-success">Assigned</small>
+                                            }
+                                            else
+                                            {
+                                                <small class="alert alert-warning">None</small>
+                                            }
+                                                                            </td>
+                                        <td><small>@String.Format("{0:yyyy-MM-dd}", item.StartDate)</small></td>
+                                        <td><small>@String.Format("{0:yyyy-MM-dd}", item.EndDate)</small></td>
                                         <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.Status)</td>
                                         <td>
-                                            @if (item.Status != "Paid")
+                                            @if (item.Status == "Paid")
                                             {
-                                                <a href="@Url.Action("StartWorking", "ServiceProvides", new { id = item.Id })" class="btn btn-outline-primary btn-sm">Start Working</a>
+                                                <a href="@Url.Action("ProcessTask", "ServiceProvides", new { id = item.Id })" class="btn btn-outline-primary btn-sm">
+                                                    Start Working
+                                                </a>
+                                            }
+                                            else if (item.Status == "In-Progress")
+                                            {
+                                                <a href="@Url.Action("UpdateTask", "ServiceProvides", new { id = item.Id })" class="btn btn-outline-primary btn-sm">
+                                                    Update
+                                                </a>
+                                                <a href="@Url.Action("CloseTask", "ServiceProvides", new { id = item.Id })" class="btn btn-outline-primary btn-sm">
+                                                    Close
+                                                </a>
                                             }
                                             else
                                             {
@@ -66,7 +86,7 @@
                             {
                                 <tr>
                                     <td colspan="9">
-                                        <div class="alert alert-danger text-center rounded-0" style="border:solid green" role="alert">
+                                        <div class="alert alert-danger text-center rounded-0" style="border: solid green" role="alert">
                                             No Records
                                         </div>
                                     </td>
@@ -75,26 +95,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Image Modal -->
-<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="imageModalLabel">This Image Uploaded by Applicant</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body text-center">
-                <img id="modalImage" src="" class="img-fluid" alt="Trade-In Image" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -124,12 +124,6 @@
 </div>
 
 <script>
-    $('.tradein-img').on('click', function () {
-        var imgSrc = $(this).data('img-src');
-        $('#modalImage').attr('src', imgSrc);
-        $('#imageModal').modal('show');
-    });
-
     $('#contactModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
         var username = button.data('username');

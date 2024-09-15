@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-        
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -46,7 +46,24 @@
                     </div>
                 </div>
             </div>
-            
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        Service
+                        @Html.TextBoxFor(model => model.UrgencyLevel, new { @class = "form-control ", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.UrgencyLevel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        Description
+                        @Html.TextBoxFor(model => model.PropertyType, new { @class = "form-control ", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.PropertyType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -57,15 +74,12 @@
                         @Html.ValidationMessageFor(model => model.EstimatedCost, "", new { @class = "text-danger" })
                     </div>
                 </div>
-            </div>
-
-            <div class="row mb-3">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="TechnicianNotes">
                             <i class="bi bi-file-text"></i> Add Some Notes
                         </label>
-                        @Html.TextAreaFor(model => model.TechnicianNotes, new { @class = "form-control required", rows = 2, placeholder = "Enter any additional notes" })
+                        @Html.TextBoxFor(model => model.TechnicianNotes, new { @class = "form-control required", rows = 2, placeholder = "Enter any additional notes" })
                         @Html.ValidationMessageFor(model => model.TechnicianNotes, "", new { @class = "text-danger" })
                     </div>
                 </div>

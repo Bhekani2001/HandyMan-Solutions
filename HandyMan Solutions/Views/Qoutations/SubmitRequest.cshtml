@@ -45,6 +45,24 @@
                 </div>
             </div>
 
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PropertyType, htmlAttributes: new { @class = "form-label" })
+                        @Html.DropDownListFor(model => model.PropertyType, (SelectList)ViewBag.PropertyType, "Select Property Type", new { @class = "form-control required" })
+                        @Html.ValidationMessageFor(model => model.PropertyType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UrgencyLevel, htmlAttributes: new { @class = "form-label" })
+                        @Html.DropDownListFor(model => model.UrgencyLevel, (SelectList)ViewBag.UrgencyLevel, "Select Urgency Level", new { @class = "form-control required" })
+                        @Html.ValidationMessageFor(model => model.UrgencyLevel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+               
+            </div>
+
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary btn-lg">
                     <i class="bi bi-send"></i> Submit Request

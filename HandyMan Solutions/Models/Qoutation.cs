@@ -14,6 +14,8 @@ namespace HandyMan_Solutions.Models
 
         public string AdditionalNotes { get; set; }
         public string Status { get; set; }
+        public string UrgencyLevel { get; set; }
+        public string PropertyType { get; set; }
 
         public byte[] ImageData { get; set; }
 

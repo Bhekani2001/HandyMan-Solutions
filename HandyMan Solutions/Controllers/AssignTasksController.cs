@@ -61,7 +61,7 @@ namespace HandyMan_Solutions.Controllers
         [HttpGet]
         public ActionResult QoutationDuties()
         {
-            var userId = User.Identity.GetUserId(); // Get the current logged-in user's ID
+            var userId = User.Identity.GetUserId();
             var employee = db.EmployeeOnBoardings.FirstOrDefault(e => e.EEmailAddress == User.Identity.Name); // Retrieve the employee record based on the user's email
 
             if (employee == null)
@@ -75,7 +75,26 @@ namespace HandyMan_Solutions.Controllers
                 .Where(q => q.TechnicianAssigned == employeeKey.ToString())
                 .ToList();
 
-            // Pass the list of quotations to the view
+            return View(quotations);
+        }
+        
+        [HttpGet]
+        public ActionResult TaskDuties()
+        {
+            var userId = User.Identity.GetUserId();
+            var employee = db.EmployeeOnBoardings.FirstOrDefault(e => e.EEmailAddress == User.Identity.Name); // Retrieve the employee record based on the user's email
+
+            if (employee == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "Employee record not found.");
+            }
+
+            var employeeKey = employee.EmployeeKey;
+
+            var quotations = db.QoutationRequests
+                .Where(q => q.TechnicianAssigned == employeeKey.ToString())
+                .ToList();
+
             return View(quotations);
         }
     }

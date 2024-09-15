@@ -22,6 +22,8 @@
                                 <th>Cost</th>
                                 <th>Photo</th>
                                 <th>Applied</th>
+                                <th>Urgency</th>
+                                <th>Property</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -44,6 +46,8 @@
                                             <img src="data:@(item.ImageData);base64,@Convert.ToBase64String(item.ImageData)" class="img-thumbnail tradein-img" style="width: 60px; height: 50px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" data-img-src="data:@(item.ImageData);base64,@Convert.ToBase64String(item.ImageData)" />
                                         </td>
                                         <td><small>@String.Format("{0:yyyy-MM-dd}", item.RequestedDate)</small></td>
+                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.UrgencyLevel)</td>
+                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.PropertyType)</td>
                                         <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.Status)</td>
                                         <td>
                                             @if (item.Status == "Approved")
@@ -52,7 +56,7 @@
                                             }
                                             else
                                             {
-                                                <small class="alert alert-success">Qoutation Processed</small>
+                                                <small class="alert alert-success">Processed</small>
                                             }
                                         </td>
                                     </tr>
@@ -61,7 +65,7 @@
                             else
                             {
                                 <tr>
-                                    <td colspan="9">
+                                    <td colspan="12">
                                         <div class="alert alert-danger text-center rounded-0" style="border:solid green" role="alert">
                                             No Records
                                         </div>

@@ -61,6 +61,8 @@ namespace HandyMan_Solutions.Controllers
 
         public ActionResult PaymentSuccess(int quotationId)
         {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
             var quotation = db.QoutationRequests.Find(quotationId);
             if (quotation == null)
             {
@@ -69,13 +71,20 @@ namespace HandyMan_Solutions.Controllers
 
             var serviceProvided = new ServiceProvided
             {
+                UserId = userId,
                 UserName = quotation.UserName,
                 UserAddress = quotation.UserAddress,
                 UserContact = quotation.UserContact,
                 UserEmail = quotation.UserEmail,
                 ServiceType = quotation.ServiceType,
+                Description = quotation.Description,
+                UrgencyLevel = quotation.UrgencyLevel,
+                PropertyType = quotation.PropertyType,
+                EstimatedCost = quotation.EstimatedCost,
                 Paid = "Yes",
                 PaymentDate = DateTime.Now,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
                 Status = "Paid",
                 TechnicianAssigned = quotation.TechnicianAssigned,
             };

@@ -64,6 +64,19 @@ namespace HandyMan_Solutions.Controllers
         [HttpGet]
         public ActionResult SubmitRequest()
         {
+            ViewBag.PropertyType = new SelectList(new[]
+            {
+                "Residential",
+               "Commercial",
+               "Industrial"
+            });
+
+            ViewBag.UrgencyLevel = new SelectList(new[]
+            {
+                "Routine" ,
+               "Urgent" ,
+                "Emergency" 
+            });
             ViewBag.ServiceOptions = new SelectList(new[]
             {
                 "Carpentry",
@@ -293,7 +306,6 @@ namespace HandyMan_Solutions.Controllers
                     quotation.Status = "Inspected";
                     await db.SaveChangesAsync();
 
-                    // Redirect URL
                     string redirectUrl = Url.Action("QoutationDuties", "Qoutations");
 
                     return Json(new { success = true, message = "Quotation updated successfully.", redirectUrl = redirectUrl });

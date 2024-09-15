@@ -29,6 +29,8 @@
                                 <th>Cost</th>
                                 <th>Photo</th>
                                 <th>Applied</th>
+                                <th>Property</th>
+                                <th>Urgency</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -52,6 +54,8 @@
                                             <img src="data:@(item.ImageData);base64,@Convert.ToBase64String(item.ImageData)" class="img-thumbnail tradein-img" style="width: 60px; height: 50px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" data-img-src="data:@(item.ImageData);base64,@Convert.ToBase64String(item.ImageData)" />
                                         </td>
                                         <td><small>@String.Format("{0:yyyy-MM-dd}", item.RequestedDate)</small></td>
+                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.PropertyType)</td>
+                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.UrgencyLevel)</td>
                                         <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.Status)</td>
                                         <td>
                                             @if (item.Status == "Pending...")
@@ -63,11 +67,11 @@
                                             }
                                             else if(item.TechnicianAssigned=="None")
                                             {
-                                                <small class="alert alert-warning">Assign Team</small>
+                                                <small class="alert alert-warning">Assign</small>
                                             }
                                             else if(item.TechnicianAssigned!="None")
                                             {
-                                                <small class="alert alert-success">Team Assigned</small>
+                                                <small class="alert alert-success">Assigned</small>
                                             }
                                         </td>
                                     </tr>
@@ -76,7 +80,7 @@
                             else
                             {
                                 <tr>
-                                    <td colspan="9">
+                                    <td colspan="12">
                                         <div class="alert alert-danger text-center rounded-0" style="border:solid green" role="alert">
                                             No Records
                                         </div>

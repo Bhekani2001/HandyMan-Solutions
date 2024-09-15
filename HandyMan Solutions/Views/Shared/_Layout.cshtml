@@ -217,6 +217,9 @@
                             <li>
                                 @Html.ActionLink("Task Duties", "PaidOffServices", "ServiceProvides", new { area = "" }, new { @class = "nav-link" })
                             </li>
+                            <li>
+                                @Html.ActionLink("OverDue Task", "OverDueTask", "ServiceProvides", new { area = "" }, new { @class = "nav-link" })
+                            </li>
                   @*          <li>
                                 @Html.ActionLink("Duties History", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
                             </li>
@@ -240,12 +243,33 @@
                     </button>
                     <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
-                            <li>@Html.ActionLink("Qoutation", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })</li>
-                           @* <li>@Html.ActionLink("Qoutation History", "QoutationHistory", "Qoutations", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li>@Html.ActionLink("Work In Progress", "QoutationHistory", "Qoutations", new { area = "" }, new { @class = "nav-link" })</li>
-                           *@ <li>@Html.ActionLink("Report Issues", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
+                            <li>
+                                <a href="@Url.Action("MyRequest", "Qoutations")" class="nav-link">
+                                    <i class="bi bi-file-earmark-text text-primary"></i> Qoutation
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("QoutationHistory", "Qoutations")" class="nav-link">
+                                    <i class="bi bi-clock-history text-primary"></i> Qoutation History
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("MyPaidOffServices", "ServiceProvides")" class="nav-link">
+                                    <i class="bi bi-gear text-primary"></i> In Progress
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Contact", "Home")" class="nav-link">
+                                    <i class="bi bi-envelope text-primary"></i> Report Issues
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("MyServicesHistory", "ServiceProvides")" class="nav-link">
+                                    <i class="bi bi-calendar-check text-primary"></i> Service History
+                                </a>
+                            </li>
                         </ul>
+
                         @Html.Partial("_LoginPartial")
                     </div>
                 }

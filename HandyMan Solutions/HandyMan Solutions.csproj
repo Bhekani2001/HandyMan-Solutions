@@ -257,10 +257,13 @@
     <Compile Include="Models\EmployeeOnBoardingViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OverDueTask.cs" />
     <Compile Include="Models\Qoutation.cs" />
+    <Compile Include="Models\RateService.cs" />
     <Compile Include="Models\SelectedEmployeeName.cs" />
     <Compile Include="Models\SelectQuotationAndEmployeeViewModel.cs" />
     <Compile Include="Models\ServiceProvided.cs" />
+    <Compile Include="Models\TaskProcessingViewModel.cs" />
     <Compile Include="Models\WeeklyUserRegistrationsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailService.cs" />
@@ -361,10 +364,17 @@
     <Content Include="Views\Home\Services.cshtml" />
     <Content Include="Views\ServiceProvides\AdminPaidOffServices.cshtml" />
     <Content Include="Views\Home\Enquiries.cshtml" />
+    <Content Include="Views\ServiceProvides\ProcessTask.cshtml" />
+    <Content Include="Views\ServiceProvides\MyPaidOffServices.cshtml" />
+    <Content Include="Views\ServiceProvides\OverDueTask.cshtml" />
+    <Content Include="Views\ServiceProvides\CloseTask.cshtml" />
+    <Content Include="Views\ServiceProvides\MyServicesHistory.cshtml" />
+    <Content Include="Views\ServiceProvides\RateService.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\Quotations\" />
+    <Folder Include="Views\AllServices\" />
     <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>
