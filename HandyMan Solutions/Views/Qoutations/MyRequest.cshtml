@@ -1,0 +1,202 @@
+﻿@model IEnumerable<HandyMan_Solutions.Models.Qoutation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Include SweetAlert2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+<!-- Include SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+<div class="mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>My Quotation Request(s)</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <a href="@Url.Action("SubmitRequest", "Qoutations")" class="btn btn-outline-secondary">
+                            <i class="bi bi-file-earmark-text me-2"></i>
+                            Quotation Request
+                        </a>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Service Type</th>
+                                <th>Description</th>
+                                <th>Technician</th>
+                                <th>Cost</th>
+                                <th>Applied</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.ServiceType)</td>
+                                        <td><small>@Html.DisplayFor(modelItem => item.Description)</small></td>
+                                        <td>
+                                            @if (item.TechnicianAssigned == "None")
+                                            {
+                                                <small>@Html.DisplayFor(modelItem => item.TechnicianAssigned)</small>
+                                            }
+                                            else
+                                            {
+                                                <small class="alert alert-success">
+                                                    <i class="bi bi-person"></i> Team Assigned
+                                                </small>
+                                            }
+
+                                        </td>
+                                        <td><small>@String.Format("R {0:N2}", item.EstimatedCost)</small></td>
+                                        <td><small>@String.Format("{0:yyyy-MM-dd}", item.RequestedDate)</small></td>
+                                        <td id="status-@item.Id">
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
+                                        <td>
+                                            @if (item.Status == "Pending...")
+                                            {
+                                                @*                                                <a class="btn btn-outline-warning btn-sm" title="Update" onclick="confirmUpdate('@Url.Action("Update", "Qoutations", new { id = item.Id })')">
+                <i class="bi bi-pencil"></i>
+            </a>*@
+                                                <a class="btn btn-outline-danger btn-sm" title="Cancel" onclick="confirmCancel('@Url.Action("Cancell", "Qoutations", new { id = item.Id })')">
+                                                    Cancell <i class="bi bi-x-circle"></i>
+                                                </a>
+                                            }
+                                            @if (item.EstimatedCost != 0)
+                                            {
+                                                if (item.Status == "Inspected" && item.NewPaid != "Paid")
+                                                {
+                                                    <a class="btn btn-outline-info btn-sm" title="Pay Now" data-bs-toggle="modal" data-bs-target="#paymentModal" data-quotation-id="@item.Id">
+                                                        <i class="bi bi-credit-card"></i> Pay Now
+                                                    </a>
+                                                }else
+                                                {
+                                                    <small class="alert alert-success">
+                                                        <i class="bi bi-person"></i> Service Paid Off
+                                                    </small>
+                                                }
+                                            }@if (item.Status == "Cancelled")
+                                            {
+                                                <small class="alert alert-danger">Cancelled</small>
+                                            }
+                                            else if (item.Status == "Approved")
+                                            {
+                                                <small class="alert alert-success">
+                                                    <i class="bi bi-file-earmark-text"></i> Due Inspection
+                                                </small>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="9">
+                                        <div class="alert alert-danger text-center rounded-0" style="border:solid green" role="alert">
+                                            No Records
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Payment Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title" id="paymentModalLabel">Confirm Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Your request has been processed successfully. You have to pay for services now, click the button below.</p>
+            </div>
+            <div class="modal-footer">
+                <form id="paymentForm" method="post" action="@Url.Action("PayNow", "Payments")">
+                    <!-- Hidden input to store quotation ID -->
+                    <input type="hidden" name="quotationId" id="quotationId" value="" />
+                    <button type="submit" class="btn btn-primary">Pay Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        $('#paymentModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var quotationId = button.data('quotation-id'); // Extract info from data-* attributes
+
+            // Update the hidden input field with the quotation ID
+            var form = $(this).find('form');
+            form.find('#quotationId').val(quotationId);
+        });
+
+        // SweetAlert2 for cancellation confirmation
+        function confirmCancel(url) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you really want to cancel this quotation request?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, cancel it!',
+                cancelButtonText: 'No, keep it'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Perform the cancellation
+                    $.post(url, function (response) {
+                        if (response.success) {
+                            Swal.fire(
+                                'Cancelled!',
+                                response.message,
+                                'success'
+                            ).then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                response.message,
+                                'error'
+                            );
+                        }
+                    }).fail(function () {
+                        Swal.fire(
+                            'Error!',
+                            'An error occurred while processing your request.',
+                            'error'
+                        );
+                    });
+                }
+            });
+        }
+    </script>
+}

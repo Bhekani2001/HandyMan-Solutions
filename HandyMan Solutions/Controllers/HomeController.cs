@@ -38,9 +38,12 @@ namespace Tassc.Controllers
             return View(model);
         }
 
-
-
-
+        [HttpGet]
+        public ActionResult Enquiries()
+        {
+            var Enquiries = db.Contacts.ToList();
+            return View(Enquiries);
+        }
         public ActionResult FAQs()
         {
             return View();

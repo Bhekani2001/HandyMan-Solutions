@@ -1,0 +1,103 @@
+﻿@model IEnumerable<HandyMan_Solutions.Models.ServiceProvided>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="width: 1180px;">
+                <div class="card-header text-center">
+                    <h2>Services In-Progress</h2>
+                </div>
+                <div class="card-body">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Service</th>
+                                <th>Technical Note</th>
+                                <th>Technical Status</th>
+                                <th>Employee</th>
+                                <th>Started</th>
+                                <th>Ended</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.ServiceType)</td>
+                                        <td><small>@Html.DisplayFor(modelItem => item.TechnicalNotes)</small></td>
+                                        <td><small>@Html.DisplayFor(modelItem => item.TechnicalStatus)</small></td>
+                                        <td>@if (item.TechnicianAssigned != null)
+                                        {
+                                            <small class="alert alert-success">Assigned</small>
+                                        }
+                                        </td>
+                                        <td><small>@String.Format("{0:yyyy-MM-dd}", item.StartDate)</small></td>
+                                        <td><small>@String.Format("{0:yyyy-MM-dd}", item.EndDate)</small></td>
+                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.Status)</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="9">
+                                        <div class="alert alert-danger text-center rounded-0" style="border: solid green" role="alert">
+                                            No Records
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title" id="contactModalLabel">Customer Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Fullname:</strong> <span id="contactUsername"></span></p>
+                <p><strong>Email:</strong> <span id="contactEmail"></span></p>
+                <p><strong>Address:</strong> <span id="contactAddress"></span></p>
+                <p><strong>Contact:</strong> <span id="contactPhone"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#contactModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var username = button.data('username');
+        var email = button.data('email');
+        var address = button.data('address');
+        var contact = button.data('contact');
+
+        var modal = $(this);
+        modal.find('#contactUsername').text(username);
+        modal.find('#contactEmail').text(email);
+        modal.find('#contactAddress').text(address);
+        modal.find('#contactPhone').text(contact);
+    });
+</script>

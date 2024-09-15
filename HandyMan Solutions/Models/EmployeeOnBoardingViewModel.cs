@@ -10,7 +10,9 @@ namespace HandyMan_Solutions.Models
     public class EmployeeOnBoardingViewModel
     {
         public EmployeeOnBoarding Employee { get; set; }
-        public IEnumerable<SelectListItem> Roles { get; set; }
+        public List<SelectListItem> Roles { get; set; }
+        public string SelectedRoleId { get; set; }
     }
+
 
 }

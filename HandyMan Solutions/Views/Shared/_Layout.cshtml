@@ -1,13 +1,29 @@
 ﻿<!DOCTYPE html>
 <html>
+@{
+    var employeeKey = ViewBag.EmployeeKey ?? 0;
+}
 <head>
-    <title>HandyMan Solutions</title>
+    <title>HandyMan Services</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
         .form-control.required {
-            border-left: 5px solid red;
+            border-left: 5px solid #ff6347;
+            padding-left: 25px;
+            position: relative;
         }
+
+            .form-control.required::before {
+                content: "*";
+                color: #ff6347;
+                font-weight: bold;
+                font-size: 1.2em;
+                position: absolute;
+                left: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
 
         .navbar-brand-custom {
             display: block;
@@ -101,6 +117,15 @@
                 background-color: #575757;
             }
     </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -111,26 +136,74 @@
 <body>
     @if (User.Identity.IsAuthenticated)
     {
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-secondary">
             <div class="container">
                 @if (User.IsInRole("Admin"))
                 {
-                    <button class="btn btn-primary" onclick="openNav()">☰</button>
-                    @Html.ActionLink("HandyMan Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navbar-brand-custom" })
+                    @*<button class="btn btn-primary" onclick="openNav()">☰</button>*@
+                    @Html.ActionLink("Car Repair Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navbar-brand-custom" })
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
-                            <li>@Html.ActionLink("Contact", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li>@Html.ActionLink("Feedbacks", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li>@Html.ActionLink("Marketing", "OnMap", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li>@Html.ActionLink("Sale", "Index", "Feedbacks", new { area = "" }, new { @class = "nav-link" })</li>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Employees</a>
+                                <div class="dropdown-menu bg-light shadow">
+                                    <a href="@Url.Action("OnboardNewEmployee","EmployeeOnBoardings")" class="dropdown-item">
+                                        <i class="bi bi-person-plus"></i> New Employee
+                                    </a>
+                                    <a href="@Url.Action("ExistingEmployees","EmployeeOnBoardings")" class="dropdown-item">
+                                        <i class="bi bi-person-lines-fill"></i> Existing Employees
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Management</a>
+                                <div class="dropdown-menu bg-light shadow">
+                                    <a href="@Url.Action("SelectQuotationAndEmployee", "AssignTasks")" class="dropdown-item">
+                                        <i class="bi bi-calendar-check"></i> Due Quotations
+                                    </a>
+                                    <a href="@Url.Action("PaidOffServices", "ServiceProvides")" class="dropdown-item">
+                                        <i class="bi bi-calendar-check"></i> Due Service Delivery
+                                    </a>
+                                   <a href="@Url.Action("Enquiries", "Home")" class="dropdown-item">
+                                        <i class="bi bi-chat-dots"></i> Enquiries
+                                    </a>
+                               @*     <a href="#" class="dropdown-item">
+                                        <i class="bi bi-megaphone"></i> Marketing
+                                    </a>*@
+                                    <a href="@Url.Action("AllRequest", "Qoutations")" class="dropdown-item">
+                                        <i class="bi bi-file-earmark-text"></i> New Quotations
+                                    </a>
+                                    <a href="@Url.Action("AdminPaidOffServices", "ServiceProvides")" class="dropdown-item">
+                                        <i class="bi bi-file-earmark-text"></i> Paid Inspection
+                                    </a>
+                                    <a href="@Url.Action("Orders", "Transactions")" class="dropdown-item">
+                                        <i class="bi bi-clock"></i> Work In Progress
+                                    </a>
+                                </div>
+                            </div>
+
+
+
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Report & Analyses</a>
+                                <div class="dropdown-menu bg-light shadow">
+                                    <a href="@Url.Action("OrdersHistory","Transactions")" class="dropdown-item">
+                                        <i class="bi bi-clock-history"></i> Qouation History
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="bi bi-bar-chart"></i> Visual Analyses
+                                    </a>
+                                </div>
+                            </div>
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>
                 }
-                else if (User.IsInRole("Appliance Repair Technician") || User.IsInRole("Carpenter")|| User.IsInRole("Electrician")|| User.IsInRole("General Home Maintenance")|| User.IsInRole("HVAC Technician")|| User.IsInRole("Plumber"))
+                else if (User.IsInRole("Electrician"))
                 {
                     @Html.ActionLink("HandyMan Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navbar-brand-custom" })
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -138,27 +211,30 @@
                     </button>
                     <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Activities</a>
-                                <div class="dropdown-menu bg-light">
-                                    <a href="@Url.Action("UserSubscriptions","UploadContents")" class="dropdown-item">OutStanding Task</a>
-                                    <a href="@Url.Action("Index","DeviceBookings")" class="dropdown-item">Task History</a>
-                                    <a href="@Url.Action("Index","InterLibraryLoanApplications")" class="dropdown-item">Task In-Process</a>
-                                </div>
-                            </div>
-                            
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Qoutations</a>
-                                <div class="dropdown-menu bg-light">
-                                    <a href="@Url.Action("UserSubscriptions","UploadContents")" class="dropdown-item">OutStanding Task</a>
-                                    <a href="@Url.Action("Index","DeviceBookings")" class="dropdown-item">Task History</a>
-                                    <a href="@Url.Action("Index","InterLibraryLoanApplications")" class="dropdown-item">Task In-Process</a>
-                                </div>
-                            </div>
+                            <li>
+                                @Html.ActionLink("Qoutation Duties", "QoutationDuties", "AssignTasks", new { employeeKey = employeeKey }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Task Duties", "PaidOffServices", "ServiceProvides", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("OverDue Task", "OverDueTask", "ServiceProvides", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                  @*          <li>
+                                @Html.ActionLink("Duties History", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Duties In-Progress", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Forward Duty", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
+                            </li>*@
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>
                 }
+
+
                 else
                 {
                     @Html.ActionLink("HandyMan Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navbar-brand-custom" })
@@ -167,89 +243,39 @@
                     </button>
                     <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
-                            <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li>@Html.ActionLink("Services", "Services", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>
+                                <a href="@Url.Action("MyRequest", "Qoutations")" class="nav-link">
+                                    <i class="bi bi-file-earmark-text text-primary"></i> Qoutation
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("QoutationHistory", "Qoutations")" class="nav-link">
+                                    <i class="bi bi-clock-history text-primary"></i> Qoutation History
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("MyPaidOffServices", "ServiceProvides")" class="nav-link">
+                                    <i class="bi bi-gear text-primary"></i> In Progress
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Contact", "Home")" class="nav-link">
+                                    <i class="bi bi-envelope text-primary"></i> Report Issues
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("MyServicesHistory", "ServiceProvides")" class="nav-link">
+                                    <i class="bi bi-calendar-check text-primary"></i> Service History
+                                </a>
+                            </li>
                         </ul>
+
                         @Html.Partial("_LoginPartial")
                     </div>
                 }
             </div>
         </nav>
 
-        if (User.IsInRole("Admin"))
-        {
-<div id="mySidebar" class="sidebar bg-dark">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-    <a href="@Url.Action("Index","Home")" onclick="closeNav()"><i class="fas fa-home"></i> Home</a>
-    <a href="@Url.Action("About","Home")" onclick="closeNav()"><i class="fas fa-info-circle"></i> About</a>
-    <div class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fas fa-box"></i> Assets Management
-        </a>
-        <div class="dropdown-menu bg-dark">
-            <a class="dropdown-item" href="@Url.Action("CarOnboarding", "CarOnboardings")">
-                <i class="bi bi-car-front"></i> Car Onboarding
-            </a>
-            <a class="dropdown-item" href="@Url.Action("Cars", "CarOnboardings")">
-                <i class="bi bi-car-front"></i> Existing Cars
-            </a>
-        </div>
-    </div>
-
-    <div class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i> Employees</a>
-        <div class="dropdown-menu bg-dark">
-            <a class="dropdown-item" href="@Url.Action("OnboardNewEmployee", "EmployeeOnBoardings")">
-                <i class="bi bi-person-plus"></i> Register New Employee
-            </a>
-            <a class="dropdown-item" href="@Url.Action("ExistingEmployees", "EmployeeOnBoardings")">
-                <i class="bi bi-person"></i> Existing Employees
-            </a>
-            <a class="dropdown-item" href="@Url.Action("EmployeesActivityHistory", "Employee")">
-                <i class="bi bi-calendar"></i> Employees Activity History
-            </a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-briefcase"></i> Jobs</a>
-        <div class="dropdown-menu bg-dark">
-            <a class="dropdown-item" href="@Url.Action("RegisterNewEmployee", "Employee")">
-                <i class="bi bi-check-circle"></i> Closed Jobs
-            </a>
-            <a class="dropdown-item" href="@Url.Action("ExistingEmployees", "Employee")">
-                <i class="bi bi-clock"></i> Jobs In Process
-            </a>
-            <a class="dropdown-item" href="@Url.Action("AllQuotations", "Qoutations")">
-                <i class="bi bi-exclamation-triangle"></i> Unattended Jobs
-            </a>
-        </div>
-    </div>
-
-    <div class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-cog"></i> Settings</a>
-        <div class="dropdown-menu bg-dark">
-            <a class="dropdown-item" href="@Url.Action("GeneralSettings", "Settings")">
-                <i class="bi bi-gear"></i> General Settings
-            </a>
-            <a class="dropdown-item" href="@Url.Action("ProfileSettings", "Settings")">
-                <i class="bi bi-person"></i> Profile Settings
-            </a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-chart-line"></i> Reports</a>
-        <div class="dropdown-menu bg-dark">
-            <a class="dropdown-item" href="@Url.Action("SalesReport", "Reports")">
-                <i class="bi bi-bar-chart"></i> Sales Report
-            </a>
-            <a class="dropdown-item" href="@Url.Action("EmployeeReport", "Reports")">
-                <i class="bi bi-person-lines-fill"></i> Employee Report
-            </a>
-        </div>
-    </div>
-</div>
-        }
     }
     else
     {
@@ -261,9 +287,9 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Services", "Services", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("FAQs", "FAQs", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Services", "Services", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
