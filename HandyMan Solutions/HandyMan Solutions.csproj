@@ -240,6 +240,7 @@
     <Compile Include="Controllers\AssignTasksController.cs" />
     <Compile Include="Controllers\CarOnboardingsController.cs" />
     <Compile Include="Controllers\EmployeeOnBoardingsController.cs" />
+    <Compile Include="Controllers\GeneralsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentsController.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AssetsManagement.cs" />
+    <Compile Include="Models\ChartViewModel.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\EmployeeOnBoarding.cs" />
     <Compile Include="Models\EmployeeOnBoardingViewModel.cs" />
@@ -260,6 +262,7 @@
     <Compile Include="Models\OverDueTask.cs" />
     <Compile Include="Models\Qoutation.cs" />
     <Compile Include="Models\RateService.cs" />
+    <Compile Include="Models\RateServiceViewModel.cs" />
     <Compile Include="Models\SelectedEmployeeName.cs" />
     <Compile Include="Models\SelectQuotationAndEmployeeViewModel.cs" />
     <Compile Include="Models\ServiceProvided.cs" />
@@ -369,7 +372,9 @@
     <Content Include="Views\ServiceProvides\OverDueTask.cshtml" />
     <Content Include="Views\ServiceProvides\CloseTask.cshtml" />
     <Content Include="Views\ServiceProvides\MyServicesHistory.cshtml" />
-    <Content Include="Views\ServiceProvides\RateService.cshtml" />
+    <Content Include="Views\Shared\_footer.cshtml" />
+    <Content Include="Views\Generals\RateService.cshtml" />
+    <Content Include="Views\Generals\Chart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

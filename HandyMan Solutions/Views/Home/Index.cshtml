@@ -18,14 +18,19 @@
                 <div class="card-body">
                     @if (User.IsInRole("Electrician"))
                     {
-                    <h1 class="display-4">Welcome to Employees Dashboard</h1>
+                        <div class="alert alert-info">
+                            <h4 class="alert-heading display-5">Electrician Dashboard</h4>
+                            <p>Welcome, Electrician! Here's your dashboard:</p>
+                        </div>
                     }
-                    else if(!User.IsInRole("Admin")) {
-                <div class="container mt-4">
-                    <h1 class="display-4">Welcome to HandyMan Services</h1>
-                    <br /><br /><br />
-                    <p class="lead">We're glad to have you here! Explore our services and let us assist you with your home needs.</p>
-                </div>
+
+                    else if (!User.IsInRole("Admin"))
+                    {
+                        <div class="container mt-4">
+                            <h1 class="display-4">Welcome to HandyMan Services</h1>
+                            <br />
+                            <p class="lead">We're glad to have you here! Explore our services and let us assist you with your home needs.</p>
+                        </div>
                     }
 
                     @if (User.IsInRole("Admin"))
@@ -45,7 +50,7 @@
 
                         <br />
                         <div class="d-flex justify-content-center">
-                            <img src="@Url.Action("GenerateQRCode", "Home", new { url = Url.Action("Login", "Account", null, Request.Url.Scheme) })" alt="QR Code" class="img-fluid" style="max-width: 200px;height:190px" />
+                            <img src="@Url.Action("GenerateQRCode", "Home", new { url = Url.Action("Login", "Account", null, Request.Url.Scheme) })" alt="QR Code" class="img-fluid" style="max-width: 200px;height:120px" />
                         </div>
                     }
                 </div>

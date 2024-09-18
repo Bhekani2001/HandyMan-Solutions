@@ -47,6 +47,14 @@ namespace HandyMan_Solutions.Controllers
             return View(service);
         }
         
+        public ActionResult AdminPaidOffServices()
+        {
+            var service = db.ServiceProvideds
+                                  .Where(sq => sq.Paid =="Yes" && sq.Status== "In-Progress")
+                                  .ToList();
+            return View(service);
+        }
+        
         public ActionResult ServiceHistory()
         {
             var service = db.ServiceProvideds
@@ -61,15 +69,7 @@ namespace HandyMan_Solutions.Controllers
                                   .ToList();
             return View(service);
         }
-        
-        public ActionResult AdminPaidOffServices()
-        {
-            var service = db.ServiceProvideds
-                                  .Where(sq => sq.Paid =="Yes")
-                                  .ToList();
-            return View(service);
-        }
-
+ 
         public ActionResult ProcessTask(int? id)
         {
             if (id == null)
@@ -209,49 +209,6 @@ namespace HandyMan_Solutions.Controllers
             }
         }
 
-
-        [HttpGet]
-        public ActionResult RateService()
-        {
-            var userId = User.Identity.GetUserId();
-            var userServices = db.ServiceProvideds
-                .Where(s => s.UserId == userId)
-                .ToList();
-
-            var model = new RateService
-            {
-                UserId = userId,
-                UserServices = userServices
-            };
-
-            return View(model);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult RateService(RateService model)
-        {
-            if (ModelState.IsValid)
-            {
-                var existingRateService = db.RateServices.FirstOrDefault(rs => rs.Id == model.Id && rs.UserId == model.UserId);
-
-                if (existingRateService != null)
-                {
-                    existingRateService.Status = model.Status;
-                    existingRateService.Rating = model.Rating;
-                    existingRateService.Comments = model.Comments;
-                }
-                else
-                {
-                    db.RateServices.Add(model);
-                }
-
-                db.SaveChanges();
-
-                return RedirectToAction(nameof(RateService));
-            }
-
-            return View("RateService", model);
-        }
 
         [HttpPost]
         public ActionResult TransferServiceToOverDue(int? id)

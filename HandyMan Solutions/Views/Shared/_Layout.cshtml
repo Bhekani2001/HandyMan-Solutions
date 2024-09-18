@@ -133,7 +133,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 </head>
-<body>
+<body style="background-image:url(../../Images/HandyMan.jpeg)">
     @if (User.Identity.IsAuthenticated)
     {
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-secondary">
@@ -147,6 +147,16 @@
                     </button>
                     <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
+
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Assets Management</a>
+                                <div class="dropdown-menu bg-light shadow">
+                                    <a href="@Url.Action("Cars", "CarOnBoardings")" class="dropdown-item">
+                                        <i class="fas fa-car"></i> Vehicle
+                                    </a>
+                                </div>
+                            </div>
+                            
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Employees</a>
                                 <div class="dropdown-menu bg-light shadow">
@@ -180,7 +190,7 @@
                                     <a href="@Url.Action("AdminPaidOffServices", "ServiceProvides")" class="dropdown-item">
                                         <i class="bi bi-file-earmark-text"></i> Paid Inspection
                                     </a>
-                                    <a href="@Url.Action("Orders", "Transactions")" class="dropdown-item">
+                                    <a href="@Url.Action("AdminPaidOffServices", "ServiceProvides")" class="dropdown-item">
                                         <i class="bi bi-clock"></i> Work In Progress
                                     </a>
                                 </div>
@@ -191,7 +201,7 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Report & Analyses</a>
                                 <div class="dropdown-menu bg-light shadow">
-                                    <a href="@Url.Action("OrdersHistory","Transactions")" class="dropdown-item">
+                                    <a href="@Url.Action("Chart","Generals")" class="dropdown-item">
                                         <i class="bi bi-clock-history"></i> Qouation History
                                     </a>
                                     <a href="#" class="dropdown-item">
@@ -300,6 +310,11 @@
     <div id="main">
         <div class="container body-content">
             @RenderBody()
+            <br /><br />
+            @if (!User.IsInRole("Admin"))
+            {
+                @Html.Partial("_footer")
+            }
         </div>
     </div>
 

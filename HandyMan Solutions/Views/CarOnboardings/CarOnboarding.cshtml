@@ -6,7 +6,7 @@
 <div class="container mt-5">
     <div class="jumbotron mx-auto shadow" style="max-width: 950px; padding: 0.01rem 0.1rem;">
         <div class="jumbotron-header text-center">
-            <h1 class="display-6 shadow">New Car OnBoarding</h1>
+            <h1 class="display-6">New Car OnBoarding</h1>
         </div>
         <div class="card-body">
             @using (Html.BeginForm("CarOnboarding", "CarOnboardings", FormMethod.Post, new { id = "newcarForm" }))
@@ -79,16 +79,7 @@
                     </div>
                 </div>
 
-                <!-- Horizontal Line -->
                 <hr class="my-4" />
-
-                <div class="row mt-2">
-                    <div class="col-md-12 text-center">
-                        <a href="@Url.Action("Cars", "CarOnboardings")" class="btn btn-outline-secondary">
-                            <i class="fas fa-arrow-left"></i> Back to List
-                        </a>
-                    </div>
-                </div>
             }
         </div>
     </div>
