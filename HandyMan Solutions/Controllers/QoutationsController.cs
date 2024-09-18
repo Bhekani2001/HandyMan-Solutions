@@ -129,7 +129,6 @@ namespace HandyMan_Solutions.Controllers
 
                 try
                 {
-                    // Save the quotation temporarily in session
                     Session["PendingQuotation"] = qoutation;
 
                     var subject = "HandyMan Service Request";
@@ -143,7 +142,6 @@ namespace HandyMan_Solutions.Controllers
                 }
                 catch (Exception ex)
                 {
-                    // Log exception
                     return Json(new { success = false, message = "An error occurred while submitting the request." });
                 }
             }
@@ -156,7 +154,6 @@ namespace HandyMan_Solutions.Controllers
         {
             decimal quotationFee = 250m;
 
-            // Get the pending quotation from session
             var quotation = Session["PendingQuotation"] as Qoutation;
 
             if (quotation == null)
@@ -164,7 +161,6 @@ namespace HandyMan_Solutions.Controllers
                 return RedirectToAction("SubmitRequest");
             }
 
-            // Create payment parameters
             var paymentParams = new Dictionary<string, string>
             {
                 { "merchant_id", MerchantId },
@@ -213,7 +209,6 @@ namespace HandyMan_Solutions.Controllers
 
                SendEmail(quotation.UserEmail, subject, body);
 
-                // Clear the session
                 Session.Remove("PendingQuotation");
 
                 ViewBag.Message = "Payment successful!";

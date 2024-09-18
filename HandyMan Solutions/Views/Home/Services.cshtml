@@ -2,26 +2,73 @@
     ViewBag.Title = "Services";
 }
 
-<div class="container mt-5">
+<div class="container mt-5" style="width:100%">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="mb-0 text-center">Available Services</h4>
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
+                        <!-- Service 1: Appliance Repair -->
                         <li class="list-group-item">
-                            <strong>Service 1:</strong> Description of Service 1
+                            <strong>Appliance Repair:</strong>
+                            <span id="appliance-short"> Repair services for a wide range of home appliances... </span>
+                            <a href="#appliance" data-toggle="collapse" class="text-primary">Read More</a>
+                            <div id="appliance" class="collapse mt-2">
+                                We offer expert appliance repair services for refrigerators, ovens, washing machines, and more. Whether it's a small issue or a major malfunction, our technicians have the skills to get your appliances running smoothly again.
+                            </div>
                         </li>
+
+                        <!-- Service 2: HVAC Services -->
                         <li class="list-group-item">
-                            <strong>Service 2:</strong> Description of Service 2
+                            <strong>HVAC Services:</strong>
+                            <span id="hvac-short"> Heating, ventilation, and air conditioning services... </span>
+                            <a href="#hvac" data-toggle="collapse" class="text-primary">Read More</a>
+                            <div id="hvac" class="collapse mt-2">
+                                Our HVAC technicians provide top-tier services for air conditioning and heating systems. We handle installations, repairs, and routine maintenance to ensure your home stays comfortable year-round.
+                            </div>
                         </li>
+
+                        <!-- Service 3: Carpentry -->
                         <li class="list-group-item">
-                            <strong>Service 3:</strong> Description of Service 3
+                            <strong>Carpentry:</strong>
+                            <span id="carpentry-short"> Custom carpentry and woodworking... </span>
+                            <a href="#carpentry" data-toggle="collapse" class="text-primary">Read More</a>
+                            <div id="carpentry" class="collapse mt-2">
+                                We offer custom carpentry services for all types of home projects, including cabinetry, furniture making, and home renovations. Whether it's a repair or a new build, our carpenters ensure high-quality craftsmanship.
+                            </div>
                         </li>
+
+                        <!-- Service 4: Electrical Services -->
                         <li class="list-group-item">
-                            <strong>Service 4:</strong> Description of Service 4
+                            <strong>Electrical Services:</strong>
+                            <span id="electrical-short"> Comprehensive electrical solutions... </span>
+                            <a href="#electrical" data-toggle="collapse" class="text-primary">Read More</a>
+                            <div id="electrical" class="collapse mt-2">
+                                From installing new lighting fixtures to troubleshooting electrical issues, our licensed electricians are equipped to handle all of your home's electrical needs safely and efficiently.
+                            </div>
+                        </li>
+
+                        <!-- Service 5: Plumbing Services -->
+                        <li class="list-group-item">
+                            <strong>Plumbing Services:</strong>
+                            <span id="plumbing-short"> Expert plumbing repairs and installations... </span>
+                            <a href="#plumbing" data-toggle="collapse" class="text-primary">Read More</a>
+                            <div id="plumbing" class="collapse mt-2">
+                                Our plumbers are experienced in handling a variety of plumbing issues, from leaky faucets to major pipe repairs. We also offer installation services for sinks, toilets, and other fixtures.
+                            </div>
+                        </li>
+
+                        <!-- Service 6: General Home Maintenance -->
+                        <li class="list-group-item">
+                            <strong>General Home Maintenance:</strong>
+                            <span id="maintenance-short"> All-around home upkeep services... </span>
+                            <a href="#maintenance" data-toggle="collapse" class="text-primary">Read More</a>
+                            <div id="maintenance" class="collapse mt-2">
+                                We provide a full range of home maintenance services, including gutter cleaning, painting, flooring repairs, and more, ensuring that your home stays in great condition all year round.
+                            </div>
                         </li>
                     </ul>
                 </div>

@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <div class="card" style="width:1180px">
                 <div class="card-header text-center">
-                    <h2>Paid Off Services</h2>
+                    <h2>Work In-Progress Services</h2>
                 </div>
                 <div class="card-body">
 
@@ -40,10 +40,25 @@
                                         <td>@Html.DisplayFor(modelItem => item.ServiceType)</td>
                                         <td><small>@Html.DisplayFor(modelItem => item.TechnicalNotes)</small></td>
                                         <td><small>@Html.DisplayFor(modelItem => item.TechnicalStatus)</small></td>
-                                        <td><small>@Html.DisplayFor(modelItem => item.TechnicianAssigned)</small></td>
-                                        <td><small>@Html.DisplayFor(modelItem => item.Paid)</small></td>
-                                        <td><small>@String.Format("{0:yyyy-MM-dd}", item.PaymentDate)</small></td>
-                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.Status)</td>
+                                        <td>
+                                            @if (item.TechnicianAssigned != null)
+                                            {
+                                                <small class="alert alert-success">Assigned</small>
+                                            }
+                                        </td>
+                                    <td>
+                                        @if (item.Paid == "Yes")
+                                        {
+                                            <i class="bi bi-check-circle" style="color: green;"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="bi bi-x-circle" style="color: red;"></i>
+                                        }
+                                    </td>
+
+                                    <td><small>@String.Format("{0:yyyy-MM-dd}", item.PaymentDate)</small></td>
+                                    <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.Status)</td>
                                     </tr>
                                 }
                             }

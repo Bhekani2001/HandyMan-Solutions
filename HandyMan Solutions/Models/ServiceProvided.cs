@@ -24,6 +24,7 @@ namespace HandyMan_Solutions.Models
         public DateTime EndDate { get; set; }
         public decimal EstimatedCost { get; set; }
         public string Status { get; set; }
+        public bool Rated { get; set; }
 
 
         public string TechnicalNotes { get; set; }
