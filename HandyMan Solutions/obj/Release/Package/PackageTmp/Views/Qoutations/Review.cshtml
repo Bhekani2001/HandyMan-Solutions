@@ -1,0 +1,166 @@
+﻿@model HandyMan_Solutions.Models.Qoutation
+
+@{
+    ViewBag.Title = "Review Quotation";
+}
+
+<div class="d-flex justify-content-center mt-1">
+    <div class="card" style="width: 80%; position: relative;">
+        <div class="card-body">
+            <button type="button" class="btn btn-info btn-lg btn-sm" style="position: absolute; top: 15px; right: 15px;" data-bs-toggle="modal" data-bs-target="#viewPicturesModal">
+                <i class="bi bi-images"></i> View Pictures
+            </button>
+
+            <h3 class="text-center">Review Quotation Request Details</h3>
+            <p class="lead text-center">Please review this quotation's details carefully before proceeding.</p>
+
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "reviewForm" }))
+            {
+                <!-- Hidden field to hold the quotation ID -->
+                @Html.HiddenFor(m => m.Id)
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        Customer
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        Address
+                        @Html.TextBoxFor(m => m.UserAddress, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        Email
+                        @Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        Contact
+                        @Html.TextBoxFor(m => m.UserContact, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(m => m.Description)
+                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(m => m.AdditionalNotes)
+                        @Html.TextBoxFor(m => m.AdditionalNotes, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        Service
+                        @Html.TextBoxFor(m => m.ServiceType, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(m => m.Status)
+                        @Html.TextBoxFor(m => m.Status, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="button" id="approveBtn" class="btn btn-success btn-sm" data-id="@Model.Id">
+                        <i class="bi bi-check-circle"></i> Approve
+                    </button>
+                    <button type="button" id="declineBtn" class="btn btn-danger btn-sm" data-id="@Model.Id">
+                        <i class="bi bi-x-circle"></i> Decline
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="viewPicturesModal" tabindex="-1" aria-labelledby="viewPicturesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewPicturesModalLabel">Quotation Picture</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                @if (Model.ImageData != null && Model.ImageData.Length > 0)
+                {
+                    <img src="data:image;base64,@Convert.ToBase64String(Model.ImageData)" class="img-fluid" alt="Quotation Picture" />
+                }
+                else
+                {
+                    <p>No picture available for this quotation.</p>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function submitReviewForm(actionUrl, id, actionType) {
+            Swal.fire({
+                title: `Are you sure you want to ${actionType} this quotation?`,
+                text: "This action cannot be undone.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, proceed',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: actionUrl,
+                        type: "POST",
+                        data: { qouteId: id },
+                        success: function (response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: response.message,
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then(() => {
+                                    window.location.href = "@Url.Action("AllRequest", "Qoutations")";
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: response.message,
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+                        },
+                        error: function () {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'An error occurred while processing your request.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $('#approveBtn').on('click', function () {
+                const id = $(this).data('id');
+                submitReviewForm('@Url.Action("Approve", "Qoutations")', id, 'approve');
+            });
+
+            $('#declineBtn').on('click', function () {
+                const id = $(this).data('id');
+                submitReviewForm('@Url.Action("Decline", "Qoutations")', id, 'decline');
+            });
+        });
+    </script>
+}

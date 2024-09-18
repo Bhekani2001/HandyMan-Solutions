@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Payment Success";
+}
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="jumbotron text-center" style="width: 80%; position: relative;">
+        <h2 class="display-5">
+             Payment Successful
+        </h2>
+        <p class="lead">Thank you for your request! Your payment has been processed successfully.</p>
+        <hr class="my-4">
+        <p>We appreciate your business and are excited to continue serving you. If you have any questions or need further assistance, please don't hesitate to contact us.</p>
+        <a class="btn btn-primary btn-lg" href="@Url.Action("MyRequest", "Qoutations")" role="button">
+            <i class="bi bi-bag-check"></i> My Qoutations
+        </a>
+    </div>
+</div>

@@ -157,7 +157,7 @@ namespace HandyMan_Solutions.Controllers
                     Address = model.Address,
                     PhoneNumber = model.Contact,
                     Balance = 0,
-                    RegisteredDate = DateTime.Now
+                   // RegisteredDate = DateTime.Now
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);

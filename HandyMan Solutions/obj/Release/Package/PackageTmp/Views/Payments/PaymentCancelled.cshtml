@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Payment Cancelled";
+}
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="jumbotron text-center" style="width: 80%;">
+        <h2 class="display-5 text-danger">
+            <i class="bi bi-x-circle"></i> Payment Cancelled
+        </h2>
+        <p class="lead">Unfortunately, your payment was not completed. If you wish to try again, please review your payment details or choose an alternative payment method.</p>
+        <hr class="my-4">
+        <p>If you have any questions or need assistance, please feel free to contact our support team. We are here to help!</p>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a class="btn btn-primary ml-3" href="@Url.Action("Contact", "Home")" role="button">
+                <i class="bi bi-headset mr-2"></i> Contact Support
+            </a>
+        </div>
+
+    </div>
+</div>

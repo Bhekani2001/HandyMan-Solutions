@@ -1,0 +1,65 @@
+﻿@model IEnumerable<HandyMan_Solutions.Models.Contact>
+
+@{
+    ViewBag.Title = "Enquiries";
+}
+
+
+<div class="mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Customer Enquiries</h2>
+                </div>
+                <div class="card-body">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th>Reason</th>
+                                <th>Service</th>
+                                <th>Message</th>
+                                <th>Logged Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Reason)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Service)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Message)</td>
+                                        <td><small>@String.Format("{0:yyyy-MM-dd}", item.LoggedOn)</small></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="9">
+                                        <div class="alert alert-danger text-center rounded-0" style="border:solid green" role="alert">
+                                            No Records
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

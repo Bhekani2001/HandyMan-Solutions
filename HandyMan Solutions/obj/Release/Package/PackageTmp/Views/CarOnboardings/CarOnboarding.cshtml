@@ -1,0 +1,141 @@
+﻿@model HandyMan_Solutions.Models.CarOnboarding
+@{
+    ViewBag.Title = "Contact";
+}
+
+<div class="container mt-5">
+    <div class="jumbotron mx-auto shadow" style="max-width: 950px; padding: 0.01rem 0.1rem;">
+        <div class="jumbotron-header text-center">
+            <h1 class="display-6">New Car OnBoarding</h1>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("CarOnboarding", "CarOnboardings", FormMethod.Post, new { id = "newcarForm" }))
+            {
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="firstname">Name </label>
+                        @Html.TextBoxFor(m => m.CarName, new { @class = "form-control required", @id = "CarName" })
+                        @Html.ValidationMessageFor(m => m.CarName)
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="service">Type</label>
+                            @Html.DropDownListFor(
+                                m => m.CarType,
+                                (IEnumerable<SelectListItem>)ViewBag.CarTypeOptions,
+                                "Select Type",
+                                new { @class = "form-control required", @id = "CarType" }
+                            )
+                            @Html.ValidationMessageFor(m => m.CarType)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="service">Model</label>
+                            @Html.DropDownListFor(
+                                m => m.CarModel,
+                                (IEnumerable<SelectListItem>)ViewBag.YearOptions,
+                                "Select Model",
+                                new { @class = "form-control required", @id = "CarModel" }
+                            )
+                            @Html.ValidationMessageFor(m => m.CarModel)
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="service">Make</label>
+                            @Html.DropDownListFor(
+                                m => m.CarMake,
+                                (IEnumerable<SelectListItem>)ViewBag.CarMakeOptions,
+                                "Select Make",
+                                new { @class = "form-control required", @id = "CarMake" }
+                            )
+                            @Html.ValidationMessageFor(m => m.CarMake)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="firstname">Regi No. </label>
+                        @Html.TextBoxFor(m => m.CarRegistrationNumber, new { @class = "form-control required", @id = "CarRegistrationNumber" })
+                        @Html.ValidationMessageFor(m => m.CarRegistrationNumber)
+                    </div>
+                    <div class="col-md-6">
+                        <label for="firstname">Disc Expiry Date </label>
+                        @Html.TextBoxFor(m => m.DiscExpiryDate, new { @class = "form-control required", @id = "DiscExpiryDate", @type = "date" })
+                        @Html.ValidationMessageFor(m => m.DiscExpiryDate)
+                    </div>
+                </div>
+
+                <br />
+                <div class="row mt-4">
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="fas fa-paper-plane"></i> Submit
+                        </button>
+                    </div>
+                </div>
+
+                <hr class="my-4" />
+            }
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#newcarForm').on('submit', function (event) {
+            event.preventDefault();
+
+            var isValid = true;
+
+            $('.required').each(function () {
+                if ($(this).val() === '') {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please fill out all required fields!',
+                });
+                return;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function () {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Submitted!',
+                        text: 'Registered successfully.',
+                    }).then(() => {
+                        $('#newcarForm')[0].reset();
+                    });
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'There was a problem with your submission.',
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">

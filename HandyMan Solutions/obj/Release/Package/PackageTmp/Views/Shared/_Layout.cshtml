@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+<html>
+@{
+    var employeeKey = ViewBag.EmployeeKey ?? 0;
+}
+<head>
+    <title>HandyMan Services</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .form-control.required {
+            border-left: 5px solid #ff6347;
+            padding-left: 25px;
+            position: relative;
+        }
+
+            .form-control.required::before {
+                content: "*";
+                color: #ff6347;
+                font-weight: bold;
+                font-size: 1.2em;
+                position: absolute;
+                left: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+        .navbar-brand-custom {
+            display: block;
+            width: 150px;
+            height: 40px;
+            background-image: url(/Images/HandyMan.jpeg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            text-indent: -9999px;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            padding-top: 20px;
+            transition: 0.5s;
+            overflow-x: hidden;
+            z-index: 1;
+        }
+
+            .sidebar a {
+                padding: 10px 15px;
+                text-decoration: none;
+                font-size: 18px;
+                color: #818181;
+                display: block;
+                transition: 0.3s;
+                border: 1px solid transparent;
+                border-radius: 5px;
+            }
+
+                .sidebar a:hover {
+                    color: #f1f1f1;
+                    border: 1px solid #575757;
+                    background-color: #222;
+                }
+
+            .sidebar .closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 0px;
+        }
+
+        .dropdown-menu {
+            display: none;
+        }
+
+            .dropdown-menu.show {
+                display: block;
+            }
+
+        .dropdown-item {
+            color: #f1f1f1;
+        }
+
+            .dropdown-item:hover {
+                background-color: #575757;
+            }
+
+        .sidebar .dropdown-menu {
+            display: none;
+            padding-left: 0;
+        }
+
+            .sidebar .dropdown-menu.show {
+                display: block;
+            }
+
+        .sidebar .dropdown-item {
+            text-decoration: none;
+            color: #f1f1f1;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+            .sidebar .dropdown-item:hover {
+                background-color: #575757;
+            }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+</head>
+<body style="background-image:url(../../Images/HandyMan.jpeg)">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-secondary">
+            <div class="container">
+                @if (User.IsInRole("Admin"))
+                {
+                    @*<button class="btn btn-primary" onclick="openNav()">☰</button>*@
+                    @Html.ActionLink("Car Repair Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navbar-brand-custom" })
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Assets Management</a>
+                                <div class="dropdown-menu bg-light shadow">
+                                    <a href="@Url.Action("Cars", "CarOnBoardings")" class="dropdown-item">
+                                        <i class="fas fa-car"></i> Vehicle
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Employees</a>
+                                <div class="dropdown-menu bg-light shadow">
+                                    <a href="@Url.Action("OnboardNewEmployee","EmployeeOnBoardings")" class="dropdown-item">
+                                        <i class="bi bi-person-plus"></i> New Employee
+                                    </a>
+                                    <a href="@Url.Action("ExistingEmployees","EmployeeOnBoardings")" class="dropdown-item">
+                                        <i class="bi bi-person-lines-fill"></i> Existing Employees
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Management</a>
+                                <div class="dropdown-menu bg-light shadow">
+                                    <a href="@Url.Action("SelectQuotationAndEmployee", "AssignTasks")" class="dropdown-item">
+                                        <i class="bi bi-calendar-check"></i> Due Quotations
+                                    </a>
+                                    <a href="@Url.Action("PaidOffServices", "ServiceProvides")" class="dropdown-item">
+                                        <i class="bi bi-calendar-check"></i> Due Service Delivery
+                                    </a>
+                                   <a href="@Url.Action("Enquiries", "Home")" class="dropdown-item">
+                                        <i class="bi bi-chat-dots"></i> Enquiries
+                                    </a>
+                               @*     <a href="#" class="dropdown-item">
+                                        <i class="bi bi-megaphone"></i> Marketing
+                                    </a>*@
+                                    <a href="@Url.Action("AllRequest", "Qoutations")" class="dropdown-item">
+                                        <i class="bi bi-file-earmark-text"></i> New Quotations
+                                    </a>
+                                    <a href="@Url.Action("AdminPaidOffServices", "ServiceProvides")" class="dropdown-item">
+                                        <i class="bi bi-file-earmark-text"></i> Paid Inspection
+                                    </a>
+                                    <a href="@Url.Action("AdminPaidOffServices", "ServiceProvides")" class="dropdown-item">
+                                        <i class="bi bi-clock"></i> Work In Progress
+                                    </a>
+                                </div>
+                            </div>
+
+
+
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Report & Analyses</a>
+                                <div class="dropdown-menu bg-light shadow">
+                                    <a href="@Url.Action("Chart","Generals")" class="dropdown-item">
+                                        <i class="bi bi-clock-history"></i> Qouation History
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="bi bi-bar-chart"></i> Visual Analyses
+                                    </a>
+                                </div>
+                            </div>
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                }
+                else if (User.IsInRole("Electrician"))
+                {
+                    @Html.ActionLink("HandyMan Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navbar-brand-custom" })
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li>
+                                @Html.ActionLink("Qoutation Duties", "QoutationDuties", "AssignTasks", new { employeeKey = employeeKey }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Task Duties", "PaidOffServices", "ServiceProvides", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("OverDue Task", "OverDueTask", "ServiceProvides", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                  @*          <li>
+                                @Html.ActionLink("Duties History", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Duties In-Progress", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Forward Duty", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
+                            </li>*@
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                }
+
+
+                else
+                {
+                    @Html.ActionLink("HandyMan Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navbar-brand-custom" })
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li>
+                                <a href="@Url.Action("MyRequest", "Qoutations")" class="nav-link">
+                                    <i class="bi bi-file-earmark-text text-primary"></i> Qoutation
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("QoutationHistory", "Qoutations")" class="nav-link">
+                                    <i class="bi bi-clock-history text-primary"></i> Qoutation History
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("MyPaidOffServices", "ServiceProvides")" class="nav-link">
+                                    <i class="bi bi-gear text-primary"></i> In Progress
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Contact", "Home")" class="nav-link">
+                                    <i class="bi bi-envelope text-primary"></i> Report Issues
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("MyServicesHistory", "ServiceProvides")" class="nav-link">
+                                    <i class="bi bi-calendar-check text-primary"></i> Service History
+                                </a>
+                            </li>
+                        </ul>
+
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                }
+            </div>
+        </nav>
+
+    }
+    else
+    {
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+            <div class="container">
+                @Html.ActionLink("HandyMan Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navbar-brand-custom" })
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Services", "Services", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("FAQs", "FAQs", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+    }
+
+    <div id="main">
+        <div class="container body-content">
+            @RenderBody()
+            <br /><br />
+            @if (!User.IsInRole("Admin"))
+            {
+                @Html.Partial("_footer")
+            }
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+
+        $(document).ready(function () {
+            closeNav();
+
+            $(".sidebar a").click(function () {
+                if (!$(this).hasClass("dropdown-toggle")) {
+                    closeNav();
+                }
+            });
+
+            $(".dropdown-toggle").click(function (e) {
+                e.preventDefault();
+                var $dropdownMenu = $(this).next(".dropdown-menu");
+                $(".dropdown-menu").not($dropdownMenu).slideUp();
+                $dropdownMenu.slideToggle();
+            });
+
+            $(document).click(function (e) {
+                if (!$(e.target).closest('.dropdown, .dropdown-toggle').length) {
+                    $(".dropdown-menu").slideUp();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

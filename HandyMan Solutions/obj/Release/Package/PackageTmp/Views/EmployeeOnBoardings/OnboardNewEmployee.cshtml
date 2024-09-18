@@ -1,0 +1,111 @@
+﻿@model HandyMan_Solutions.Models.EmployeeOnBoardingViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<main aria-labelledby="title" class="d-flex justify-content-center align-items-center vh-80">
+    <div class="card w-75">
+        <div class="card-header text-center">
+            <h5 class="shadow">Employee Onboarding</h5>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("OnboardNewEmployee", "EmployeeOnBoardings", FormMethod.Post, new { role = "form", @id = "registerForm" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="firstname">Firstname</label>
+                            @Html.TextBoxFor(m => m.Employee.EFirstName, new { @class = "form-control required", @id = "firstname" })
+                        </div>
+                        <div class="col-md-4">
+                            <label for="lastname">Lastname</label>
+                            @Html.TextBoxFor(m => m.Employee.ELastName, new { @class = "form-control required", @id = "lastname" })
+                        </div>
+                        <div class="col-md-4">
+                            <label for="surname">Surname</label>
+                            @Html.TextBoxFor(m => m.Employee.EFamilyName, new { @class = "form-control required", @id = "surname" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label for="email">Email</label>
+                        @Html.TextBoxFor(m => m.Employee.EEmailAddress, new { @class = "form-control required", @id = "email" })
+                    </div>
+                    <div class="col-md-4">
+                        <label for="identityNumber">Identity Number</label>
+                        @Html.TextBoxFor(m => m.Employee.EIdentityNumber, new { @class = "form-control required", @id = "identityNumber" })
+                    </div>
+                    <div class="col-md-4">
+                        <label for="experience">Experience</label>
+                        @Html.TextBoxFor(m => m.Employee.EYearsofExperience, new { @class = "form-control required", @id = "experience" })
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label for="address">Address</label>
+                        @Html.TextBoxFor(m => m.Employee.EAddress, new { @class = "form-control required", @id = "address" })
+                    </div>
+                    <div class="col-md-4">
+                        <label for="role">Select Role</label>
+                        @Html.DropDownListFor(m => m.Employee.RoleId, new SelectList(Model.Roles, "Value", "Text"), "Select Role", new { @class = "form-control required", @id = "role" })
+                    </div>
+                    <div class="col-md-4">
+                        <label for="contact">Contact</label>
+                        @Html.TextBoxFor(m => m.Employee.EContact, new { @class = "form-control required", @id = "contact" })
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label for="secondContact">Alternative Contact</label>
+                        @Html.TextBoxFor(m => m.Employee.ESecondContact, new { @class = "form-control required", @id = "secondContact" })
+                    </div>
+                    <div class="col-md-4">
+                        <label for="password">Password</label>
+                        @Html.PasswordFor(m => m.Employee.Password, new { @class = "form-control required", @id = "password" })
+                    </div>
+                    <div class="col-md-4">
+                        <label for="confirmPassword">Confirm Password</label>
+                        @Html.PasswordFor(m => m.Employee.ConfirmPassword, new { @class = "form-control required", @id = "confirmPassword" })
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-12 text-center">
+                        <input type="submit" value="Register" class="btn btn-outline-dark" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $('#registerForm').submit(function (event) {
+            var isValid = true;
+            $('#registerForm input').each(function () {
+                if ($(this).val() === '') {
+                    isValid = false;
+                    return false;
+                }
+            });
+
+            if (!isValid) {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'All fields are required!'
+                });
+            }
+        });
+    </script>
+}

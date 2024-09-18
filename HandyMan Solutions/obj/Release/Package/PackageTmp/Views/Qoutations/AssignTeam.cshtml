@@ -1,0 +1,99 @@
+﻿@model HandyMan_Solutions.Models.SelectQuotationAndEmployeeViewModel
+
+@{
+    ViewBag.Title = "Review Quotation";
+}
+
+<div class="d-flex justify-content-center mt-3">
+    <div class="card" style="width: 80%; position: relative;">
+        <div class="card-body">
+
+            <h3 class="text-center">Assign Working Team for this Quotation Request</h3>
+            <p class="lead text-center">Please review this quotation's details carefully before proceeding.</p>
+            @using (Html.BeginForm("AssignEmployeeToQuotation", "AssignTasks", FormMethod.Post, new { id = "selectForm" }))
+            {
+                <div class="form-group">
+                    @Html.Label("Quotation")
+                    @Html.DropDownList("quotationId",
+                        new SelectList(Model.Quotations, "Id", "Description"),
+                        "Select a quotation",
+                        new { @class = "form-control", id = "quotationDropdown" })
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Employee")
+                    @Html.DropDownList("employeeKey",
+                        new SelectList(Model.Employees, "EmployeeKey", "EFirstName"),
+                        "Select an employee",
+                        new { @class = "form-control", id = "employeeDropdown" })
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" id="assignBtn" class="btn btn-primary btn-sm">
+                        <i class="bi bi-person-check"></i> Assign
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function submitReviewForm(actionUrl, id) {
+            Swal.fire({
+                title: 'Are you sure you want to assign this quotation?',
+                text: "This action will assign a working team to this quotation.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, assign',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: actionUrl,
+                        type: "POST",
+                        data: { qouteId: id },
+                        success: function (response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: response.message,
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then(() => {
+                                    window.location.href = "@Url.Action("AllRequest", "Qoutations")";
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: response.message,
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+                        },
+                        error: function () {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'An error occurred while processing your request.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $('#assignBtn').on('click', function () {
+                const id = $(this).data('id');
+                submitReviewForm('@Url.Action("Assign", "Qoutations")', id);
+            });
+        });
+    </script>
+}
