@@ -142,3 +142,5 @@ C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Release\
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Release\HandyMan.D3C18C43.Up2Date
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Release\HandyMan Solutions.dll
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Release\HandyMan Solutions.pdb
+C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Release\HandyMan_Solutions.Migrations.RemoveRegisteredDateColumn.resources
+C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Release\HandyMan Solutions.csproj.GenerateResource.cache

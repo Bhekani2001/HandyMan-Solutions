@@ -12,30 +12,30 @@
                     <h2>Rate Service</h2>
                 </div>
                 <div class="card-body">
-                    @using (Html.BeginForm("RateService", "Generals", FormMethod.Post))
+                    @using (Html.BeginForm("RateService", "Generals", FormMethod.Post, new { id = "rateServiceForm" }))
                     {
                         @Html.AntiForgeryToken()
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.ServiceId, "Select Service")
-                            @Html.DropDownListFor(model => model.ServiceId, (SelectList)ViewBag.ServiceList, "Select a service", new { @class = "form-control required" })
+                            @Html.DropDownListFor(model => model.ServiceId, (SelectList)ViewBag.ServiceList, "Select a service", new { @class = "form-control required", @id = "ServiceId" })
                             @Html.ValidationMessageFor(model => model.ServiceId)
                         </div>
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.Rating, "Rating")
-                            @Html.DropDownListFor(model => model.Rating, new SelectList(Enumerable.Range(1, 5)), "Select a rating", new { @class = "form-control required" })
+                            @Html.DropDownListFor(model => model.Rating, new SelectList(Enumerable.Range(1, 5)), "Select a rating", new { @class = "form-control required", @id = "Rating" })
                             @Html.ValidationMessageFor(model => model.Rating)
                         </div>
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.Comments)
-                            @Html.TextAreaFor(model => model.Comments, new { @class = "form-control required" })
+                            @Html.TextAreaFor(model => model.Comments, new { @class = "form-control required", @id = "Comments" })
                             @Html.ValidationMessageFor(model => model.Comments)
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Submit Rating</button>
+                            <button type="button" class="btn btn-primary" onclick="validateAndSubmit()">Submit Rating</button>
                         </div>
                     }
                 </div>
@@ -43,3 +43,22 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function validateAndSubmit() {
+        var serviceId = document.getElementById("ServiceId").value;
+        var rating = document.getElementById("Rating").value;
+        var comments = document.getElementById("Comments").value;
+
+        if (serviceId === "0" || !rating || comments.trim() === "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Empty Fields',
+                text: 'Please fill in all required fields before submitting!',
+            });
+        } else {
+            document.getElementById("rateServiceForm").submit();
+        }
+    }
+</script>

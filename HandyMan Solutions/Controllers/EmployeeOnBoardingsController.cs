@@ -66,7 +66,7 @@ namespace HandyMan_Solutions.Controllers
                     PhoneNumber = model.Employee.EContact,
                     Experience = model.Employee.EYearsofExperience,
                     IDNo = model.Employee.EIdentityNumber,
-                    RegisteredDate = DateTime.Now,
+                    //RegisteredDate = DateTime.Now,
                 };
 
                 var result = await userManager.CreateAsync(user, password);
@@ -88,6 +88,7 @@ namespace HandyMan_Solutions.Controllers
                         EStatus ="Available",
                         EEmailAddress = model.Employee.EEmailAddress,
                         EYearsofExperience = model.Employee.EYearsofExperience,
+                        RegisteredDate = DateTime.Now,
                         RoleId = model.Employee.RoleId,
                     };
 

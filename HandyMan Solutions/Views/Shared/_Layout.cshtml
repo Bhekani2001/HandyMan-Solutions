@@ -133,7 +133,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 </head>
-<body style="background-image:url(../../Images/HandyMan.jpeg)">
+<body style="background-image: url(../../Images/HandyMan.jpeg); background-size: cover; background-repeat: no-repeat; background-position: center center;">
+
     @if (User.Identity.IsAuthenticated)
     {
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-secondary">
@@ -156,7 +157,7 @@
                                     </a>
                                 </div>
                             </div>
-                            
+
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Employees</a>
                                 <div class="dropdown-menu bg-light shadow">
@@ -178,12 +179,12 @@
                                     <a href="@Url.Action("PaidOffServices", "ServiceProvides")" class="dropdown-item">
                                         <i class="bi bi-calendar-check"></i> Due Service Delivery
                                     </a>
-                                   <a href="@Url.Action("Enquiries", "Home")" class="dropdown-item">
+                                    <a href="@Url.Action("Enquiries", "Home")" class="dropdown-item">
                                         <i class="bi bi-chat-dots"></i> Enquiries
                                     </a>
-                               @*     <a href="#" class="dropdown-item">
-                                        <i class="bi bi-megaphone"></i> Marketing
-                                    </a>*@
+                                    @*     <a href="#" class="dropdown-item">
+                                            <i class="bi bi-megaphone"></i> Marketing
+                                        </a>*@
                                     <a href="@Url.Action("AllRequest", "Qoutations")" class="dropdown-item">
                                         <i class="bi bi-file-earmark-text"></i> New Quotations
                                     </a>
@@ -230,15 +231,15 @@
                             <li>
                                 @Html.ActionLink("OverDue Task", "OverDueTask", "ServiceProvides", new { area = "" }, new { @class = "nav-link" })
                             </li>
-                  @*          <li>
-                                @Html.ActionLink("Duties History", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
-                            </li>
-                            <li>
-                                @Html.ActionLink("Duties In-Progress", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
-                            </li>
-                            <li>
-                                @Html.ActionLink("Forward Duty", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
-                            </li>*@
+                            @*          <li>
+                                    @Html.ActionLink("Duties History", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Duties In-Progress", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Forward Duty", "MyRequest", "Qoutations", new { area = "" }, new { @class = "nav-link" })
+                                </li>*@
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>
@@ -311,7 +312,7 @@
         <div class="container body-content">
             @RenderBody()
             <br /><br />
-            @if (!User.IsInRole("Admin"))
+            @if (!User.Identity.IsAuthenticated)
             {
                 @Html.Partial("_footer")
             }

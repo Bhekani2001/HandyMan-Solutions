@@ -19,7 +19,7 @@ namespace HandyMan_Solutions.Models
         public int Experience { get; set; }
         public string IDNo { get; set; }
         public decimal Balance { get; set; } = 0;
-        public DateTime RegisteredDate { get; set; }
+       // public DateTime RegisteredDate { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

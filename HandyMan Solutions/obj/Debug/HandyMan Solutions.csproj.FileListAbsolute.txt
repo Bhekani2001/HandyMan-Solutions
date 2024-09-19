@@ -138,6 +138,8 @@ C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Microsof
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.csproj.AssemblyReference.cache
+C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan_Solutions.Migrations.RemoveRegisteredDateColumn.resources
+C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.csproj.GenerateResource.cache
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.csproj.CoreCompileInputs.cache
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan.D3C18C43.Up2Date
 C:\Users\EDGETEC\source\repos\HandyMan Solutions\HandyMan Solutions\obj\Debug\HandyMan Solutions.dll

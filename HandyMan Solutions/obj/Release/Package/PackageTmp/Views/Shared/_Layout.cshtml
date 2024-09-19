@@ -311,7 +311,7 @@
         <div class="container body-content">
             @RenderBody()
             <br /><br />
-            @if (!User.IsInRole("Admin"))
+            @if (!User.Identity.IsAuthenticated)
             {
                 @Html.Partial("_footer")
             }
