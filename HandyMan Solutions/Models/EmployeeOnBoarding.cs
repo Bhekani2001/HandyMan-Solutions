@@ -20,6 +20,7 @@ namespace HandyMan_Solutions.Models
         public string EAddress { get; set; }
         public string EStatus{ get; set; }
         public int EYearsofExperience { get; set; }
+        public DateTime RegisteredDate { get; set; }
 
         [Required]
         public string RoleId { get; set; }

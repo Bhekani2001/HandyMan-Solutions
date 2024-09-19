@@ -1,0 +1,158 @@
+﻿@model IEnumerable<HandyMan_Solutions.Models.Qoutation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>All Customers Quotation Requests</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <a href="@Url.Action("SubmitRequest", "Qoutations")" class="btn btn-outline-secondary">
+                            <i class="bi bi-file-earmark-text me-2"></i>
+                            Quotation Request
+                        </a>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Contact</th>
+                                <th>Service</th>
+                                <th>Description</th>
+                                <th>Cost</th>
+                                <th>Photo</th>
+                                <th>Applied</th>
+                                <th>Property</th>
+                                <th>Urgency</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                                        <td>
+                                            <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#contactModal" data-email="@item.UserEmail" data-address="@item.UserAddress" data-contact="@item.UserContact">
+                                                View Contact
+                                            </button>
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.ServiceType)</td>
+                                        <td><small>@Html.DisplayFor(modelItem => item.Description)</small></td>
+                                        <td><small>@String.Format("R {0:N2}", item.EstimatedCost)</small></td>
+                                        <td>
+                                            <img src="data:@(item.ImageData);base64,@Convert.ToBase64String(item.ImageData)" class="img-thumbnail tradein-img" style="width: 60px; height: 50px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" data-img-src="data:@(item.ImageData);base64,@Convert.ToBase64String(item.ImageData)" />
+                                        </td>
+                                        <td><small>@String.Format("{0:yyyy-MM-dd}", item.RequestedDate)</small></td>
+                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.PropertyType)</td>
+                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.UrgencyLevel)</td>
+                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.Status)</td>
+                                        <td>
+                                            @if (item.Status == "Pending...")
+                                            {
+                                                <a href="@Url.Action("Review", "Qoutations", new { id = item.Id })" class="btn btn-outline-primary btn-sm">Review</a>
+                                            }else if (item.Status == "Cancelled")
+                                            {
+                                                <small class="alert alert-danger">Cancelled</small>
+                                            }
+                                            else if(item.TechnicianAssigned=="None")
+                                            {
+                                                <small class="alert alert-warning">Assign</small>
+                                            }
+                                            else if(item.TechnicianAssigned!="None")
+                                            {
+                                                <small class="alert alert-success">Assigned</small>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="12">
+                                        <div class="alert alert-danger text-center rounded-0" style="border:solid green" role="alert">
+                                            No Records
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">This Image Uploaded by Applicant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" class="img-fluid" alt="Trade-In Image" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Contact Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Email:</strong> <span id="contactEmail"></span></p>
+                <p><strong>Address:</strong> <span id="contactAddress"></span></p>
+                <p><strong>Contact:</strong> <span id="contactPhone"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.tradein-img').on('click', function () {
+        var imgSrc = $(this).data('img-src');
+        $('#modalImage').attr('src', imgSrc);
+        $('#imageModal').modal('show');
+    });
+
+    $('#contactModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); 
+        var email = button.data('email'); 
+        var address = button.data('address');
+        var contact = button.data('contact');
+
+        var modal = $(this);
+        modal.find('#contactEmail').text(email);
+        modal.find('#contactAddress').text(address);
+        modal.find('#contactPhone').text(contact);
+    });
+</script>

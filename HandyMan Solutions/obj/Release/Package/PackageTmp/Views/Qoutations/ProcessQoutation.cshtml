@@ -1,0 +1,145 @@
+﻿@model HandyMan_Solutions.Models.Qoutation
+
+@{
+    ViewBag.Title = "Submit Request";
+}
+
+<div class="d-flex justify-content-center">
+    <div class="jumbotron" style="width: 80%;height:525px; padding: 2rem; border-radius: 0.5rem; position: relative;">
+        <h2 class="text-center">Employee Quotation Job Card</h2>
+        <hr class="display-3" />
+
+        @using (Html.BeginForm("ProcessQoutation", "Qoutations", FormMethod.Post, new { enctype = "multipart/form-data", id = "requestForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        Customer
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control ", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        Customer Address
+                        @Html.TextBoxFor(model => model.UserAddress, new { @class = "form-control ", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.UserAddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        Service
+                        @Html.TextBoxFor(model => model.ServiceType, new { @class = "form-control ", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.ServiceType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        Description
+                        @Html.TextBoxFor(model => model.Description, new { @class = "form-control ", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        Service
+                        @Html.TextBoxFor(model => model.UrgencyLevel, new { @class = "form-control ", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.UrgencyLevel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        Description
+                        @Html.TextBoxFor(model => model.PropertyType, new { @class = "form-control ", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.PropertyType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="EstimatedCost">
+                            <i class="bi bi-cash"></i> What would Be Price?
+                        </label>
+                        @Html.TextBoxFor(model => model.EstimatedCost, new { @class = "form-control required", placeholder = "Enter the estimated cost" })
+                        @Html.ValidationMessageFor(model => model.EstimatedCost, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="TechnicianNotes">
+                            <i class="bi bi-file-text"></i> Add Some Notes
+                        </label>
+                        @Html.TextBoxFor(model => model.TechnicianNotes, new { @class = "form-control required", rows = 2, placeholder = "Enter any additional notes" })
+                        @Html.ValidationMessageFor(model => model.TechnicianNotes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="bi bi-send"></i> Update Qoutation
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#requestForm").on("submit", function (event) {
+                event.preventDefault();
+
+                var form = $(this);
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: form.attr("action"),
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                window.location.href = "@Url.Action("QoutationDuties", "AssignTasks")";
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'An unexpected error occurred.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

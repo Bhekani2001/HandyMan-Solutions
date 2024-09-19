@@ -250,6 +250,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interface\IEmailService.cs" />
+    <Compile Include="Migrations\202409181639108_RemoveRegisteredDateColumn.cs" />
+    <Compile Include="Migrations\202409181639108_RemoveRegisteredDateColumn.Designer.cs">
+      <DependentUpon>202409181639108_RemoveRegisteredDateColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AssetsManagement.cs" />
@@ -299,6 +303,8 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\handmanservices - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\handmanservices - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -408,6 +414,11 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202409181639108_RemoveRegisteredDateColumn.resx">
+      <DependentUpon>202409181639108_RemoveRegisteredDateColumn.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

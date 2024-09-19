@@ -15,9 +15,10 @@ namespace Tassc.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
-            var registrations = db.Users
+            var registrations = db.EmployeeOnBoardings
                 .GroupBy(u => new { Year = SqlFunctions.DatePart("year", u.RegisteredDate), Week = SqlFunctions.DatePart("wk", u.RegisteredDate) })
                 .Select(g => new
                 {
@@ -125,7 +126,7 @@ namespace Tassc.Controllers
             return View();
         }
 
-        public ActionResult WeeklyUserRegistrations()
+       /* public ActionResult WeeklyUserRegistrations()
         {
             var registrations = db.Users
                 .GroupBy(u => new { Year = u.RegisteredDate.Year, Week = SqlFunctions.DatePart("wk", u.RegisteredDate) })
@@ -146,7 +147,7 @@ namespace Tassc.Controllers
             };
 
             return View(model);
-        }
+        }*/
 
     }
 }
