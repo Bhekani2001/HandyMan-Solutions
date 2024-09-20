@@ -39,5 +39,28 @@ namespace HandyMan_Solutions.App_Start
                 return user.FirstName ?? "User";
             }
         }
+        
+        public static string GetFullName(string userId)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var user = context.Users.FirstOrDefault(u => u.Id == userId);
+
+                if (user == null)
+                {
+                    return "User";
+                }
+
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var roles = userManager.GetRoles(userId);
+
+                if (roles.Contains("Admin"))
+                {
+                    return "Admin";
+                }
+
+                return user.FirstName +" "+ user.LastName +" "+ user.FamilyName ?? "User";
+            }
+        }
     }
 }

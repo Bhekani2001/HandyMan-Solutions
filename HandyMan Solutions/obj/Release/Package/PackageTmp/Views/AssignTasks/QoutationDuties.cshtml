@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<HandyMan_Solutions.Models.Qoutation>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Qoutation Duties";
 }
 
-<div class="mt-4">
+<div class="mt-5">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -36,7 +36,7 @@
                                     <tr>
                                         <td>
                                             <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#contactModal" data-username="@item.UserName"  data-email="@item.UserEmail" data-address="@item.UserAddress" data-contact="@item.UserContact">
-                                                Customer Information
+                                                Customer Info.
                                             </button>
                                         </td>
                                         <td>@Html.DisplayFor(modelItem => item.ServiceType)</td>
@@ -46,9 +46,9 @@
                                             <img src="data:@(item.ImageData);base64,@Convert.ToBase64String(item.ImageData)" class="img-thumbnail tradein-img" style="width: 60px; height: 50px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" data-img-src="data:@(item.ImageData);base64,@Convert.ToBase64String(item.ImageData)" />
                                         </td>
                                         <td><small>@String.Format("{0:yyyy-MM-dd}", item.RequestedDate)</small></td>
-                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.UrgencyLevel)</td>
-                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.PropertyType)</td>
-                                        <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.Status)</td>
+                                        <td id="status-@item.Id"><small>@Html.DisplayFor(modelItem => item.UrgencyLevel)</small></td>
+                                        <td id="status-@item.Id"><small>@Html.DisplayFor(modelItem => item.PropertyType)</small></td>
+                                        <td id="status-@item.Id"><small>@Html.DisplayFor(modelItem => item.Status)</small></td>
                                         <td>
                                             @if (item.Status == "Approved")
                                             {
