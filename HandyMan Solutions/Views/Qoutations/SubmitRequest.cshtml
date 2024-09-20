@@ -104,7 +104,6 @@
                 var form = $(this);
                 var formData = new FormData(this);
 
-                // Submit the form via AJAX
                 $.ajax({
                     url: form.attr("action"),
                     type: "POST",
@@ -113,7 +112,7 @@
                     contentType: false,
                     success: function (response) {
                         if (response.success) {
-                            // Show modal on success
+
                             $("#paymentModal").modal("show");
                         } else {
                             Swal.fire({

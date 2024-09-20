@@ -1,5 +1,9 @@
 ﻿@model HandyMan_Solutions.Models.WeeklyUserRegistrationsViewModel
 @using Newtonsoft.Json
+@using Microsoft.AspNet.Identity
+@using HandyMan_Solutions.App_Start
+@using System.Globalization
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,13 +16,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <main class="container mt-4">
+    <main class="container mt-lg-5">
         <section class="jumbotron text-center bg-light shadow">
             <div class="card border-0">
                 <div class="card-body">
                     @if (User.IsInRole("Electrician"))
                     {
+                        var userId = User.Identity.GetUserId();
+                        var firstName = UserFirstName.GetFullName(userId);
                         <div class="alert alert-info">
+                            <h3 class="text-center alert alert-warning"> Hello @firstName</h3>
                             <h4 class="alert-heading display-5">Electrician Dashboard</h4>
                             <p>Welcome, Electrician! Here's your dashboard:</p>
                         </div>

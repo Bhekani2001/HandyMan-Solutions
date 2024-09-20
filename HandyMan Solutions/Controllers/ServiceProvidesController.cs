@@ -65,7 +65,7 @@ namespace HandyMan_Solutions.Controllers
         public ActionResult OverDueTask()
         {
             var service = db.ServiceProvideds
-                                  .Where(sq => sq.EndDate<DateTime.Now)
+                                  .Where(sq => sq.EndDate<DateTime.Now & sq.Status!="Done")
                                   .ToList();
             return View(service);
         }

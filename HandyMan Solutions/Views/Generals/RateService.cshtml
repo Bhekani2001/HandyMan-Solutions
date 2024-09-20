@@ -1,9 +1,16 @@
 ﻿@model HandyMan_Solutions.Models.RateServiceViewModel
+@using Microsoft.AspNet.Identity
+@using HandyMan_Solutions.App_Start
+@using System.Globalization
 
 @{
     ViewBag.Title = "Rate Service";
 }
 
+@if (Request.IsAuthenticated)
+{
+    var userId = User.Identity.GetUserId();
+    var firstName = UserFirstName.GetFullName(userId);
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -11,8 +18,9 @@
                 <div class="card-header text-center">
                     <h2>Rate Service</h2>
                 </div>
+                <small class="text-center alert alert-info"> Service History for @firstName</small>
                 <div class="card-body">
-                    @using (Html.BeginForm("RateService", "Generals", FormMethod.Post, new { id = "rateServiceForm" }))
+                    @using (Html.BeginForm("RateService", "Generals", FormMethod.Post, new { id = "rateServiceForm", @class = "ajaxForm" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -43,8 +51,11 @@
         </div>
     </div>
 </div>
+}
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
     function validateAndSubmit() {
         var serviceId = document.getElementById("ServiceId").value;
@@ -58,7 +69,30 @@
                 text: 'Please fill in all required fields before submitting!',
             });
         } else {
-            document.getElementById("rateServiceForm").submit();
+            // Submit form using AJAX
+            var formData = $(".ajaxForm").serialize();
+            $.ajax({
+                url: '@Url.Action("RateService", "Generals")',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    // Trigger SweetAlert success on successful submission
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Thank You!',
+                        text: 'Your rating has been submitted successfully.',
+                    });
+                    // Optionally reset the form after successful submission
+                    $('#rateServiceForm')[0].reset();
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Submission Failed',
+                        text: 'An error occurred while submitting your rating. Please try again.',
+                    });
+                }
+            });
         }
     }
 </script>

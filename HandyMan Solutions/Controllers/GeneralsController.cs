@@ -57,7 +57,7 @@ namespace HandyMan_Solutions.Controllers
                     ModelState.AddModelError("", "Invalid Service ID.");
                 }
 
-                return RedirectToAction(nameof(RateService));
+                return RedirectToAction("MyServicesHistory", "ServiceProvides");
             }
 
             return View(model);
