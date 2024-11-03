@@ -77,22 +77,41 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $('#registerForm').submit(function (event) {
-            var isValid = true;
-            $('#registerForm input').each(function () {
-                if ($(this).val() === '') {
-                    isValid = false;
-                    return false;
+            event.preventDefault(); 
+
+            var form = $(this);
+            $.ajax({
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),  
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Registration Successful!',
+                            text: 'Please check your email to confirm your account.'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = response.redirectUrl;
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong with the registration!'
+                    });
                 }
             });
-
-            if (!isValid) {
-                event.preventDefault();
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'All fields are required!'
-                });
-            }
         });
+
     </script>
 }

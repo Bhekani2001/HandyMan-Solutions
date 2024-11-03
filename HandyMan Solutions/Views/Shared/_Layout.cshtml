@@ -150,15 +150,6 @@
                         <ul class="navbar-nav flex-grow-1">
 
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Assets Management</a>
-                                <div class="dropdown-menu bg-light shadow">
-                                    <a href="@Url.Action("Cars", "CarOnBoardings")" class="dropdown-item">
-                                        <i class="fas fa-car"></i> Vehicle
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Employees</a>
                                 <div class="dropdown-menu bg-light shadow">
                                     <a href="@Url.Action("OnboardNewEmployee","EmployeeOnBoardings")" class="dropdown-item">
@@ -214,7 +205,8 @@
                         @Html.Partial("_LoginPartial")
                     </div>
                 }
-                else if (User.IsInRole("Electrician"))
+                else if (User.IsInRole("Electrician")|| User.IsInRole("Appliance Repair Technician") || User.IsInRole("HVAC Technician") 
+                    || User.IsInRole("Carpenter") || User.IsInRole("Plumber") || User.IsInRole("General Home Maintenance"))
                 {
                     @Html.ActionLink("HandyMan Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navbar-brand-custom" })
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

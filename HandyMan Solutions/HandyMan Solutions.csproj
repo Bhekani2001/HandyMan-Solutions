@@ -304,7 +304,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\handmanservices - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\handmanservices - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\handymanservices - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\handymanservices - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

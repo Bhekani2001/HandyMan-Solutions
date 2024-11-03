@@ -146,6 +146,14 @@ namespace HandyMan_Solutions.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Check if the email already exists
+                var existingUser = await UserManager.FindByEmailAsync(model.Email);
+                if (existingUser != null)
+                {
+                    // Email already exists, return error message
+                    return Json(new { success = false, message = "Email already exists!" });
+                }
+
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
@@ -156,34 +164,31 @@ namespace HandyMan_Solutions.Controllers
                     Contact = model.Contact,
                     Address = model.Address,
                     PhoneNumber = model.Contact,
-                    Balance = 0,
-                   // RegisteredDate = DateTime.Now
+                    Balance = 0
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-
                     var subject = "HandyMan Solutions Account Creation";
                     var body = $"Dear {user.FirstName} {user.LastName} {user.FamilyName},<br/><br/>" +
-                               $"On {DateTime.Now.ToString("MMMM dd, yyyy")}, you registered for a HandyMan Solutions account.<br/>" +
-                               $"If it wasn't you please ignore this email. It was intended for {user.FirstName} {user.LastName} {user.FamilyName} with email {user.Email} <br/><br/>" +
-                               $"Please confirm your account by clicking <a href=\"{callbackUrl}\">here</a>.<br/><br/>" +
-                               "Thank you,<br/>HandyMan Solutions Team";
+                                $"On {DateTime.Now.ToString("MMMM dd, yyyy")}, you registered for a HandyMan Solutions account.<br/>" +
+                                $"If it wasn't you, please ignore this email. It was intended for {user.FirstName} {user.LastName} {user.FamilyName} with email {user.Email} <br/><br/>" +
+                                $"Please confirm your account by clicking <a href=\"{callbackUrl}\">here</a>.<br/><br/>" +
+                                "Thank you,<br/>HandyMan Solutions Team";
 
                     SendEmail(user.Email, subject, body);
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    return RedirectToAction("Index", "Home");
+                    return Json(new { success = true, redirectUrl = Url.Action("Index", "Home") });
                 }
                 AddErrors(result);
             }
 
-            return View(model);
+            return Json(new { success = false, message = "Registration failed!" });
         }
 
 

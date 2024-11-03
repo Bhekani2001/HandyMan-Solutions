@@ -43,10 +43,11 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <section class="text-center mt-5">
-                            <h2>Existing Users since 2024</h2>
-                            <div style="width: 50%; margin: auto;">
-                                <canvas id="barChart"></canvas>
-                            </div>
+                            <h1 class="display-4">Welcome to HandyMan Services</h1>
+                            @*<h2>Existing Users since 2024</h2>*@
+                            @* <div style="width: 50%; margin: auto;">
+            <canvas id="barChart"></canvas>
+        </div>*@
                         </section>
                     }
                     else if (!User.Identity.IsAuthenticated)
@@ -56,9 +57,9 @@
                         </a>
 
                         <br />
-                        <div class="d-flex justify-content-center">
+                       @* <div class="d-flex justify-content-center">
                             <img src="@Url.Action("GenerateQRCode", "Home", new { url = Url.Action("Login", "Account", null, Request.Url.Scheme) })" alt="QR Code" class="img-fluid" style="max-width: 200px;height:120px" />
-                        </div>
+                        </div>*@
                     }
                 </div>
             </div>
