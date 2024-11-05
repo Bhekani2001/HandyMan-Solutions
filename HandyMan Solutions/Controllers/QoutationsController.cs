@@ -371,5 +371,27 @@ namespace HandyMan_Solutions.Controllers
             }
             return Json(new { success = false, message = "Qoutation not found or not approved yet." });
         }
+
+        [HttpPost]
+        public JsonResult UpdateStatus(int id, string status)
+        {
+            try
+            {
+                var quotation = db.QoutationRequests.Find(id);
+                if (quotation == null)
+                {
+                    return Json(new { success = false, message = "Quotation not found" });
+                }
+
+                quotation.Status = status;
+                db.SaveChanges();
+
+                return Json(new { success = true, message = $"Quotation {status} successfully" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "An error occurred while updating the status." });
+            }
+        }
     }
 }

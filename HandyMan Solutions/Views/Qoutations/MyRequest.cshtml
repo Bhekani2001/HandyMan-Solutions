@@ -56,7 +56,6 @@
                                                     <i class="bi bi-person"></i> Team Assigned
                                                 </small>
                                             }
-
                                         </td>
                                         <td><small>@String.Format("R {0:N2}", item.EstimatedCost)</small></td>
                                         <td><small>@String.Format("{0:yyyy-MM-dd}", item.RequestedDate)</small></td>
@@ -66,37 +65,40 @@
                                         <td>
                                             @if (item.Status == "Pending...")
                                             {
-                                                @*                                                <a class="btn btn-outline-warning btn-sm" title="Update" onclick="confirmUpdate('@Url.Action("Update", "Qoutations", new { id = item.Id })')">
-                <i class="bi bi-pencil"></i>
-            </a>*@
                                                 <a class="btn btn-outline-danger btn-sm" title="Cancel" onclick="confirmCancel('@Url.Action("Cancell", "Qoutations", new { id = item.Id })')">
-                                                    Cancell <i class="bi bi-x-circle"></i>
+                                                    Cancel <i class="bi bi-x-circle"></i>
+                                                </a>
+                                            }
+                                            @if (item.Status == "Inspected" && item.Status != "Approved")
+                                            {
+                                                <a class="btn btn-outline-info btn-sm" title="Accept" onclick="confirmAccept(@item.Id)">
+                                                    <i class="bi bi-check-circle"></i> Accept
+                                                </a>
+
+                                                <a class="btn btn-outline-info btn-sm" title="Decline" onclick="confirmDecline(@item.Id)">
+                                                    <i class="bi bi-x-circle"></i> Decline
                                                 </a>
                                             }
                                             @if (item.EstimatedCost != 0)
                                             {
-                                                if (item.Status == "Inspected" && item.NewPaid != "Paid")
+                                                if (item.Status == "Approved" && item.NewPaid != "Paid")
                                                 {
                                                     <a class="btn btn-outline-info btn-sm" title="Pay Now" data-bs-toggle="modal" data-bs-target="#paymentModal" data-quotation-id="@item.Id">
                                                         <i class="bi bi-credit-card"></i> Pay Now
                                                     </a>
-                                                }else
+                                                }
+                                                else if (item.NewPaid == "Paid")
                                                 {
                                                     <small class="alert alert-success">
                                                         <i class="bi bi-person"></i> Service Paid Off
                                                     </small>
                                                 }
-                                            }@if (item.Status == "Cancelled")
+                                            }
+                                            @if (item.Status == "Cancelled")
                                             {
                                                 <small class="alert alert-danger">Cancelled</small>
                                             }
-                                            else if (item.Status == "Approved")
-                                            {
-                                                <small class="alert alert-success">
-                                                    <i class="bi bi-file-earmark-text"></i> Due Inspection
-                                                </small>
-                                            }
-
+                                           
                                         </td>
                                     </tr>
                                 }
@@ -119,8 +121,6 @@
     </div>
 </div>
 
-
-
 <!-- Payment Modal -->
 <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -134,7 +134,6 @@
             </div>
             <div class="modal-footer">
                 <form id="paymentForm" method="post" action="@Url.Action("PayNow", "Payments")">
-                    <!-- Hidden input to store quotation ID -->
                     <input type="hidden" name="quotationId" id="quotationId" value="" />
                     <button type="submit" class="btn btn-primary">Pay Now</button>
                 </form>
@@ -148,17 +147,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        
         $('#paymentModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var quotationId = button.data('quotation-id'); // Extract info from data-* attributes
-
-            // Update the hidden input field with the quotation ID
+            var button = $(event.relatedTarget);
+            var quotationId = button.data('quotation-id');
             var form = $(this).find('form');
             form.find('#quotationId').val(quotationId);
         });
 
-        // SweetAlert2 for cancellation confirmation
         function confirmCancel(url) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -171,7 +166,6 @@
                 cancelButtonText: 'No, keep it'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Perform the cancellation
                     $.post(url, function (response) {
                         if (response.success) {
                             Swal.fire(
@@ -194,6 +188,56 @@
                             'An error occurred while processing your request.',
                             'error'
                         );
+                    });
+                }
+            });
+        }
+
+        function confirmAccept(quotationId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to accept this quotation?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, accept it!',
+                cancelButtonText: 'No, cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('@Url.Action("UpdateStatus", "Qoutations")', { id: quotationId, status: "Approved" }, function(response) {
+                        if (response.success) {
+                            Swal.fire('Accepted!', 'The quotation has been accepted.', 'success').then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire('Error!', response.message, 'error');
+                        }
+                    }).fail(function() {
+                        Swal.fire('Error!', 'Could not update the status.', 'error');
+                    });
+                }
+            });
+        }
+
+        function confirmDecline(quotationId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to decline this quotation?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, decline it!',
+                cancelButtonText: 'No, cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('@Url.Action("UpdateStatus", "Qoutations")', { id: quotationId, status: "Declined" }, function(response) {
+                        if (response.success) {
+                            Swal.fire('Declined!', 'The quotation has been declined.', 'success').then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire('Error!', response.message, 'error');
+                        }
+                    }).fail(function() {
+                        Swal.fire('Error!', 'Could not update the status.', 'error');
                     });
                 }
             });

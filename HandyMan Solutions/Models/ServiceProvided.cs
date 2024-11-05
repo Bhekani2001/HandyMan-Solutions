@@ -29,6 +29,7 @@ namespace HandyMan_Solutions.Models
 
         public string TechnicalNotes { get; set; }
         public string TechnicalStatus { get; set; }
+        public string NewTechnicalStatus { get; set; }
         public string TechnicianAssigned { get; set; }
         public Qoutation Qoutation { get; set; }
 

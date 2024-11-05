@@ -303,8 +303,6 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Properties\PublishProfiles\handmanservices - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\handymanservices - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\handymanservices - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
@@ -382,6 +380,7 @@
     <Content Include="Views\Shared\_footer.cshtml" />
     <Content Include="Views\Generals\RateService.cshtml" />
     <Content Include="Views\Generals\Chart.cshtml" />
+    <Content Include="Views\ServiceProvides\UpdateTask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,14 +20,15 @@
         <section class="jumbotron text-center bg-light shadow">
             <div class="card border-0">
                 <div class="card-body">
-                    @if (User.IsInRole("Electrician"))
+                    @if (User.IsInRole("Electrician") || User.IsInRole("Appliance Repair Technician") || User.IsInRole("HVAC Technician")
+                    || User.IsInRole("Carpenter") || User.IsInRole("Plumber") || User.IsInRole("General Home Maintenance"))
                     {
                         var userId = User.Identity.GetUserId();
                         var firstName = UserFirstName.GetFullName(userId);
                         <div class="alert alert-info">
                             <h3 class="text-center alert alert-warning"> Hello @firstName</h3>
-                            <h4 class="alert-heading display-5">Electrician Dashboard</h4>
-                            <p>Welcome, Electrician! Here's your dashboard:</p>
+                            <h4 class="alert-heading display-5">Employee Dashboard</h4>
+                            <p>Welcome, Employee! Here's your dashboard:</p>
                         </div>
                     }
 

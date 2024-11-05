@@ -59,24 +59,27 @@
                                         <td><small>@String.Format("{0:yyyy-MM-dd}", item.EndDate)</small></td>
                                         <td id="status-@item.Id">@Html.DisplayFor(modelItem => item.Status)</td>
                                         <td>
-                                            @if (item.Status == "Paid")
+                                            @if (!User.IsInRole("Admin"))
                                             {
-                                                <a href="@Url.Action("ProcessTask", "ServiceProvides", new { id = item.Id })" class="btn btn-outline-primary btn-sm">
-                                                    Start Working
-                                                </a>
-                                            }
-                                            else if (item.Status == "In-Progress")
-                                            {
-                                                <a href="@Url.Action("UpdateTask", "ServiceProvides", new { id = item.Id })" class="btn btn-outline-primary btn-sm">
-                                                    Update
-                                                </a>
-                                                <a href="@Url.Action("CloseTask", "ServiceProvides", new { id = item.Id })" class="btn btn-outline-primary btn-sm">
-                                                    Close
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <small class="alert alert-success">Processed</small>
+                                                if (item.Status == "Paid")
+                                                {
+                                                    <a href="@Url.Action("ProcessTask", "ServiceProvides", new { id = item.Id })" class="btn btn-outline-primary btn-sm">
+                                                        Start Working
+                                                    </a>
+                                                }
+                                                else if (item.Status == "In-Progress")
+                                                {
+                                                    <a href="@Url.Action("UpdateTask", "ServiceProvides", new { id = item.Id })" class="btn btn-outline-primary btn-sm">
+                                                        Update
+                                                    </a>
+                                                    <a href="@Url.Action("CloseTask", "ServiceProvides", new { id = item.Id })" class="btn btn-outline-primary btn-sm">
+                                                        Close
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <small class="alert alert-success">Processed</small>
+                                                }
                                             }
                                         </td>
                                     </tr>

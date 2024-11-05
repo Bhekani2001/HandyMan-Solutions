@@ -180,6 +180,7 @@ namespace HandyMan_Solutions.Controllers
 
             return View(serviceProvided);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> UpdateTask(ServiceProvided model)
@@ -190,13 +191,15 @@ namespace HandyMan_Solutions.Controllers
 
                 if (serviceProvided != null)
                 {
+                    serviceProvided.EndDate = DateTime.Now;
                     serviceProvided.TechnicalNotes = serviceProvided.TechnicalNotes;
+                    serviceProvided.NewTechnicalStatus = "Delayed";
 
                     await db.SaveChangesAsync();
 
                     string redirectUrl = Url.Action(nameof(PaidOffServices));
 
-                    return Json(new { success = true, message = "Task Update successfully.", redirectUrl = redirectUrl });
+                    return Json(new { success = true, message = "Task updated successfully.", redirectUrl = redirectUrl });
                 }
                 else
                 {
@@ -208,6 +211,7 @@ namespace HandyMan_Solutions.Controllers
                 return Json(new { success = false, message = "Invalid data." });
             }
         }
+
 
 
         [HttpPost]
